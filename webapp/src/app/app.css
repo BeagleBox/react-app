@@ -1,0 +1,174 @@
+.main-area-container {
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.app-container,
+.main-area-container {
+  min-height: 100%;
+}
+
+.content-area-container {
+  width: 100%;
+}
+
+.header-container {
+  height: 70px;
+  min-height: 70px;
+  max-height: 70px;
+  background-color: #2095F2;
+  color: #BADCBB;
+  font-size: 19px;
+  font-weight: 400;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  z-index: 100;
+}
+
+.content-area-container {
+  color: #585f69;
+  z-index: 0;
+  padding: 15px;
+}
+
+.main-area-container,
+.header-container {
+  flex-direction: row;
+}
+
+.app-container,
+.side-menu-container,
+.content-area-container {
+  flex-direction: column;
+}
+
+.app-container {
+  min-height: 100%;
+  flex-direction: column;
+}
+
+.page__title {
+  height: 60px;
+  line-height: 60px;
+  font-size: 28px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.panel {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.panel__header {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 10px;
+  background: #162f3b;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-bottom: 1px solid transparent;
+}
+
+.pannel--inner {
+  margin: 0px;
+}
+.panel__body {
+  width: 100%;
+  display: block;
+  padding: 5px 15px;
+  background: #FFF;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  position: relative;
+  z-index: 2;
+}
+
+.panel__header p {
+  padding: 0px;
+  margin: 0px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.form__actions {
+  position: relative;
+  top: -10px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.05);
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/** GENERAL **/
+.center,
+.right,
+.left {
+  align-items: center;
+  justify-content: center;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.green {
+  color: #46A149;
+}
+
+.red {
+  color: red;
+}
+
+.shadow-box {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.shadow-text {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.26);
+}
+
+.no-divider {
+  border-right: none !important;
+}
+
+.spacing span,
+.spacing div {
+  margin: 0 2px;
+}
+
+.row-fluid {
+  margin: 0px !important;
+}
+
+.col-fluid {
+  padding: 0px !important;
+}
+
+.position--relative {
+  position: relative;
+}
