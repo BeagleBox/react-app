@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import {Card, CardHeader, CardText} from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
-import FlatButton from 'material-ui/FlatButton'
 
 import HomepageForm from './form'
 import assets from './assets'
@@ -13,7 +11,7 @@ export default class App extends Component {
   render() {
     return (
       <Grid className="homepage-container" fluid>
-        <Row className="row-fluid">
+        <Row className="row-fluid homepage-content">
           <Col className="col-fluid col-homepage" md={6} sm={6} xs={12}>
             <img className="img-homepage" src={assets.beaglebox} alt={"BeagleBox logo"} />
           </Col>

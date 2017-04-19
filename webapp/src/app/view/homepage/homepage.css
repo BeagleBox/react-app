@@ -1,10 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Lora');
 
 .homepage-container {
-  text-align: center;
+  background-image: url("assets/unb-gama.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  height: 80%;
-  margin: auto;
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
+}
+
+.homepage-content {
+  background-color: #F0F0F0;
+
+  text-align: center;
+  z-index: 999;
+
+  position: absolute;
+  margin: auto !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vh;
+  height: 50vh;
 }
 
 .img-homepage {
