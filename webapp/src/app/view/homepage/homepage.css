@@ -60,6 +60,10 @@
 }
 
 @media only screen and (max-width: 800px) {
+  .homepage-content {
+    width: 90%;
+  }
+
   .col-homepage {
     margin-bottom: 1.2em;
   }

@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import * as validation from './validation'
 import './homepage-form.css'
 
-export default class App extends Component {
+export default class HomepageForm extends Component {
   constructor(props) {
     super(props);
 
@@ -17,6 +17,16 @@ export default class App extends Component {
       password: '',
       passwordError: '',
     }
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    })
   }
 
   handleSubmit = () => {
@@ -24,10 +34,14 @@ export default class App extends Component {
 
     if(!validation.validateEmail(email)) {
       this.setState({emailError: "Endereço de e-mail inválido"})
+    } else {
+      this.setState({emailError: ""})
     }
 
     if(!validation.validatePassword(password)) {
       this.setState({passwordError: "A senha deve possuir 8 caracteres"})
+    } else {
+      this.setState({passwordError: ""})
     }
   }
 
@@ -41,7 +55,8 @@ export default class App extends Component {
             floatingLabelText="E-mail"
             floatingLabelStyle={{color: '#696969'}}
             type="email"
-            errorText={this.state.emailError} />
+            errorText={this.state.emailError}
+            onChange={this.handleInputChange} />
         </Col>
         <Col className="col-fluid form-content" xs={12}>
           <TextField
@@ -50,7 +65,8 @@ export default class App extends Component {
             floatingLabelText="Senha"
             floatingLabelStyle={{color: '#696969'}}
             type="password"
-            errorText={this.state.passwordError} />
+            errorText={this.state.passwordError}
+            onChange={this.handleInputChange} />
         </Col>
         <Col className="col-fluid form-content" xs={12}>
           <FlatButton
