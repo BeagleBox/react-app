@@ -14,7 +14,7 @@ export default class App extends Component {
       <MuiThemeProvider>
         <div className='app-container'>
           <div className='main-area-container'>
-            Oi
+            {this.props.children}
           </div>
         </div>
       </MuiThemeProvider>

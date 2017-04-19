@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+.homepage-container {
+  background-image: url("assets/unb-fga.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.homepage-content {
+  background-color: #F0F0F0;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  width: 70%;
+  z-index: 999;
+}
+
+.img-homepage {
+  height: auto;
+  width: 80%;
+}
+
+.col-homepage {
+  padding: 1.5em !important;
+
+  height: 80%;
+  margin: auto;
+}
+
+.homepage-card-container {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.homepage-card-title > div {
+  padding-right: 0 !important;
+}
+
+.homepage-card-title > div span {
+  font-family: 'Lora', serif;
+  font-size: 2em !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .homepage-card-title,
+  .homepage-card-text {
+    padding: 5px !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .col-homepage {
+    margin-bottom: 1.2em;
+  }
+
+  .col-homepage:last-child {
+    margin-top: -15%;
+    padding: 1.5em 0 !important;
+  }
+}

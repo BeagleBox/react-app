@@ -1,0 +1,24 @@
+.form-container {
+  padding: 0 2em;
+}
+
+.form-content {
+  margin: -0.5em 0 !important;
+  width: 100%;
+}
+
+.form-content label {
+  font-size: 0.9em;
+}
+
+.form-content:last-child {
+  margin-top: 1.5em !important;
+}
+
+.form-content-field {
+  width: 100% !important;
+}
+
+.btn-form-signin > div span {
+  color: #FFF;
+}
