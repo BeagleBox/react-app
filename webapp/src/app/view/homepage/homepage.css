@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+.homepage-container {
+  text-align: center;
+
+  height: 80%;
+  margin: auto;
+}
+
+.beaglebox-main-img {
+  height: auto;
+  width: 80%;
+}
+
+.home-col {
+  height: 80%;
+  margin: auto;
+}
+
+.login-card-container {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.login-card-title > div {
+  padding-right: 0 !important;
+}
+
+.login-card-title > div span {
+  font-family: 'Lora', serif;
+  font-size: 2em !important;
+}
+
+.form-container {
+  padding: 0 2em;
+}
+
+.form-content {
+  margin: -0.5em 0 !important;
+  width: 100%;
+}
+
+.form-content label {
+  font-size: 0.9em;
+}
+
+.form-content:last-child {
+  margin-top: 1.5em !important;
+}
+
+.form-content-field {
+  width: 100% !important;
+}
+
+.btn-signin > div span {
+  color: #FFF;
+}
