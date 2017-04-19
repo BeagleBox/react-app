@@ -13,8 +13,9 @@ export default class App extends Component {
     return (
       <MuiThemeProvider>
         <div className='app-container'>
-          <div className='main-area-container' />
-
+          <div className='main-area-container'>
+            Oi
+          </div>
         </div>
       </MuiThemeProvider>
     );
