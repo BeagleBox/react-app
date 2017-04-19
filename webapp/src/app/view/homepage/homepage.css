@@ -6,25 +6,23 @@
   background-repeat: no-repeat;
   background-size: cover;
 
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   text-align: center;
 }
 
 .homepage-content {
   background-color: #F0F0F0;
 
-  text-align: center;
-  z-index: 999;
-
   position: absolute;
-  margin: auto !important;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100vh;
-  height: 50vh;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+  width: 70%;
+  z-index: 999;
 }
 
 .img-homepage {
@@ -33,6 +31,8 @@
 }
 
 .col-homepage {
+  padding: 1.5em !important;
+
   height: 80%;
   margin: auto;
 }
@@ -50,4 +50,22 @@
 .homepage-card-title > div span {
   font-family: 'Lora', serif;
   font-size: 2em !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .homepage-card-title,
+  .homepage-card-text {
+    padding: 5px !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .col-homepage {
+    margin-bottom: 1.2em;
+  }
+
+  .col-homepage:last-child {
+    margin-top: -15%;
+    padding: 1.5em 0 !important;
+  }
 }

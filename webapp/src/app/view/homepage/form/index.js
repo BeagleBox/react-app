@@ -14,7 +14,7 @@ export default class App extends Component {
           <TextField
             name="email"
             className="form-content-field"
-            floatingLabelText="Endereço de e-mail"
+            floatingLabelText="E-mail"
             type="email" />
         </Col>
         <Col className="col-fluid form-content" xs={12}>

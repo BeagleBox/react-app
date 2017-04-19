@@ -12,17 +12,18 @@ export default class App extends Component {
     return (
       <Grid className="homepage-container" fluid>
         <Row className="row-fluid homepage-content">
-          <Col className="col-fluid col-homepage" md={6} sm={6} xs={12}>
+          <Col className="col-fluid col-homepage" md={6} sm={12} xs={12}>
             <img className="img-homepage" src={assets.beaglebox} alt={"BeagleBox logo"} />
           </Col>
-          <Col className="col-fluid col-homepage" md={6} sm={6} xs={12}>
+          <Col className="col-fluid col-homepage" md={6} sm={12} xs={12}>
             <Card className="homepage-card-container">
               <CardHeader
                 className="homepage-card-title"
                 title="Seja bem-vindo"
                 showExpandableButton={false}
                 initiallyExpanded={true} />
-              <CardText>
+              <CardText
+                className="homepage-card-text" >
                 <HomepageForm />
               </CardText>
             </Card>
