@@ -5,3 +5,12 @@
 .request-list-items svg {
   fill: #4CAF50 !important;
 }
+
+.request-add-item svg {
+  fill: #2488FF !important;
+}
+
+.add-new-item {
+  line-height: 0 !important;
+  height: 20px !important;
+}

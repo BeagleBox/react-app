@@ -24,7 +24,7 @@ export default class RequestSameLocation extends Component {
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <RaisedButton
             className="btn-request-car"
-            label="Solicitar"
+            label="Enviar"
             primary={true}
             onTouchTap={this.handleRequest} />
         </Col>
