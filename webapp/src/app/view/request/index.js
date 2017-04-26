@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import assets from './assets'
 import DifferentLocation from './different-location'
+import SameLocation from './same-location'
 
 import './request.css'
 
@@ -11,7 +12,7 @@ export default class Request extends Component {
     super(props);
 
     this.state = {
-      samePlace: false,
+      samePlace: true,
     }
   }
 
@@ -19,17 +20,17 @@ export default class Request extends Component {
     return (
       <Grid className="request-container" fluid>
         <Row className="row-fluid request-content">
-          <Col className="col-fluid col-request col-image" md={12} sm={12} xs={12}>
-            {!this.state.samePlace &&
+          {!this.state.samePlace &&
+            <Col className="col-fluid col-request col-image" md={12} sm={12} xs={12}>
               <img className="img-request" src={assets.differentLocation} alt={"Localização Diferente"} />
-            }
-            {this.state.samePlace &&
-              <img className="img-request" src={assets.sameLocation} alt={"Localização Igual"} />
-            }
-          </Col>
+            </Col>
+          }
           <Col className="col-fluid col-request" md={12} sm={12} xs={12}>
             {!this.state.samePlace &&
               <DifferentLocation />
+            }
+            {this.state.samePlace &&
+              <SameLocation />
             }
           </Col>
         </Row>
