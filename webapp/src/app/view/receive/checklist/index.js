@@ -38,6 +38,7 @@ export default class CheckList extends Component {
     return <div>
       {this.state.items.map((item, k) =>
         <ListItem
+          key={k}
           primaryText={item.title}
           leftIcon={item.icon}
           onTouchTap={() => this.handleCheck(k, item.title, item.check)} />
