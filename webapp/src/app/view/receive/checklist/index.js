@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 
 import {List, ListItem} from 'material-ui/List'
-import TextField from 'material-ui/TextField'
 import Check from 'material-ui/svg-icons/action/check-circle'
 import CheckListIcon from 'material-ui/svg-icons/action/info'
 
@@ -14,18 +13,24 @@ export default class CheckList extends Component {
 
     this.state = {
       items: [
-        {title: 'Caixa de pincéis: preto', check: <CheckListIcon />},
-        {title: 'Caixa de pincéis: vermelho', check: <CheckListIcon />},
-        {title: 'Caixa de pincéis: verde', check: <CheckListIcon />},
-        {title: 'Apagador de quadro brando', check: <CheckListIcon />}
+        {title: 'Caixa de pincéis: preto', check: false, icon: <CheckListIcon />},
+        {title: 'Caixa de pincéis: vermelho', check: false, icon: <CheckListIcon />},
+        {title: 'Caixa de pincéis: verde', check: false, icon: <CheckListIcon />},
+        {title: 'Apagador de quadro brando', check: false, icon: <CheckListIcon />}
       ],
     }
   }
 
-  handleCheck = (n, title) => {
+  handleCheck = (n, title, check) => {
     const items = this.state.items;
-    items[n] = {title: title, check: <Check className="check-icon"/>}
+    var icon = <CheckListIcon />;
+    check = !check;
 
+    if(check) {
+      icon = <Check className="check-icon"/>;
+    }
+
+    items[n] = {title: title, check: check, icon: icon}
     this.setState(items)
   }
 
@@ -34,8 +39,8 @@ export default class CheckList extends Component {
       {this.state.items.map((item, k) =>
         <ListItem
           primaryText={item.title}
-          leftIcon={item.check}
-          onTouchTap={() => this.handleCheck(k, item.title)} />
+          leftIcon={item.icon}
+          onTouchTap={() => this.handleCheck(k, item.title, item.check)} />
       )}
     </div>
   }
