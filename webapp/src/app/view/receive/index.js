@@ -4,12 +4,25 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import RaisedButton from 'material-ui/RaisedButton'
 import OpenKey from './open-key'
 import CheckList from './checklist'
+import AlertDialog from './alert-dialog'
 
 import './receive.css'
 
 export default class Receive extends Component {
-  handleReceive = () => {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      open: false,
+    }
+  }
+
+  handleReceive = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
   }
 
   render() {
@@ -30,6 +43,7 @@ export default class Receive extends Component {
               onTouchTap={this.handleReceive} />
           </Col>
         </Row>
+        <AlertDialog handleClose={this.handleClose} open={this.state.open} />
       </Grid>
     );
   }
