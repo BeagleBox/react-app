@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
+import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import RaisedButton from 'material-ui/RaisedButton'
 import Dialog from 'material-ui/Dialog'
+import {List, ListItem} from 'material-ui/List'
+import CheckListIcon from 'material-ui/svg-icons/action/info'
 
+import assets from '../assets'
 import './receive-alert-dialog.css'
 
 export default class AlertDialog extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      notCheckedItems: [
+        'Caixa de pincéis: preto',
+        'Apagador de quadro branco'
+      ],
+    }
+  }
+
+  listItems = () => {
+    return <div>
+      {this.state.notCheckedItems.map((item, k) =>
+        <ListItem key={k} primaryText={item} leftIcon={<CheckListIcon />} />
+      )}
+    </div>
+  }
+
   render() {
     const actions = [
       <RaisedButton
@@ -14,10 +37,21 @@ export default class AlertDialog extends Component {
       />,
       <RaisedButton
         label="Confirmo!"
-        primary={true}
+        className="btn-confirm-alert"
+        backgroundColor="#AA302F"
         onTouchTap={this.props.handleClose}
       />,
     ];
+
+    const styles = {
+      list: {
+        width: '70%',
+        margin: 'auto',
+        textAlign: 'left',
+        maxHeight: 450,
+        overflowY: 'auto'
+      },
+    };
 
     return (
       <Dialog
@@ -25,7 +59,23 @@ export default class AlertDialog extends Component {
         modal={false}
         open={this.props.open}
         onRequestClose={this.props.handleClose} >
-        The actions in this window were passed in as an array of React objects.
+
+        <Grid className="receive-container" fluid>
+          <Row className="row-fluid">
+            <Col className="col-fluid col-img-alert" md={12} sm={12} xs={12}>
+              <img className="img-receive" src={assets.alert} alt={"Alerta"} />
+            </Col>
+            <Col className="col-fluid" md={12} sm={12} xs={12}>
+              <h3 className="dialog-title">Existem items não confirmados</h3>
+            </Col>
+            <Col className="col-fluid" md={12} sm={12} xs={12}>
+              <List style={styles.list} className="receive-list-items">
+                { this.listItems() }
+              </List>
+            </Col>
+          </Row>
+        </Grid>
+
       </Dialog>
     );
   }

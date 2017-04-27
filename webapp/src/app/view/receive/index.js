@@ -33,7 +33,7 @@ export default class Receive extends Component {
             <OpenKey />
           </Col>
           <Col className="col-fluid" md={6} sm={12} xs={12}>
-            <CheckList />
+            <CheckList handleReceive={this.handleReceive}/>
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
             <RaisedButton
