@@ -33,7 +33,9 @@ export default class Receive extends Component {
       }
     }
 
-    this.setState({ open: true, notCheckedItems })
+    if(notCheckedItems.length > 0) {
+      this.setState({ open: true, notCheckedItems })
+    }
   }
 
   handleClose = () => {
