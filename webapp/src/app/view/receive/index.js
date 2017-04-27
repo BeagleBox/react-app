@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
-import RaisedButton from 'material-ui/RaisedButton'
 import OpenKey from './open-key'
 import CheckList from './checklist'
 import AlertDialog from './alert-dialog'
@@ -14,11 +13,12 @@ export default class Receive extends Component {
 
     this.state = {
       open: false,
+      notCheckedItems: [],
     }
   }
 
-  handleReceive = () => {
-    this.setState({ open: true })
+  handleReceive = (open, items) => {
+    this.setState({ open, notCheckedItems: items })
   }
 
   handleClose = () => {
@@ -35,15 +35,11 @@ export default class Receive extends Component {
           <Col className="col-fluid" md={6} sm={12} xs={12}>
             <CheckList handleReceive={this.handleReceive}/>
           </Col>
-          <Col className="col-fluid" md={12} sm={12} xs={12}>
-            <RaisedButton
-              className="btn-receive-car"
-              label="Recebido"
-              secondary={true}
-              onTouchTap={this.handleReceive} />
-          </Col>
         </Row>
-        <AlertDialog handleClose={this.handleClose} open={this.state.open} />
+        <AlertDialog
+          handleClose={this.handleClose}
+          open={this.state.open}
+          items={this.state.notCheckedItems} />
       </Grid>
     );
   }

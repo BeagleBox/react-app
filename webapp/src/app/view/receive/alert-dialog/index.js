@@ -4,26 +4,15 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import RaisedButton from 'material-ui/RaisedButton'
 import Dialog from 'material-ui/Dialog'
 import {List, ListItem} from 'material-ui/List'
-import CheckListIcon from 'material-ui/svg-icons/action/info'
+import CheckListIcon from 'material-ui/svg-icons/action/thumb-down'
 
 import assets from '../assets'
 import './receive-alert-dialog.css'
 
 export default class AlertDialog extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      notCheckedItems: [
-        'Caixa de pincéis: preto',
-        'Apagador de quadro branco'
-      ],
-    }
-  }
-
   listItems = () => {
     return <div>
-      {this.state.notCheckedItems.map((item, k) =>
+      {this.props.items.map((item, k) =>
         <ListItem key={k} primaryText={item} leftIcon={<CheckListIcon />} />
       )}
     </div>
@@ -84,4 +73,5 @@ export default class AlertDialog extends Component {
 AlertDialog.propTypes ={
   handleClose: React.PropTypes.func.isRequired,
   open: React.PropTypes.bool.isRequired,
+  items: React.PropTypes.array.isRequired,
 };

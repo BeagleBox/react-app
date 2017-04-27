@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 
 import {List, ListItem} from 'material-ui/List'
+import RaisedButton from 'material-ui/RaisedButton'
 import Check from 'material-ui/svg-icons/action/check-circle'
 import CheckListIcon from 'material-ui/svg-icons/action/info'
 
@@ -46,6 +47,19 @@ export default class CheckList extends Component {
     </div>
   }
 
+  receiveItem = () => {
+    const items = this.state.items;
+    let notCheckedItems = [];
+
+    for(var i = 0; i < items.length; i++) {
+      if(!items[i].check) {
+        notCheckedItems.push(items[i].title)
+      }
+
+      this.props.handleReceive(true, notCheckedItems);
+    }
+  }
+
   render() {
     const styles = {
       list: {
@@ -68,7 +82,18 @@ export default class CheckList extends Component {
             { this.listItems() }
           </List>
         </Col>
+        <Col className="col-fluid" md={12} sm={12} xs={12}>
+          <RaisedButton
+            className="btn-receive-car"
+            label="Recebido"
+            secondary={true}
+            onTouchTap={this.receiveItem} />
+        </Col>
       </Row>
     );
   }
 }
+
+CheckList.propTypes ={
+  handleReceive: React.PropTypes.func.isRequired,
+};
