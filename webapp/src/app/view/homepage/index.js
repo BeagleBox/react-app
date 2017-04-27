@@ -7,7 +7,7 @@ import HomepageForm from './form'
 import assets from './assets'
 import './homepage.css'
 
-export default class App extends Component {
+export default class Homepage extends Component {
   render() {
     return (
       <Grid className="homepage-container" fluid>

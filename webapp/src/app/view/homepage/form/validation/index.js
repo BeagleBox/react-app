@@ -2,7 +2,7 @@
 export function validateEmail(email) {
   let valid = true
 
-  // Its not required
+  // Its required
   if(email.length === 0) {
     valid = false
   }

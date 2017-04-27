@@ -1,0 +1,18 @@
+.request-content {
+  text-align: center;
+}
+
+.col-image {
+  height: 300px;
+}
+
+.img-request {
+  margin: 1.5em 0;
+  height: 90%;
+  width: auto;
+}
+
+.btn-request-car {
+  margin: 1em !important;
+}
+
