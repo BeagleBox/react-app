@@ -4,12 +4,42 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import RaisedButton from 'material-ui/RaisedButton'
 import OpenKey from './open-key'
 import CheckList from './checklist'
+import AlertDialog from './alert-dialog'
 
 import './receive.css'
 
 export default class Receive extends Component {
-  handleReceive = () => {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      open: false,
+      notCheckedItems: [],
+      items: [],
+    }
+  }
+
+  handleItems = (items) => {
+    this.setState({ items })
+  }
+
+  handleReceive = () => {
+    const items = this.state.items;
+    let notCheckedItems = [];
+
+    for(var i = 0; i < items.length; i++) {
+      if(!items[i].check) {
+        notCheckedItems.push(items[i].title)
+      }
+    }
+
+    if(notCheckedItems.length > 0) {
+      this.setState({ open: true, notCheckedItems })
+    }
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
   }
 
   render() {
@@ -20,7 +50,7 @@ export default class Receive extends Component {
             <OpenKey />
           </Col>
           <Col className="col-fluid" md={6} sm={12} xs={12}>
-            <CheckList />
+            <CheckList handleItems={this.handleItems}/>
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
             <RaisedButton
@@ -30,6 +60,10 @@ export default class Receive extends Component {
               onTouchTap={this.handleReceive} />
           </Col>
         </Row>
+        <AlertDialog
+          handleClose={this.handleClose}
+          open={this.state.open}
+          items={this.state.notCheckedItems} />
       </Grid>
     );
   }

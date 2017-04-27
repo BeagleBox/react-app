@@ -16,9 +16,13 @@ export default class CheckList extends Component {
         {title: 'Caixa de pincéis: preto', check: false, icon: <CheckListIcon />},
         {title: 'Caixa de pincéis: vermelho', check: false, icon: <CheckListIcon />},
         {title: 'Caixa de pincéis: verde', check: false, icon: <CheckListIcon />},
-        {title: 'Apagador de quadro brando', check: false, icon: <CheckListIcon />}
+        {title: 'Apagador de quadro branco', check: false, icon: <CheckListIcon />}
       ],
     }
+  }
+
+  componentDidMount() {
+    this.props.handleItems(this.state.items)
   }
 
   handleCheck = (n, title, check) => {
@@ -72,3 +76,7 @@ export default class CheckList extends Component {
     );
   }
 }
+
+CheckList.propTypes ={
+  handleItems: React.PropTypes.func.isRequired,
+};
