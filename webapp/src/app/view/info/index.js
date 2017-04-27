@@ -11,14 +11,14 @@ export default class GeneralInformation extends Component {
     return (
       <Grid className="info-container" fluid>
         <Row className="row-fluid info-content">
-          <Col className="col-fluid col-info col-info-camera" md={6} sm={12} xs={12}>
+          <Col className="col-fluid col-info col-info-content" md={6} sm={12} xs={12}>
             <Card className="content-center">
               <CardMedia overlay={<CardTitle title="Faculdade Gama - UnB" subtitle="ao vivo" />} >
                 <img src={assets.camera} />
               </CardMedia>
             </Card>
           </Col>
-          <Col className="col-fluid col-info" md={6} sm={12} xs={12}>
+          <Col className="col-fluid col-info col-info-content" md={6} sm={12} xs={12}>
             <Row className="row-fluid content-center extra-padding">
               <Col className="col-fluid" md={6} sm={12} xs={12}>
                 <Card className="card-info card-blue" initiallyExpanded={true} >

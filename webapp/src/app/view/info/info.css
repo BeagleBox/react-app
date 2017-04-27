@@ -1,8 +1,9 @@
-.col-info-camera {
-  height: 100%;
+.col-info-content {
+  position: relative;
 }
 
 .content-center {
+  position: absolute;
   margin-top: 50% !important;
   transform: translateY(-50%);
 }
