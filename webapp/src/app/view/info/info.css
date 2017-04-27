@@ -1,0 +1,43 @@
+.col-info-camera {
+  height: 100%;
+}
+
+.content-center {
+  margin-top: 50% !important;
+  transform: translateY(-50%);
+}
+
+.extra-padding {
+  padding: 3em;
+}
+
+.row-center {
+  text-align: center;
+}
+
+.card-info {
+  margin: 0.5em;
+}
+
+.card-salmon div {
+  background-color: #FFA07A !important;
+}
+
+.card-blue div {
+  background-color: #87CEEB !important;
+}
+
+.card-green div {
+  background-color: #90EE90 !important
+}
+
+.info-text span {
+  font-size: 2em;
+}
+
+@media only screen and (max-width: 500px) {
+  .extra-padding {
+    margin-top: 130% !important;
+    padding: 0;
+  }
+}
