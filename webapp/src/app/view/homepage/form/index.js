@@ -39,7 +39,7 @@ export default class HomepageForm extends Component {
     }
 
     if(!validation.validatePassword(password)) {
-      this.setState({passwordError: "A senha deve possuir 8 caracteres"})
+      this.setState({passwordError: "A senha deve possuir exatamente 8 caracteres"})
     } else {
       this.setState({passwordError: ""})
     }

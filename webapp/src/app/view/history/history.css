@@ -11,7 +11,8 @@
   padding: 0 !important;
 }
 
-.col-filter {
+.col-filter,
+.row-filter {
   align-self: center;
 }
 

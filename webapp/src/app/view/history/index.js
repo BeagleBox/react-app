@@ -89,7 +89,7 @@ export default class History extends Component {
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
             <Paper className="paper-filter" style={styles.paper} zDepth={2} >
-              <Row className="row-fluid">
+              <Row className="row-fluid row-filter" >
                 <Col className="col-fluid col-filter" md={4} sm={12} xs={12}>
                   <h4 className="filter-title">Filtrar por data</h4>
                 </Col>
