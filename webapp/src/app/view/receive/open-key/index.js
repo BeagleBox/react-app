@@ -11,7 +11,7 @@ export default class OpenKey extends Component {
     super(props);
 
     this.state = {
-      location: ['Secretaria', 'Biblioteca', 'Enfermaria', 'Sala I1']
+      accessKey: Math.floor(1000 + Math.random() * 9000),
     }
   }
 
@@ -25,7 +25,7 @@ export default class OpenKey extends Component {
           <TextField
             name="location"
             className="key-field"
-            value="2365"
+            value={this.state.accessKey}
             disabled={true}
             underlineShow={false} />
         </Col>
