@@ -37,7 +37,7 @@ export default class AlertDialog extends Component {
         width: '70%',
         margin: 'auto',
         textAlign: 'left',
-        maxHeight: 450,
+        maxHeight: 250,
         overflowY: 'auto'
       },
     };
