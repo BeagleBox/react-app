@@ -12,7 +12,7 @@ export default class Request extends Component {
     super(props);
 
     this.state = {
-      samePlace: false,
+      samePlace: true,
     }
   }
 

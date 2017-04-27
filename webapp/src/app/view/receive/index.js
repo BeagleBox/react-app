@@ -16,6 +16,7 @@ export default class Receive extends Component {
       open: false,
       notCheckedItems: [],
       items: [],
+      accessKey: Math.floor(1000 + Math.random() * 9000),
     }
   }
 
@@ -47,7 +48,7 @@ export default class Receive extends Component {
       <Grid className="receive-container" fluid>
         <Row className="row-fluid">
           <Col className="col-fluid" md={6} sm={12} xs={12}>
-            <OpenKey />
+            <OpenKey keyNumber={this.state.accessKey} />
           </Col>
           <Col className="col-fluid" md={6} sm={12} xs={12}>
             <CheckList handleItems={this.handleItems}/>

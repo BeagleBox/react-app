@@ -7,14 +7,6 @@ import assets from '../assets'
 import './receive-open-key.css'
 
 export default class OpenKey extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      accessKey: Math.floor(1000 + Math.random() * 9000),
-    }
-  }
-
   render() {
     return (
       <Row className="row-fluid">
@@ -25,7 +17,7 @@ export default class OpenKey extends Component {
           <TextField
             name="location"
             className="key-field"
-            value={this.state.accessKey}
+            value={this.props.keyNumber}
             disabled={true}
             underlineShow={false} />
         </Col>
@@ -36,3 +28,7 @@ export default class OpenKey extends Component {
     );
   }
 }
+
+OpenKey.propTypes ={
+  keyNumber: React.PropTypes.number.isRequired,
+};
