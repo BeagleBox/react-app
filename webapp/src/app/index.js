@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import './app.css'
 
@@ -10,8 +11,12 @@ injectTapEventPlugin();
 
 export default class App extends Component {
   render() {
+    const muiTheme = getMuiTheme({
+      fontFamily: 'Lora, serif'
+    })
+
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <div className='app-container'>
           <div className='main-area-container'>
             {this.props.children}

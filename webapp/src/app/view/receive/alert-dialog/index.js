@@ -55,7 +55,7 @@ export default class AlertDialog extends Component {
               <img className="img-receive" src={assets.alert} alt={"Alerta"} />
             </Col>
             <Col className="col-fluid" md={12} sm={12} xs={12}>
-              <h3 className="dialog-title">Existem items não confirmados</h3>
+              <h3 className="dialog-title">Confirma que estes itens não chegaram?</h3>
             </Col>
             <Col className="col-fluid" md={12} sm={12} xs={12}>
               <List style={styles.list} className="receive-list-items">
