@@ -5,3 +5,22 @@
 .history-title {
   margin: 2em 0;
 }
+
+.paper-filter {
+  background-color: #CCC !important;
+  padding: 0 !important;
+}
+
+.col-filter {
+  align-self: center;
+}
+
+.filter-date label,
+.filter-title {
+  color: #2F4F4F !important;
+}
+
+.filter-date input {
+  margin-top: 0 !important;
+  padding-top: 15px !important;
+}
