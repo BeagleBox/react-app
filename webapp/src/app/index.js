@@ -3,6 +3,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
+import AppBar from './shared/app-bar'
+
 import './app.css'
 
 // Needed for onTouchTap
@@ -18,6 +20,7 @@ export default class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className='app-container'>
+          <AppBar />
           <div className='main-area-container'>
             {this.props.children}
           </div>
