@@ -6,3 +6,7 @@
 .separator {
   margin-left: 0 !important;
 }
+
+.btn-appbar button {
+  background-color: #DCDCDC !important;
+}
