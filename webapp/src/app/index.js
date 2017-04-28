@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import AppBar from './shared/app-bar'
+import ContentArea from './shared/content-area'
 
 import './app.css'
 
@@ -12,6 +13,17 @@ import './app.css'
 injectTapEventPlugin();
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: {
+        name: '',
+        admin: false,
+      },
+    }
+  }
+
   render() {
     const muiTheme = getMuiTheme({
       fontFamily: 'Lora, serif'
@@ -20,10 +32,8 @@ export default class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className='app-container'>
-          <AppBar />
-          <div className='main-area-container'>
-            {this.props.children}
-          </div>
+          <AppBar user={this.state.user} />
+          <ContentArea children={this.props.children} />
         </div>
       </MuiThemeProvider>
     );
