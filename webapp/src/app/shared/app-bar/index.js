@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
+import { Link } from 'react-router'
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
+
 import Home from 'material-ui/svg-icons/action/home'
 import Settings from 'material-ui/svg-icons/action/settings'
 import Logout from 'material-ui/svg-icons/maps/directions-walk'
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
 
 import './app-bar.css'
 
@@ -24,7 +26,7 @@ export default class Homepage extends Component {
   adminButton = () => {
     return <ToolbarGroup>
       {this.state.user.admin &&
-        <IconButton href="/#/informacoes-gerais" >
+        <IconButton containerElement={<Link to="informacoes-gerais" />} >
           <Settings />
         </IconButton>
       }
@@ -42,7 +44,7 @@ export default class Homepage extends Component {
               <ToolbarTitle className="toolbar-title" text={"Olá, " + this.state.user.name} />
             </ToolbarGroup>
             <ToolbarGroup>
-              <IconButton href="/#/informacoes-gerais" >
+              <IconButton containerElement={<Link to="informacoes-gerais" />}>
                 <Home />
               </IconButton>
               <ToolbarSeparator className="separator" />
@@ -50,21 +52,21 @@ export default class Homepage extends Component {
                 backgroundColor="#CCC"
                 hoverColor="#DCDCDC"
                 label="Solicitar"
-                href="/#/solicitar" />
+                containerElement={<Link to="solicitar" />} />
               <ToolbarSeparator className="separator" />
               <FlatButton
                 backgroundColor="#CCC"
                 hoverColor="#DCDCDC"
                 label="Receber"
-                href="/#/receber" />
+                containerElement={<Link to="receber" />} />
               <ToolbarSeparator className="separator" />
               <FlatButton
                 backgroundColor="#CCC"
                 hoverColor="#DCDCDC"
                 label="Histórico"
-                href="/#/historico" />
+                containerElement={<Link to="historico" />} />
               <ToolbarSeparator className="separator" />
-              <IconButton tooltip="Sair" href="/#/inicio" >
+              <IconButton tooltip="Sair" containerElement={<Link to="inicio" />} >
                 <Logout />
               </IconButton>
             </ToolbarGroup>
