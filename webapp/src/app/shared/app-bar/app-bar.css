@@ -1,0 +1,12 @@
+.toolbar-title {
+  color: #FFF !important;
+  padding-left: 1em;
+}
+
+.separator {
+  margin-left: 0 !important;
+}
+
+.btn-appbar button {
+  background-color: #DCDCDC !important;
+}
