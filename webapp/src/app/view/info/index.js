@@ -17,7 +17,7 @@ export default class GeneralInformation extends Component {
                 className="card-camera"
                 overlay={<CardTitle title="Faculdade Gama - UnB" subtitle="ao vivo" />} >
 
-                <img src={assets.camera} />
+                <img src={assets.camera} alt="Imagens da câmera" />
               </CardMedia>
             </Card>
           </Col>
@@ -32,7 +32,7 @@ export default class GeneralInformation extends Component {
                   <CardText expandable={true}>
                     <Row className="row-fluid row-center">
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
-                        <img src={assets.battery} />
+                        <img src={assets.battery} alt="Ícone da bateria" />
                       </Col>
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
                         <h1>75%</h1>
@@ -50,7 +50,7 @@ export default class GeneralInformation extends Component {
                   <CardText expandable={true}>
                     <Row className="row-fluid row-center">
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
-                        <img src={assets.timeLeft} />
+                        <img src={assets.timeLeft} alt="Ícone de tempo restante" />
                       </Col>
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
                         <h1>1h 30min</h1>
@@ -68,7 +68,7 @@ export default class GeneralInformation extends Component {
                   <CardText expandable={true}>
                     <Row className="row-fluid row-center">
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
-                        <img src={assets.weight} />
+                        <img src={assets.weight} alt="Ícone do peso útil" />
                       </Col>
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
                         <h1>15 kg</h1>

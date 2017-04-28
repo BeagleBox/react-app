@@ -11,21 +11,10 @@ import Logout from 'material-ui/svg-icons/maps/directions-walk'
 
 import './app-bar.css'
 
-export default class Homepage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: {
-        name: 'Elaine Meirelles',
-        admin: true,
-      },
-    }
-  }
-
+export default class AppBar extends Component {
   adminButton = () => {
     return <ToolbarGroup>
-      {this.state.user.admin &&
+      {this.props.user.admin &&
         <IconButton containerElement={<Link to="informacoes-gerais" />} >
           <Settings />
         </IconButton>
@@ -37,11 +26,11 @@ export default class Homepage extends Component {
   render() {
     return (
       <div>
-        {this.state.user.name !== '' &&
+        {this.props.user.name !== '' &&
           <Toolbar style={{backgroundColor: '#808080'}}>
             <ToolbarGroup firstChild={true} >
               {this.adminButton()}
-              <ToolbarTitle className="toolbar-title" text={"Olá, " + this.state.user.name} />
+              <ToolbarTitle className="toolbar-title" text={"Olá, " + this.props.user.name} />
             </ToolbarGroup>
             <ToolbarGroup>
               <IconButton containerElement={<Link to="informacoes-gerais" />}>
@@ -75,4 +64,8 @@ export default class Homepage extends Component {
       </div>
     );
   }
+}
+
+AppBar.PropTypes = {
+  user: React.PropTypes.object.isRequired
 }
