@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import Home from 'material-ui/svg-icons/action/home'
+import Settings from 'material-ui/svg-icons/action/settings'
+import Logout from 'material-ui/svg-icons/maps/directions-walk'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
 
 import './app-bar.css'
@@ -13,9 +15,21 @@ export default class Homepage extends Component {
 
     this.state = {
       user: {
-        name: 'Elaine Meirelles'
+        name: 'Elaine Meirelles',
+        admin: true,
       },
     }
+  }
+
+  adminButton = () => {
+    return <ToolbarGroup>
+      {this.state.user.admin &&
+        <IconButton href="/#/informacoes-gerais" >
+          <Settings />
+        </IconButton>
+      }
+      <ToolbarSeparator className="separator" />
+    </ToolbarGroup>
   }
 
   render() {
@@ -24,10 +38,11 @@ export default class Homepage extends Component {
         {this.state.user.name !== '' &&
           <Toolbar style={{backgroundColor: '#808080'}}>
             <ToolbarGroup firstChild={true} >
+              {this.adminButton()}
               <ToolbarTitle className="toolbar-title" text={"Olá, " + this.state.user.name} />
             </ToolbarGroup>
             <ToolbarGroup>
-              <IconButton href="/#/informacoes-gerais">
+              <IconButton href="/#/informacoes-gerais" >
                 <Home />
               </IconButton>
               <ToolbarSeparator className="separator" />
@@ -48,6 +63,10 @@ export default class Homepage extends Component {
                 hoverColor="#DCDCDC"
                 label="Histórico"
                 href="/#/historico" />
+              <ToolbarSeparator className="separator" />
+              <IconButton tooltip="Sair" href="/#/inicio" >
+                <Logout />
+              </IconButton>
             </ToolbarGroup>
           </Toolbar>
         }
