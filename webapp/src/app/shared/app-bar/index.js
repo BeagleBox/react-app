@@ -15,7 +15,7 @@ export default class AppBar extends Component {
   adminButton = () => {
     return <ToolbarGroup>
       {this.props.user.admin &&
-        <IconButton containerElement={<Link to="informacoes-gerais" />} >
+        <IconButton containerElement={<Link to="admin" />} >
           <Settings />
         </IconButton>
       }

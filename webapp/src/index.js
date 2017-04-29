@@ -10,6 +10,7 @@ import GeneralInformation from './app/view/info'
 import RequestLocation from './app/view/request'
 import Receive from './app/view/receive'
 import History from './app/view/history'
+import Admin from './app/view/admin'
 
 import './index.css'
 
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='solicitar' component={RequestLocation}></Route>
         <Route path='receber' component={Receive}></Route>
         <Route path='historico' component={History}></Route>
+        <Route path='admin' component={Admin}></Route>
       </Route>
     </Router>
   </IntlProvider>,

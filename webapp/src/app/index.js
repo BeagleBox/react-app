@@ -18,8 +18,8 @@ export default class App extends Component {
 
     this.state = {
       user: {
-        name: '',
-        admin: false,
+        name: 'Elaine Meirelles',
+        admin: true,
       },
     }
   }
