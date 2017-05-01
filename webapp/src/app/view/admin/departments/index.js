@@ -3,7 +3,10 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
-import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton'
+
+import Edit from 'material-ui/svg-icons/action/settings'
+import Delete from 'material-ui/svg-icons/action/delete'
 
 import './admin-departments.css'
 
@@ -29,8 +32,8 @@ export default class AdminDepartments extends Component {
           <TableRowColumn className="row-center">{item.id}</TableRowColumn>
           <TableRowColumn>{item.name}</TableRowColumn>
           <TableRowColumn className="row-center">
-            <RaisedButton className="btn-edit-department" label="Editar" primary={true} />
-            <RaisedButton label="Excluir" backgroundColor="#CD2A00" labelColor="#FFF" />
+            <IconButton><Edit /></IconButton>
+            <IconButton><Delete /></IconButton>
           </TableRowColumn>
         </TableRow>
       )};

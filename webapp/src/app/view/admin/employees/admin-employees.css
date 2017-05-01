@@ -1,0 +1,25 @@
+.employees-content {
+  text-align: center;
+}
+
+.col-table-header {
+  margin-top: 2em;
+}
+
+.paper-employees {
+  background-color: #008372 !important;
+  padding: 0 !important;
+}
+
+.col-employees,
+.row-employees {
+  align-self: center;
+}
+
+.employees-title {
+  color: #FFF !important;
+}
+
+.btn-edit-employees {
+  margin-right: 0.5em;
+}
