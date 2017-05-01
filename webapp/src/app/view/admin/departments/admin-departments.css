@@ -1,0 +1,25 @@
+.department-content {
+  text-align: center;
+}
+
+.col-table-header {
+  margin-top: 2em;
+}
+
+.paper-department {
+  background-color: #008372 !important;
+  padding: 0 !important;
+}
+
+.col-department,
+.row-department {
+  align-self: center;
+}
+
+.department-title {
+  color: #FFF !important;
+}
+
+.btn-edit-department {
+  margin-right: 0.5em;
+}
