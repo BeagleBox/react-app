@@ -1,5 +1,26 @@
+.admin-container {
+  padding: 0 !important;
+}
+
 .admin-content {
   text-align: center;
+}
+
+.drawer-admin-content > div {
+  background-color: #008372 !important;
+  margin-top: 56px;
+}
+
+.admin-menu {
+  text-align: left;
+}
+
+.admin-menu-item svg {
+  fill: #FFF !important;
+}
+
+.admin-menu-item > div {
+  color: #FFF;
 }
 
 .col-image {
@@ -10,4 +31,8 @@
   margin: 1.5em 0;
   height: 90%;
   width: auto;
+}
+
+.col-drawer {
+  background-color: #000;
 }
