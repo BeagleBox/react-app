@@ -3,11 +3,16 @@
 }
 
 .col-table-header {
-  margin-top: 2em;
+  margin-top: 1.5em;
 }
 
 .paper-employees {
   background-color: #008372 !important;
+  padding: 0 !important;
+}
+
+.paper-add-employees {
+  background-color: #0E8697 !important;
   padding: 0 !important;
 }
 
@@ -18,6 +23,10 @@
 
 .employees-title {
   color: #FFF !important;
+}
+
+.employees-title svg {
+  fill: #FFF !important;
 }
 
 .btn-edit-employees {

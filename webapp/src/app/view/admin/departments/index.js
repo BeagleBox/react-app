@@ -4,9 +4,11 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
+import {ListItem} from 'material-ui/List'
 
 import Edit from 'material-ui/svg-icons/action/settings'
 import Delete from 'material-ui/svg-icons/action/delete'
+import Add from 'material-ui/svg-icons/content/add-circle'
 
 import './admin-departments.css'
 
@@ -21,6 +23,7 @@ export default class AdminDepartments extends Component {
         {id: 3, name: 'Enfermaria'},
         {id: 4, name: 'Sala I3'},
         {id: 5, name: 'O Belisco'},
+        {id: 6, name: 'Sala I8'},
       ],
     }
   }
@@ -45,7 +48,7 @@ export default class AdminDepartments extends Component {
 
     const styles = {
       table: { fontWeight: 'bold', color: '#2F4F4F'},
-      paper: { width: '95%', margin: 'auto', padding: '2em', maxHeight: '70vh', overflowY: 'auto'},
+      paper: { width: '95%', margin: 'auto', padding: '2em', maxHeight: '65vh', overflowY: 'auto'},
     };
 
     return (
@@ -76,6 +79,17 @@ export default class AdminDepartments extends Component {
                   { this.tableContent() }
                 </Table>
               }
+            </Paper>
+          </Col>
+          <Col className="col-fluid col-table-header" md={12} sm={12} xs={12}>
+            <Paper className="paper-add-department" style={styles.paper} zDepth={2} >
+              <Row className="row-fluid row-department" >
+                <Col className="col-fluid col-department" md={12} sm={12} xs={12}>
+                  <ListItem className="department-title" leftIcon={<Add />} >
+                    Adicionar novo departamento
+                  </ListItem>
+                </Col>
+              </Row>
             </Paper>
           </Col>
         </Row>
