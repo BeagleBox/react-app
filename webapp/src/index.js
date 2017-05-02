@@ -12,6 +12,11 @@ import Receive from './app/view/receive'
 import History from './app/view/history'
 import Admin from './app/view/admin'
 
+import Department from './app/view/admin/departments'
+import Employees from './app/view/admin/employees'
+import BeagleBox from './app/view/admin/beagle-box'
+import Reports from './app/view/admin/reports'
+
 import './index.css'
 
 ReactDOM.render(
@@ -25,7 +30,12 @@ ReactDOM.render(
         <Route path='solicitar' component={RequestLocation}></Route>
         <Route path='receber' component={Receive}></Route>
         <Route path='historico' component={History}></Route>
-        <Route path='admin' component={Admin}></Route>
+        <Route path='admin' component={Admin}>
+          <Route path='departamentos' component={Department}></Route>
+          <Route path='funcionarios' component={Employees}></Route>
+          <Route path='carrinho' component={BeagleBox}></Route>
+          <Route path='relatorios' component={Reports}></Route>
+        </Route>
       </Route>
     </Router>
   </IntlProvider>,
