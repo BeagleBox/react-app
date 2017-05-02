@@ -1,14 +1,17 @@
 import { connect } from "react-redux"
 import AppComponent from "./app"
 
+const stateToProps = (state) => {
+  return {
 
-const stateToProps = () => ({
+  }
+};
 
-});
+const dispatchToProps = (dispatch) => {
+  return {
 
-const dispatchToProps = dispatch => ({
-
-});
+  }
+};
 
 const App = connect(stateToProps, dispatchToProps)(AppComponent);
 

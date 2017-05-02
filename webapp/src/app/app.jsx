@@ -13,17 +13,6 @@ import './app.css'
 injectTapEventPlugin();
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: {
-        name: '',
-        admin: false,
-      },
-    }
-  }
-
   render() {
     const muiTheme = getMuiTheme({
       fontFamily: 'Lora, serif'
@@ -32,7 +21,7 @@ export default class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className='app-container'>
-          <AppBar user={this.state.user} />
+          <AppBar />
           <ContentArea children={this.props.children} />
         </div>
       </MuiThemeProvider>
