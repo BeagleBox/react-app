@@ -1,41 +1,15 @@
-import React, { Component } from 'react'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { connect } from "react-redux"
+import AppComponent from "./app"
 
-import AppBar from './shared/app-bar'
-import ContentArea from './shared/content-area'
 
-import './app.css'
+const stateToProps = () => ({
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
+});
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+const dispatchToProps = dispatch => ({
 
-    this.state = {
-      user: {
-        name: '',
-        admin: false,
-      },
-    }
-  }
+});
 
-  render() {
-    const muiTheme = getMuiTheme({
-      fontFamily: 'Lora, serif'
-    })
+const App = connect(stateToProps, dispatchToProps)(AppComponent);
 
-    return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div className='app-container'>
-          <AppBar user={this.state.user} />
-          <ContentArea children={this.props.children} />
-        </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+export default App;
