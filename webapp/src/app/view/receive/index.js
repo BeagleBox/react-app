@@ -1,71 +1,23 @@
-import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import { connect } from 'react-redux'
+import ReceiveComponent from './receive'
 
-import RaisedButton from 'material-ui/RaisedButton'
-import OpenKey from './open-key'
-import CheckList from './checklist'
-import AlertDialog from './alert-dialog'
+import * as actions from '../../core/actions/receive.action'
 
-import './receive.css'
+const stateToProps = (state) => {
+  return {
+    items: state.receive.items.data,
+    notCheckedItems: state.receive.items.notChecked,
+  }
+};
 
-export default class Receive extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      open: false,
-      notCheckedItems: [],
-      items: [],
-      accessKey: Math.floor(1000 + Math.random() * 9000),
+const dispatchToProps = (dispatch) => {
+  return {
+    doShowAlertDialog: (open) => {
+      dispatch(actions.showAlertDialog(open));
     }
   }
+};
 
-  handleItems = (items) => {
-    this.setState({ items })
-  }
+const Receive = connect(stateToProps, dispatchToProps)(ReceiveComponent);
 
-  handleReceive = () => {
-    const items = this.state.items;
-    let notCheckedItems = [];
-
-    for(var i = 0; i < items.length; i++) {
-      if(!items[i].check) {
-        notCheckedItems.push(items[i].title)
-      }
-    }
-
-    if(notCheckedItems.length > 0) {
-      this.setState({ open: true, notCheckedItems })
-    }
-  }
-
-  handleClose = () => {
-    this.setState({ open: false })
-  }
-
-  render() {
-    return (
-      <Grid className="receive-container" fluid>
-        <Row className="row-fluid">
-          <Col className="col-fluid" md={6} sm={12} xs={12}>
-            <OpenKey keyNumber={this.state.accessKey} />
-          </Col>
-          <Col className="col-fluid" md={6} sm={12} xs={12}>
-            <CheckList handleItems={this.handleItems}/>
-          </Col>
-          <Col className="col-fluid" md={12} sm={12} xs={12}>
-            <RaisedButton
-              className="btn-receive-car"
-              label="Recebido"
-              secondary={true}
-              onTouchTap={this.handleReceive} />
-          </Col>
-        </Row>
-        <AlertDialog
-          handleClose={this.handleClose}
-          open={this.state.open}
-          items={this.state.notCheckedItems} />
-      </Grid>
-    );
-  }
-}
+export default Receive;

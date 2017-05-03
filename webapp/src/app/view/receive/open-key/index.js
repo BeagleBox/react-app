@@ -1,34 +1,18 @@
-import React, { Component } from 'react'
-import { Row, Col } from 'react-flexbox-grid'
+import { connect } from 'react-redux'
+import OpenKeyComponent from './receive-open-key'
 
-import TextField from 'material-ui/TextField'
-import assets from '../assets'
-
-import './receive-open-key.css'
-
-export default class OpenKey extends Component {
-  render() {
-    return (
-      <Row className="row-fluid">
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <h3 className="receive-title">Chave de acesso</h3>
-        </Col>
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <TextField
-            name="location"
-            className="key-field"
-            value={this.props.keyNumber}
-            disabled={true}
-            underlineShow={false} />
-        </Col>
-        <Col className="col-fluid col-receive col-image" md={12} sm={12} xs={12}>
-          <img className="img-receive" src={assets.receive} alt={"Receber Carga"} />
-        </Col>
-      </Row>
-    );
+const stateToProps = (state) => {
+  return {
+    accessKey: state.receive.accessKey,
   }
-}
-
-OpenKey.propTypes ={
-  keyNumber: React.PropTypes.number.isRequired,
 };
+
+const dispatchToProps = (dispatch) => {
+  return {
+
+  }
+};
+
+const OpenKey = connect(stateToProps, dispatchToProps)(OpenKeyComponent);
+
+export default OpenKey;
