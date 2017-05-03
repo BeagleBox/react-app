@@ -26,3 +26,10 @@ export function changeChecked() {
     type: types.receive.CHANGE_CHECKED,
   }
 }
+
+export function sendCar(list) {
+  return {
+    list,
+    type: types.receive.SEND_CAR,
+  }
+}

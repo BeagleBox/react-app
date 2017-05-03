@@ -8,6 +8,8 @@ const initialState = {
     destination: '',
   },
   loadItems: [],
+  dialog: false,
+  accessKey: '',
 };
 
 const getSelectedLocation = (state, {index}) => {
@@ -60,6 +62,22 @@ export default function request(state=initialState, action) {
       state = {
         ...state,
         loadItems: addLoadItem(state, action),
+      };
+
+      break;
+    }
+    case types.request.SHOW_DIALOG_KEY: {
+      state = {
+        ...state,
+        dialog: action.open,
+      };
+
+      break;
+    }
+    case types.request.GENERATE_KEY: {
+      state = {
+        ...state,
+        accessKey: action.key,
       };
 
       break;

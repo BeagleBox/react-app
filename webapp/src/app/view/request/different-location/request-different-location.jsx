@@ -7,6 +7,24 @@ import RaisedButton from 'material-ui/RaisedButton'
 import './request-different-location.css'
 
 export default class RequestDifferentLocation extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      originError: '',
+    }
+  }
+
+  handleRequest = () => {
+    const origin = this.props.origin;
+
+    if(origin === '') {
+      this.setState({originError: "Este campo não pode estar em branco"})
+    } else {
+      this.setState({originError: ""})
+      this.props.doRequestCar()
+    }
+  }
   render() {
     return (
       <Row className="row-fluid">
@@ -24,14 +42,15 @@ export default class RequestDifferentLocation extends Component {
               dataSource={this.props.location}
               filter={AutoComplete.caseInsensitiveFilter}
               menuStyle={{maxHeight: 120, overflowY: 'auto'}}
-              onNewRequest={(_, value) => this.props.doSelectOriginLocation(value)} />
+              onNewRequest={(_, value) => this.props.doSelectOriginLocation(value)}
+              errorText={this.state.originError} />
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
             <RaisedButton
               className="btn-request-car"
               label="Solicitar"
               primary={true}
-              onTouchTap={() => this.props.doRequestCar()} />
+              onTouchTap={this.handleRequest} />
           </Col>
         </Col>
       </Row>

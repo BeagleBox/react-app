@@ -6,17 +6,11 @@ import types from "../types"
 
 const initialState = {
   items: {
-    data: [
-      {title: 'Caixa de pincéis: preto', check: false, icon: <CheckListIcon />},
-      {title: 'Caixa de pincéis: vermelho', check: false, icon: <CheckListIcon />},
-      {title: 'Caixa de pincéis: verde', check: false, icon: <CheckListIcon />},
-      {title: 'Apagador de quadro branco', check: false, icon: <CheckListIcon />}
-    ],
+    data: [],
     notChecked: [],
     hasChecked: false,
   },
   dialog: false,
-  accessKey: Math.floor(1000 + Math.random() * 9000),
 };
 
 const checkItem = (state, {index, check}) => {
@@ -50,6 +44,16 @@ const isNotChecked = (state) => {
   }
 
   return notCheckedItems;
+}
+
+const updateLoadList = (state, {list}) => {
+  var items = [];
+
+  for(var i = 0; i < list.length; i++) {
+    items.push({title: list[i], check: false, icon: <CheckListIcon />})
+  }
+
+  return items;
 }
 
 export default function receive(state=initialState, action) {
@@ -92,6 +96,17 @@ export default function receive(state=initialState, action) {
         items: {
           ...state.items,
           hasChecked: false,
+        }
+      };
+
+      break;
+    }
+    case types.receive.SEND_CAR: {
+      state = {
+        ...state,
+        items: {
+          ...state.items,
+          data: updateLoadList(state, action),
         }
       };
 

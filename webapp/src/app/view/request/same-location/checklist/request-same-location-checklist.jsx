@@ -8,7 +8,7 @@ import Add from 'material-ui/svg-icons/content/add-circle'
 
 import './request-same-location-checklist.css'
 
-export default class CheckList extends Component {
+export default class RequestCheckList extends Component {
   constructor(props) {
     super(props);
 
@@ -51,8 +51,8 @@ export default class CheckList extends Component {
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <List style={styles.list} className="request-list-items">
-            {this.props.items.map((item) =>
-              <ListItem primaryText={item} leftIcon={<Check />} />
+            {this.props.items.map((item, k) =>
+              <ListItem key={k} primaryText={item} leftIcon={<Check />} />
             )}
             <ListItem
               className="request-add-item"

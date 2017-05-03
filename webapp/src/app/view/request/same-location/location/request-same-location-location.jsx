@@ -24,7 +24,8 @@ export default class Location extends Component {
             dataSource={this.props.location}
             filter={AutoComplete.caseInsensitiveFilter}
             menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectOriginLocation(value)} />
+            onNewRequest={(_, value) => this.props.doSelectOriginLocation(value)}
+            errorText={this.props.originError} />
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <AutoComplete
@@ -35,9 +36,15 @@ export default class Location extends Component {
             dataSource={this.props.location}
             filter={AutoComplete.caseInsensitiveFilter}
             menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectDestinationLocation(value)} />
+            onNewRequest={(_, value) => this.props.doSelectDestinationLocation(value)}
+            errorText={this.props.destinationError} />
         </Col>
       </Row>
     );
   }
+}
+
+Location.PropTypes = {
+  originError: React.PropTypes.string,
+  destinationError: React.PropTypes.string,
 }

@@ -26,3 +26,17 @@ export function addNewLoadItem(item) {
     type: types.request.ADD_LOAD_ITEM,
   }
 }
+
+export function showDialogKey(open) {
+  return {
+    open,
+    type: types.request.SHOW_DIALOG_KEY,
+  }
+}
+
+export function generateKey(key) {
+  return {
+    key,
+    type: types.request.GENERATE_KEY,
+  }
+}

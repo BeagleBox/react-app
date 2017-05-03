@@ -3,7 +3,7 @@ import OpenKeyComponent from './receive-open-key'
 
 const stateToProps = (state) => {
   return {
-    accessKey: state.receive.accessKey,
+    accessKey: state.request.accessKey,
   }
 };
 
