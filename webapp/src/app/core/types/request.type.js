@@ -1,0 +1,10 @@
+const request = {
+  request: {
+    REQUEST_CAR: "REQUEST_CAR",
+    SELECT_ORIGIN_LOCATION: "SELECT_ORIGIN_LOCATION",
+    SELECT_DESTINATION_LOCATION: "SELECT_DESTINATION_LOCATION",
+    ADD_LOAD_ITEM: "ADD_LOAD_ITEM",
+  }
+};
+
+export default request;

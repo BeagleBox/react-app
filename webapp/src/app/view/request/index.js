@@ -1,40 +1,18 @@
-import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import { connect } from 'react-redux'
+import RequestComponent from './request'
 
-import assets from './assets'
-import DifferentLocation from './different-location'
-import SameLocation from './same-location'
-
-import './request.css'
-
-export default class Request extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      samePlace: true,
-    }
+const stateToProps = (state) => {
+  return {
+    isSamePlace: state.request.isSamePlace,
   }
+};
 
-  render() {
-    return (
-      <Grid className="request-container" fluid>
-        <Row className="row-fluid request-content">
-          {!this.state.samePlace &&
-            <Col className="col-fluid col-request col-image" md={12} sm={12} xs={12}>
-              <img className="img-request" src={assets.differentLocation} alt={"Localização Diferente"} />
-            </Col>
-          }
-          <Col className="col-fluid col-request" md={12} sm={12} xs={12}>
-            {!this.state.samePlace &&
-              <DifferentLocation />
-            }
-            {this.state.samePlace &&
-              <SameLocation />
-            }
-          </Col>
-        </Row>
-      </Grid>
-    );
+const dispatchToProps = (dispatch) => {
+  return {
+
   }
-}
+};
+
+const Request = connect(stateToProps, dispatchToProps)(RequestComponent);
+
+export default Request;

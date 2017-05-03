@@ -39,20 +39,6 @@ const checkItem = (state, {index, check}) => {
   return result;
 };
 
-const isSomeChecked = (state) => {
-  const items = state.items.data;
-  var result = false;
-
-  for(var i = 0; i < items.length; i++) {
-    if(items[i].check) {
-      result = true;
-      break;
-    }
-  }
-
-  return result;
-}
-
 const isNotChecked = (state) => {
   const items = state.items.data;
   let notCheckedItems = [];

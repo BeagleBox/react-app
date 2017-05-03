@@ -1,34 +1,24 @@
-import React, { Component } from 'react'
-import { Row, Col } from 'react-flexbox-grid'
+import { connect } from 'react-redux'
+import SameLocationComponent from './request-same-location'
 
-import RaisedButton from 'material-ui/RaisedButton'
-import Location from './location'
-import CheckList from './checklist'
+import * as actions from '../../../core/actions/request.action'
 
-import './request-same-location.css'
-
-export default class RequestSameLocation extends Component {
-  handleRequest = () => {
-
+const stateToProps = (state) => {
+  return {
+    origin: state.request.location.origin,
+    destination: state.request.location.destination,
+    loadList: state.request.loadList,
   }
+};
 
-  render() {
-    return (
-      <Row className="row-fluid">
-        <Col className="col-fluid" md={6} sm={12} xs={12}>
-          <Location />
-        </Col>
-        <Col className="col-fluid" md={6} sm={12} xs={12}>
-          <CheckList />
-        </Col>
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <RaisedButton
-            className="btn-request-car"
-            label="Enviar"
-            primary={true}
-            onTouchTap={this.handleRequest} />
-        </Col>
-      </Row>
-    );
+const dispatchToProps = (dispatch) => {
+  return {
+    doSendCar: (origin, destination, list) => {
+      dispatch(actions.sendCar(origin, destination, list));
+    },
   }
-}
+};
+
+const SameLocation = connect(stateToProps, dispatchToProps)(SameLocationComponent);
+
+export default SameLocation;
