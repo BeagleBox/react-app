@@ -7,6 +7,7 @@ import Location from './location'
 import CheckList from './checklist'
 import DialogKey from  './dialog-key'
 
+import * as validation from '../validation'
 import './request-same-location.css'
 
 export default class RequestSameLocation extends Component {
@@ -26,23 +27,33 @@ export default class RequestSameLocation extends Component {
     const destination = this.props.destination;
     const items = this.props.loadList;
 
-    if(origin === '') {
+    if(validation.isEmpty(origin)) {
       this.setState({originError: "Este campo não pode estar em branco"})
     } else {
       this.setState({originError: ""})
     }
 
-    if(destination === '') {
+    if(validation.isEmpty(destination)) {
       this.setState({destinationError: "Este campo não pode estar em branco"})
     } else {
       this.setState({destinationError: ""})
     }
 
-    if(items.length === 0) {
+    if(!validation.isEmpty(origin) && !validation.isEmpty(destination)) {
+      if(validation.isEqual(origin, destination)) {
+        this.setState({destinationError: "O destino não pode ser o mesmo que a origem"})
+      } else {
+        this.setState({destinationError: ""})
+      }
+    }
+
+    if(validation.isEmpty(items)) {
       this.setState({openSnackbar: true})
     }
 
-    if(origin !== '' && destination !== '' && items.length > 0) {
+    if(!validation.isEmpty(origin) && !validation.isEmpty(destination) &&
+      !validation.isEmpty(items) && !validation.isEqual(origin, destination)) {
+
       this.props.doSendCar(items)
       this.props.doGenerateKey(Math.floor(1000 + Math.random() * 9000))
       this.props.doShowDialogKey(true)

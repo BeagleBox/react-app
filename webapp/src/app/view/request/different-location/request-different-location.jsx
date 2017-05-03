@@ -4,6 +4,7 @@ import { Row, Col } from 'react-flexbox-grid'
 import AutoComplete from 'material-ui/AutoComplete'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import * as validation from '../validation'
 import './request-different-location.css'
 
 export default class RequestDifferentLocation extends Component {
@@ -18,7 +19,7 @@ export default class RequestDifferentLocation extends Component {
   handleRequest = () => {
     const origin = this.props.origin;
 
-    if(origin === '') {
+    if(validation.isEmpty(origin)) {
       this.setState({originError: "Este campo não pode estar em branco"})
     } else {
       this.setState({originError: ""})
