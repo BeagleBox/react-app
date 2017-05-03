@@ -3,7 +3,7 @@ import types from "../types"
 const initialState = {
   user: {
     name: '',
-    email: '',
+    email: 'elaine@email.com',
     password: '',
     admin: false,
   }

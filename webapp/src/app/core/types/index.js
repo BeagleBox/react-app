@@ -1,4 +1,5 @@
 import login from './login.type'
+import history from './history.type'
 
 function combineTypes(typeArray) {
   return Object.assign({}, ...typeArray);
@@ -6,6 +7,7 @@ function combineTypes(typeArray) {
 
 const types = combineTypes([
   login,
+  history,
 ]);
 
 export default types;

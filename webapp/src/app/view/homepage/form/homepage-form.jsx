@@ -44,7 +44,7 @@ export default class HomepageForm extends Component {
       this.setState({passwordError: ""})
     }
 
-    this.props.doUserLogin(email, password);
+    this.props.doUserLogin(email, password)
   }
 
   render() {
