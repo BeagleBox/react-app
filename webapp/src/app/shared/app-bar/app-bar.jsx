@@ -8,6 +8,9 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import Home from 'material-ui/svg-icons/action/home'
 import Settings from 'material-ui/svg-icons/action/settings'
 import Logout from 'material-ui/svg-icons/maps/directions-walk'
+import Receive from 'material-ui/svg-icons/communication/vpn-key'
+import Request from 'material-ui/svg-icons/maps/directions-car'
+import History from 'material-ui/svg-icons/action/history'
 
 import './app-bar.css'
 
@@ -33,29 +36,46 @@ export default class AppBar extends Component {
               <ToolbarTitle className="toolbar-title" text={"Olá, " + this.props.user.name} />
             </ToolbarGroup>
             <ToolbarGroup>
-              <IconButton containerElement={<Link to="informacoes-gerais" />}>
+              <IconButton
+                tooltip="Informações"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="informacoes-gerais" />}>
+
                 <Home />
               </IconButton>
               <ToolbarSeparator className="separator" />
-              <FlatButton
-                backgroundColor="#CCC"
-                hoverColor="#DCDCDC"
-                label="Solicitar"
-                containerElement={<Link to="solicitar" />} />
+              <IconButton
+                tooltip="Solicitar"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="solicitar" />} >
+
+                <Request />
+              </IconButton>
               <ToolbarSeparator className="separator" />
-              <FlatButton
-                backgroundColor="#CCC"
-                hoverColor="#DCDCDC"
-                label="Receber"
-                containerElement={<Link to="receber" />} />
+              <IconButton
+                tooltip="Receber"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="receber" />} >
+
+                <Receive />
+              </IconButton>
               <ToolbarSeparator className="separator" />
-              <FlatButton
-                backgroundColor="#CCC"
-                hoverColor="#DCDCDC"
-                label="Histórico"
-                containerElement={<Link to="historico" />} />
+              <IconButton
+                tooltip="Histórico"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="historico" />} >
+                <History />
+              </IconButton>
               <ToolbarSeparator className="separator" />
-              <IconButton tooltip="Sair" containerElement={<Link to="inicio" />} >
+              <IconButton
+                tooltip="Sair"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="inicio" />} >
                 <Logout />
               </IconButton>
             </ToolbarGroup>
