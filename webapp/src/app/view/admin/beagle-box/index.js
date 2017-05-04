@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import { Row, Col } from 'react-flexbox-grid'
+import { connect } from "react-redux"
+import AdminBeagleBoxComponent from "./admin-beagle-box"
 
+const stateToProps = (state) => {
+  return {
 
-export default class AdminBeagleBox extends Component {
-  render() {
-    return (
-      <Row className="row-fluid">
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-
-        </Col>
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-
-        </Col>
-      </Row>
-    );
   }
-}
+};
+
+const dispatchToProps = (dispatch) => {
+  return {
+
+  }
+};
+
+const AdminBeagleBox = connect(stateToProps, dispatchToProps)(AdminBeagleBoxComponent);
+
+export default AdminBeagleBox;
