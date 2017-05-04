@@ -19,17 +19,20 @@ export default class Receive extends Component {
     return (
       <Grid className="receive-container" fluid>
         <Row className="row-fluid">
-          <Col className="col-fluid" md={6} sm={12} xs={12}>
+          <Col className="col-fluid" md={5.5} sm={12} xs={12}>
             <OpenKey />
           </Col>
-          <Col className="col-fluid" md={6} sm={12} xs={12}>
+          <Col className="col-fluid" md={1}>
+            <hr className="vertical-divider" />
+          </Col>
+          <Col className="col-fluid" md={5.5} sm={12} xs={12}>
             <CheckList />
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
             <RaisedButton
               className="btn-receive-car"
               label="Recebido"
-              secondary={true}
+              backgroundColor="#C5A265"
               onTouchTap={this.handleReceiveItems} />
           </Col>
         </Row>

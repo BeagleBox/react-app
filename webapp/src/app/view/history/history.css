@@ -7,7 +7,7 @@
 }
 
 .paper-filter {
-  background-color: #0097A7 !important;
+  background-color: #7496C4 !important;
   padding: 0 !important;
 }
 
@@ -24,4 +24,8 @@
 .filter-date input {
   margin-top: 0 !important;
   padding-top: 15px !important;
+}
+
+.btn-load-history button span {
+  color: #FFF !important;
 }

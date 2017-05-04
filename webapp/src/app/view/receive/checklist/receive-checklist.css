@@ -2,6 +2,10 @@
   margin-bottom: 1em;
 }
 
+.checklist-receive-title {
+  color: #C5A265;
+}
+
 .check-icon {
   fill: #4CAF50 !important;
 }

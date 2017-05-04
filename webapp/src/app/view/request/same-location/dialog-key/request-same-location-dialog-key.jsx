@@ -34,7 +34,7 @@ export default class DialogKey extends Component {
               <h3 className="dialog-title">BeagleBox enviado com sucesso!</h3>
             </Col>
             <Col className="col-fluid" md={12} sm={12} xs={12}>
-              <h4>Sua chave gerada foi: {this.props.accessKey} </h4>
+              <h4>Chave gerada: <span className="accessKey-number">{this.props.accessKey}</span></h4>
             </Col>
           </Row>
         </Grid>

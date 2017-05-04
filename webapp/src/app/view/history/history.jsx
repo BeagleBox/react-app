@@ -29,7 +29,7 @@ export default class History extends Component {
           <TableRowColumn>{item.origin}</TableRowColumn>
           <TableRowColumn>{item.destiny}</TableRowColumn>
           <TableRowColumn className="row-center">
-            <RaisedButton label="Lista" primary={true} />
+            <RaisedButton className="btn-load-history" label="Lista" backgroundColor="#7496C4" />
           </TableRowColumn>
         </TableRow>
       )};

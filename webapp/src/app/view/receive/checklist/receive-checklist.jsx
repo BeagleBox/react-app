@@ -16,13 +16,13 @@ export default class ReceiveCheckList extends Component {
 
   render() {
     const styles = {
-      list: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 450, overflowY: 'auto'},
+      list: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 380, overflowY: 'auto'},
     };
 
     return (
       <Row className="row-fluid">
         <Col className="col-fluid col-checklist" md={12} sm={12} xs={12}>
-          <h3 className="checklist-title">Confira o que deve ter no BeagleBox</h3>
+          <h3 className="checklist-title checklist-receive-title">Confira o que deve ter no BeagleBox</h3>
           <h4>Clique no item para confirmar seu recebimento</h4>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>

@@ -2,6 +2,11 @@
   color: #FFF !important;
 }
 
+.accessKey-number {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .col-img-success {
   height: 150px;
 }

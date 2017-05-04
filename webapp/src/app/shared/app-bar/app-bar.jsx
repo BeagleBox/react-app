@@ -27,7 +27,7 @@ export default class AppBar extends Component {
     return (
       <div>
         {this.props.user.email !== '' &&
-          <Toolbar style={{backgroundColor: '#808080'}}>
+          <Toolbar className="toolbar-container" >
             <ToolbarGroup firstChild={true} >
               {this.adminButton()}
               <ToolbarTitle className="toolbar-title" text={"Olá, " + this.props.user.name} />

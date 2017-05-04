@@ -64,3 +64,10 @@ button, input {
 .col-fluid {
   padding: 0px !important;
 }
+
+.vertical-divider {
+    width: 1px;
+    background-color: #CCC;
+    height: 100%;
+    border: 0;
+}

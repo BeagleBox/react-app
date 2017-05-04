@@ -69,17 +69,20 @@ export default class RequestSameLocation extends Component {
   render() {
     return (
       <Row className="row-fluid">
-        <Col className="col-fluid" md={6} sm={12} xs={12}>
+        <Col className="col-fluid" md={5.5} sm={12} xs={12}>
           <Location originError={this.state.originError} destinationError={this.state.destinationError} />
         </Col>
-        <Col className="col-fluid" md={6} sm={12} xs={12}>
+        <Col className="col-fluid" md={1} >
+          <hr className="vertical-divider" />
+        </Col>
+        <Col className="col-fluid" md={5.5} sm={12} xs={12}>
           <CheckList />
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <RaisedButton
             className="btn-request-car"
             label="Enviar"
-            primary={true}
+            backgroundColor="#004E8F"
             onTouchTap={this.handleSend} />
         </Col>
         <Snackbar
