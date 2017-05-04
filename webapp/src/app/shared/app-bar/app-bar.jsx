@@ -46,6 +46,7 @@ export default class AppBar extends Component {
               <ToolbarSeparator className="separator" />
               <IconButton
                 tooltip="Solicitar"
+                touch={true}
                 tooltipPosition="bottom-center"
                 containerElement={<Link to="solicitar" />} >
 
