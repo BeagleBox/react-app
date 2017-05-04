@@ -9,3 +9,9 @@
 .check-icon {
   fill: #4CAF50 !important;
 }
+
+@media only screen and (max-width: 500px) {
+  .receive-list-items {
+    width: 100% !important;
+  }
+}

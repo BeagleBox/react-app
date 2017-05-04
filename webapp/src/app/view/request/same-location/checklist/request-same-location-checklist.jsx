@@ -57,7 +57,7 @@ export default class RequestCheckList extends Component {
           </List>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <List style={styles.list}>
+          <List className="request-list-add-item" style={styles.list}>
             <ListItem
               className="request-add-item"
               primaryText={this.state.newItem}

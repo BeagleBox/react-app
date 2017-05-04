@@ -34,12 +34,13 @@ export default class AlertDialog extends Component {
 
     return (
       <Dialog
+        className="alert-dialog-container"
         actions={actions}
         modal={false}
         open={this.props.open}
         onRequestClose={() => this.props.doShowAlertDialog(false)} >
 
-        <Grid className="receive-container" fluid>
+        <Grid className="receive-container alert-dialog-content" fluid>
           <Row className="row-fluid">
             <Col className="col-fluid col-img-alert" md={12} sm={12} xs={12}>
               <img className="img-receive" src={assets.alert} alt={"Alerta"} />

@@ -17,3 +17,9 @@
 .btn-appbar button {
   background-color: #DCDCDC !important;
 }
+
+@media only screen and (max-width: 500px) {
+  .toolbar-title {
+    display: none;
+  }
+}

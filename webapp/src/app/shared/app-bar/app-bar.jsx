@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import { Link } from 'react-router'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar'
@@ -47,7 +46,6 @@ export default class AppBar extends Component {
               <ToolbarSeparator className="separator" />
               <IconButton
                 tooltip="Solicitar"
-                touch={true}
                 tooltipPosition="bottom-center"
                 containerElement={<Link to="solicitar" />} >
 

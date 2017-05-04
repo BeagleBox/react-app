@@ -24,9 +24,9 @@ export default class History extends Component {
     return <TableBody displayRowCheckbox={false} >
       {this.props.tableItems.map((item, k) =>
         <TableRow key={k} >
-          <TableRowColumn className="row-center">{item.id}</TableRowColumn>
+          <TableRowColumn className="col-id row-center">{item.id}</TableRowColumn>
           <TableRowColumn className="row-center">{new Date(item.date).toLocaleDateString('pt-BR')}</TableRowColumn>
-          <TableRowColumn>{item.origin}</TableRowColumn>
+          <TableRowColumn className="col-origin">{item.origin}</TableRowColumn>
           <TableRowColumn>{item.destiny}</TableRowColumn>
           <TableRowColumn className="row-center">
             <RaisedButton className="btn-load-history" label="Lista" backgroundColor="#7496C4" />
@@ -45,7 +45,7 @@ export default class History extends Component {
       paper: { width: '90%', margin: 'auto', padding: '2em', maxHeight: '65vh', overflowY: 'auto'},
     };
 
-    const dateProps = { className: "filter-date", mode: "landscape", underlineShow: false, autoOk: true,
+    const dateProps = { className: "filter-date", underlineShow: false, autoOk: true,
       okLabel: "OK", cancelLabel: "Cancelar", locale: "pt-BR",
     };
 
@@ -81,16 +81,16 @@ export default class History extends Component {
             </Paper>
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
-            <Paper style={styles.paper} zDepth={2} >
+            <Paper className="paper-table" style={styles.paper} zDepth={2} >
               { noContent && <h4>Não há resultados</h4> }
 
               { !noContent &&
                 <Table fixedHeader={true} selectable={false} >
                   <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
                     <TableRow >
-                      <TableHeaderColumn className="row-center" style={styles.table}>ID</TableHeaderColumn>
+                      <TableHeaderColumn className="col-id row-center" style={styles.table}>ID</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Data</TableHeaderColumn>
-                      <TableHeaderColumn style={styles.table}>Origem</TableHeaderColumn>
+                      <TableHeaderColumn className="col-origin" style={styles.table}>Origem</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>Destino</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Carga</TableHeaderColumn>
                     </TableRow>

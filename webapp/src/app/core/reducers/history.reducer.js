@@ -3,14 +3,14 @@ import types from "../types"
 const initialState = {
   items: {
     data: [
-      {id: 1, date: '03-20-2017', origin: 'Secretaria', destiny: 'Sala I1', Checklist: []},
-      {id: 2, date: '03-25-2017', origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
-      {id: 3, date: '03-30-2017', origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
-      {id: 4, date: '04-05-2017', origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []},
-      {id: 5, date: '04-10-2017', origin: 'Secretaria', destiny: 'Sala I8', Checklist: []},
-      {id: 6, date: '04-15-2017', origin: 'Secretaria', destiny: 'Sala I6', Checklist: []},
-      {id: 7, date: '04-20-2017', origin: 'Secretaria', destiny: 'Sala I2', Checklist: []},
-      {id: 8, date: '04-25-2017', origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []}
+      {id: 1, date: new Date(), origin: 'Secretaria', destiny: 'Sala I1', Checklist: []},
+      {id: 2, date: new Date(), origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
+      {id: 3, date: new Date(), origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
+      {id: 4, date: new Date(), origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []},
+      {id: 5, date: new Date(), origin: 'Secretaria', destiny: 'Sala I8', Checklist: []},
+      {id: 6, date: new Date(), origin: 'Secretaria', destiny: 'Sala I6', Checklist: []},
+      {id: 7, date: new Date(), origin: 'Secretaria', destiny: 'Sala I2', Checklist: []},
+      {id: 8, date: new Date(), origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []}
     ]
   },
   table: {
@@ -26,9 +26,8 @@ const updateTableData = (state) => {
   var result = [];
 
   for(var i = 0; i < items.length; i++) {
-    date = new Date(items[i].date).toISOString()
-
-    if(date >= state.fromDate.toISOString() && date <= state.toDate.toISOString()) {
+    date = items[i].date
+    if(date >= state.fromDate && date <= state.toDate) {
       result.push(items[i])
     }
   }

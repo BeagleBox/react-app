@@ -16,6 +16,10 @@
   align-self: center;
 }
 
+.filter-date > div {
+  width: 100% !important;
+}
+
 .filter-date label,
 .filter-title {
   color: #FFF !important;
@@ -28,4 +32,28 @@
 
 .btn-load-history button span {
   color: #FFF !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .history-container {
+    padding: 0 !important;
+  }
+
+  .paper-table {
+    max-height: 280px !important;
+    padding: 5px !important;
+  }
+
+  .filter-date input {
+    text-align: center;
+  }
+
+  .filter-date label {
+    padding-left: 2.5em;
+  }
+
+  .col-id,
+  .col-origin {
+    display: none;
+  }
 }

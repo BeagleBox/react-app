@@ -20,3 +20,10 @@
   line-height: 0 !important;
   height: 20px !important;
 }
+
+@media only screen and (max-width: 500px) {
+  .request-list-items,
+  .request-list-add-item {
+    width: 100% !important;
+  }
+}
