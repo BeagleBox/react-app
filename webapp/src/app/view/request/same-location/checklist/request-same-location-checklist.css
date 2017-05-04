@@ -1,16 +1,29 @@
-.checklist-title {
-  margin-top: 3em;
+.checklist-request-title {
+  color: #000;
 }
 
 .request-list-items svg {
   fill: #4CAF50 !important;
 }
 
+.request-add-item > div {
+  background-color: #B0C4DE;
+  border-radius: 5px;
+  margin-top: 1.5em;
+}
+
 .request-add-item svg {
-  fill: #2488FF !important;
+  fill: #004E8F !important;
 }
 
 .add-new-item {
   line-height: 0 !important;
   height: 20px !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .request-list-items,
+  .request-list-add-item {
+    width: 100% !important;
+  }
 }

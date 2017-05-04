@@ -1,5 +1,12 @@
+.toolbar-container {
+  background-color: #CCC !important;
+  box-shadow: 0 3px 3px #888;
+  z-index: 999;
+}
+
 .toolbar-title {
-  color: #FFF !important;
+  color: #000 !important;
+  font-weight: bold;
   padding-left: 1em;
 }
 
@@ -9,4 +16,10 @@
 
 .btn-appbar button {
   background-color: #DCDCDC !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .toolbar-title {
+    display: none;
+  }
 }

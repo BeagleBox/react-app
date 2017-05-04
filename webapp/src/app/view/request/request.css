@@ -1,4 +1,5 @@
-.request-content {
+.request-content,
+.request-container {
   text-align: center;
 }
 
@@ -14,5 +15,9 @@
 
 .btn-request-car {
   margin: 1em !important;
+}
+
+.btn-request-car button span {
+  color: #FFF !important;
 }
 

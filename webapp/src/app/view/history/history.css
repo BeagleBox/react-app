@@ -3,17 +3,21 @@
 }
 
 .history-title {
-  margin: 2em 0;
+  margin: 2em 0 1em;
 }
 
 .paper-filter {
-  background-color: #0097A7 !important;
+  background-color: #7496C4 !important;
   padding: 0 !important;
 }
 
 .col-filter,
 .row-filter {
   align-self: center;
+}
+
+.filter-date > div {
+  width: 100% !important;
 }
 
 .filter-date label,
@@ -24,4 +28,32 @@
 .filter-date input {
   margin-top: 0 !important;
   padding-top: 15px !important;
+}
+
+.btn-load-history button span {
+  color: #FFF !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .history-container {
+    padding: 0 !important;
+  }
+
+  .paper-table {
+    max-height: 280px !important;
+    padding: 5px !important;
+  }
+
+  .filter-date input {
+    text-align: center;
+  }
+
+  .filter-date label {
+    padding-left: 2.5em;
+  }
+
+  .col-id,
+  .col-origin {
+    display: none;
+  }
 }
