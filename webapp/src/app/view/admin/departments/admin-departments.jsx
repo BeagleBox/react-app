@@ -5,6 +5,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import {ListItem} from 'material-ui/List'
+import CreateDepartments from './create-edit'
 
 import Edit from 'material-ui/svg-icons/action/settings'
 import Delete from 'material-ui/svg-icons/action/delete'
@@ -13,38 +14,14 @@ import Add from 'material-ui/svg-icons/content/add-circle'
 import './admin-departments.css'
 
 export default class AdminDepartments extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      departmentItems: [
-        {id: 1, name: 'Secretaria'},
-        {id: 2, name: 'Biblioteca'},
-        {id: 3, name: 'Enfermaria'},
-        {id: 4, name: 'Sala I3'},
-        {id: 5, name: 'O Belisco'},
-        {id: 6, name: 'Sala I8'},
-      ],
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.created) {
+      this.props.doChangeCreated()
     }
   }
 
-  tableContent = () => {
-    return <TableBody displayRowCheckbox={false} >
-      {this.state.departmentItems.map((item, k) =>
-        <TableRow key={k} >
-          <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-          <TableRowColumn>{item.name}</TableRowColumn>
-          <TableRowColumn className="row-center">
-            <IconButton><Edit /></IconButton>
-            <IconButton><Delete /></IconButton>
-          </TableRowColumn>
-        </TableRow>
-      )};
-    </TableBody>
-  }
-
   render() {
-    const noContent = this.state.departmentItems.length === 0;
+    const noContent = this.props.items.length === 0;
 
     const styles = {
       table: { fontWeight: 'bold', color: '#2F4F4F'},
@@ -76,7 +53,18 @@ export default class AdminDepartments extends Component {
                       <TableHeaderColumn className="row-center" style={styles.table}>Ações</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
-                  { this.tableContent() }
+                  <TableBody displayRowCheckbox={false} >
+                    {this.props.items.map((item, k) =>
+                      <TableRow key={k} >
+                        <TableRowColumn className="row-center">{item.id}</TableRowColumn>
+                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn className="row-center">
+                          <IconButton><Edit /></IconButton>
+                          <IconButton><Delete /></IconButton>
+                        </TableRowColumn>
+                      </TableRow>
+                    )};
+                  </TableBody>
                 </Table>
               }
             </Paper>
@@ -85,7 +73,10 @@ export default class AdminDepartments extends Component {
             <Paper className="paper-add-department" style={styles.paper} zDepth={2} >
               <Row className="row-fluid row-department" >
                 <Col className="col-fluid col-department" md={12} sm={12} xs={12}>
-                  <ListItem className="department-title" leftIcon={<Add />} >
+                  <ListItem
+                    className="department-title"
+                    leftIcon={<Add />}
+                    onTouchTap={() => this.props.doShowCreateDepartmentsDialog(true)} >
                     Adicionar novo departamento
                   </ListItem>
                 </Col>
@@ -93,6 +84,7 @@ export default class AdminDepartments extends Component {
             </Paper>
           </Col>
         </Row>
+        <CreateDepartments />
       </Grid>
     );
   }

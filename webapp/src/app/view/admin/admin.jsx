@@ -11,8 +11,6 @@ import Work from 'material-ui/svg-icons/action/work'
 import Face from 'material-ui/svg-icons/action/supervisor-account'
 import Layers from 'material-ui/svg-icons/maps/layers'
 
-import Welcome from './welcome'
-
 import './admin.css'
 
 export default class Administrator extends Component {
