@@ -21,19 +21,19 @@ const dispatchToProps = (dispatch) => {
       dispatch(actions.defineOperationType(type));
     },
     doChangeCreated: () => {
-      dispatch(actions.changeDepartmentCreated());
+      dispatch(actions.changeCreated());
     },
     doSelectItemToModify: (item) => {
       dispatch(actions.selectItemToModify(item));
     },
     doChangeEdited: () => {
-      dispatch(actions.changeDepartmentEdited());
+      dispatch(actions.changeEdited());
     },
     doDeleteDepartment: (item) => {
       dispatch(actions.deleteDepartment(item));
     },
-    doChangeDepartmentDeleted: () => {
-      dispatch(actions.changeDepartmentDeleted());
+    doChangeDeleted: () => {
+      dispatch(actions.changeDeleted());
     }
   }
 };

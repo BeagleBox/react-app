@@ -22,7 +22,7 @@ export default class AdminDepartments extends Component {
       this.props.doChangeEdited()
     }
     if(nextProps.deleted) {
-      this.props.doChangeDepartmentDeleted()
+      this.props.doChangeDeleted()
     }
     this.props.doDefineOperationType('')
   }
@@ -39,7 +39,6 @@ export default class AdminDepartments extends Component {
   }
 
   handleDelete = (item) => {
-    console.log(item)
     this.props.doDeleteDepartment(item)
   }
 

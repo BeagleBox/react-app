@@ -1,0 +1,12 @@
+.employees-form-content {
+  width: 80%;
+  margin: auto !important;
+}
+
+.create-employees-dialog {
+  text-align: center;
+}
+
+.btn-save-create-employees button span {
+  color: #FFF !important;
+}

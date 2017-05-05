@@ -7,18 +7,31 @@ export function showCreateDepartmentsDialog(open) {
   }
 }
 
-export function addNewDepartment(department) {
+export function showCreateEmployeesDialog(open) {
   return {
-    department,
-    type: types.admin.ADD_NEW_DEPARTMENT
+    open,
+    type: types.admin.SHOW_CREATE_EMPLOYEES_DIALOG
   }
 }
 
-export function changeDepartmentCreated() {
+export function changeCreated() {
   return {
-    type: types.admin.CHANGE_DEPARTMENT_CREATED,
+    type: types.admin.CHANGE_CREATED,
   }
 }
+
+export function changeDeleted() {
+  return {
+    type: types.admin.CHANGE_DELETED,
+  }
+}
+
+export function changeEdited() {
+  return {
+    type: types.admin.CHANGE_EDITED,
+  }
+}
+
 
 export function defineOperationType(operation) {
   return {
@@ -34,17 +47,18 @@ export function selectItemToModify(item) {
   }
 }
 
+export function addNewDepartment(department) {
+  return {
+    department,
+    type: types.admin.ADD_NEW_DEPARTMENT
+  }
+}
+
 export function editDepartment(id, department) {
   return {
     id,
     department,
     type: types.admin.EDIT_DEPARTMENT,
-  }
-}
-
-export function changeDepartmentEdited() {
-  return {
-    type: types.admin.CHANGE_DEPARTMENT_EDITED,
   }
 }
 
@@ -55,8 +69,25 @@ export function deleteDepartment(item) {
   }
 }
 
-export function changeDepartmentDeleted() {
+export function addNewEmployee(employee) {
   return {
-    type: types.admin.CHANGE_DEPARTMENT_DELETED,
+    employee,
+    type: types.admin.ADD_NEW_EMPLOYEE
   }
 }
+
+export function editEmployee(id, employee) {
+  return {
+    id,
+    employee,
+    type: types.admin.EDIT_EMPLOYEE,
+  }
+}
+
+export function deleteEmployee(item) {
+  return {
+    item,
+    type: types.admin.DELETE_EMPLOYEE,
+  }
+}
+

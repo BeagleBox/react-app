@@ -10,43 +10,40 @@ import Edit from 'material-ui/svg-icons/action/settings'
 import Delete from 'material-ui/svg-icons/action/delete'
 import Add from 'material-ui/svg-icons/content/add-circle'
 
+import CreateEmployees from './create-edit'
 import './admin-employees.css'
 
 export default class AdminEmployees extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      employeeItems: [
-        {id: 1, name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
-        {id: 2, name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
-        {id: 3, name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
-        {id: 4, name: 'Euler Tiago', registration: '120010003', email: 'euler@email.com', department: 'Enfermaria'},
-        {id: 5, name: 'Lívia SantAnna', registration: '120010004', email: 'livia@email.com', department: 'Sala I2'},
-      ],
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.created) {
+      this.props.doChangeCreated()
     }
+    if(nextProps.edited) {
+      this.props.doChangeEdited()
+    }
+    if(nextProps.deleted) {
+      this.props.doChangeDeleted()
+    }
+    this.props.doDefineOperationType('')
   }
 
-  tableContent = () => {
-    return <TableBody displayRowCheckbox={false} >
-      {this.state.employeeItems.map((item, k) =>
-        <TableRow key={k} >
-          <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-          <TableRowColumn>{item.name}</TableRowColumn>
-          <TableRowColumn className="row-center">{item.registration}</TableRowColumn>
-          <TableRowColumn>{item.email}</TableRowColumn>
-          <TableRowColumn>{item.department}</TableRowColumn>
-          <TableRowColumn className="row-center">
-            <IconButton><Edit /></IconButton>
-            <IconButton><Delete /></IconButton>
-          </TableRowColumn>
-        </TableRow>
-      )};
-    </TableBody>
+  handleEdit = (item) => {
+    this.props.doDefineOperationType('edit')
+    this.props.doSelectItemToModify(item)
+    this.props.doShowCreateEmployeesDialog(true)
+  }
+
+  handleAdd = () => {
+    this.props.doDefineOperationType('add')
+    this.props.doShowCreateEmployeesDialog(true)
+  }
+
+  handleDelete = (item) => {
+    this.props.doDeleteEmployee(item)
   }
 
   render() {
-    const noContent = this.state.employeeItems.length === 0;
+    const noContent = this.props.items.length === 0;
 
     const styles = {
       table: { fontWeight: 'bold', color: '#2F4F4F'},
@@ -81,7 +78,21 @@ export default class AdminEmployees extends Component {
                       <TableHeaderColumn className="row-center" style={styles.table}>Ações</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
-                  { this.tableContent() }
+                  <TableBody displayRowCheckbox={false} >
+                    {this.props.items.map((item, k) =>
+                      <TableRow key={k} >
+                        <TableRowColumn className="row-center">{item.id}</TableRowColumn>
+                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn className="row-center">{item.registration}</TableRowColumn>
+                        <TableRowColumn>{item.email}</TableRowColumn>
+                        <TableRowColumn>{item.department}</TableRowColumn>
+                        <TableRowColumn className="row-center">
+                          <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
+                          <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
+                        </TableRowColumn>
+                      </TableRow>
+                    )};
+                  </TableBody>
                 </Table>
               }
             </Paper>
@@ -90,7 +101,11 @@ export default class AdminEmployees extends Component {
             <Paper className="paper-add-employees" style={styles.paper} zDepth={2} >
               <Row className="row-fluid row-employees" >
                 <Col className="col-fluid col-employees" md={12} sm={12} xs={12}>
-                  <ListItem className="employees-title" leftIcon={<Add />} >
+                  <ListItem
+                    className="employees-title"
+                    leftIcon={<Add />}
+                    onTouchTap={this.handleAdd} >
+
                     Adicionar novo funcionário
                   </ListItem>
                 </Col>
@@ -98,6 +113,7 @@ export default class AdminEmployees extends Component {
             </Paper>
           </Col>
         </Row>
+        <CreateEmployees />
       </Grid>
     );
   }

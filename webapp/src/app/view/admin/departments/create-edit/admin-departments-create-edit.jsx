@@ -57,17 +57,11 @@ export default class AdminDepartmentsCreateEdit extends Component {
           modal={false}
           open={this.props.open}
           onRequestClose={() => this.props.doShowCreateDepartmentsDialog(false)} >
-          { this.props.type === 'add' &&
-            <TextField
-              floatingLabelText="Nome do departamento"
-              onChange={this.handleInputChange} />
-          }
-          { this.props.type === 'edit' &&
+
             <TextField
               floatingLabelText="Nome do departamento"
               defaultValue={this.props.toModify.name}
               onChange={this.handleInputChange} />
-          }
 
         </Dialog>
       </div>

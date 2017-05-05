@@ -8,6 +8,13 @@ const initialState = {
       {id: 3, name: 'Enfermaria'},
     ],
   },
+  employees: {
+    data: [
+      {id: 1, name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
+      {id: 2, name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
+      {id: 3, name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
+    ],
+  },
   operation_type: '',
   to_modify: {},
   created: false,
@@ -15,6 +22,7 @@ const initialState = {
   deleted: false,
   dialog: {
     create_departments: false,
+    create_employees: false,
   }
 };
 
@@ -61,6 +69,58 @@ const deleteDepartment = (state, {item}) => {
   return items;
 }
 
+const addNewEmployee = (state, {employee}) => {
+  const items = state.employees.data;
+  var id = items[items.length-1].id + 1;
+  var found = false;
+
+  for(var i = 0; i < items.length; i++) {
+    if(employee === items[i].employee) {
+      found = true;
+      break;
+    }
+  }
+
+  if(!found) {
+    items.push({
+      id,
+      name: employee.name,
+      registration: employee.registration,
+      email: employee.email,
+      department: employee.department
+    });
+  }
+
+  return items;
+}
+
+const updateEmployeeData = (state, {id, employee}) => {
+  const items = state.employees.data;
+
+  for(var i = 0; i < items.length; i++) {
+    if(id === items[i].id) {
+      items[i].name = employee.name,
+      items[i].registration = employee.registration,
+      items[i].email = employee.email,
+      items[i].department = employee.department
+    }
+  }
+
+  return items;
+}
+
+const deleteEmployee = (state, {item}) => {
+  const items = state.employees.data;
+
+  for(var i = 0; i < items.length; i++) {
+    if(item.id === items[i].id) {
+      items.splice(i, 1);
+    }
+  }
+
+  return items;
+}
+
 export default function admin(state=initialState, action) {
   switch (action.type) {
     case types.admin.SHOW_CREATE_DEPARTMENTS_DIALOG: {
@@ -74,10 +134,53 @@ export default function admin(state=initialState, action) {
 
       break;
     }
+    case types.admin.SHOW_CREATE_EMPLOYEES_DIALOG: {
+      state = {
+        ...state,
+        dialog: {
+          ...state.dialog,
+          create_employees: action.open,
+        }
+      };
+
+      break;
+    }
+    case types.admin.CHANGE_CREATED: {
+      state = {
+        ...state,
+        created: false,
+      };
+
+      break;
+    }
+    case types.admin.CHANGE_EDITED: {
+      state = {
+        ...state,
+        edited: false,
+      };
+
+      break;
+    }
+    case types.admin.CHANGE_DELETED: {
+      state = {
+        ...state,
+        deleted: false,
+      };
+
+      break;
+    }
     case types.admin.DEFINE_OPERATION_TYPE: {
       state = {
         ...state,
         operation_type: action.operation,
+      };
+
+      break;
+    }
+    case types.admin.SELECT_ITEM_TO_MODIFY: {
+      state = {
+        ...state,
+        to_modify: action.item,
       };
 
       break;
@@ -94,22 +197,6 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.CHANGE_DEPARTMENT_CREATED: {
-      state = {
-        ...state,
-        created: false,
-      };
-
-      break;
-    }
-    case types.admin.SELECT_ITEM_TO_MODIFY: {
-      state = {
-        ...state,
-        to_modify: action.item,
-      };
-
-      break;
-    }
     case types.admin.EDIT_DEPARTMENT: {
       state = {
         ...state,
@@ -118,14 +205,6 @@ export default function admin(state=initialState, action) {
           data: updateDepartmentData(state, action),
         },
         edited: true,
-      };
-
-      break;
-    }
-    case types.admin.CHANGE_DEPARTMENT_EDITED: {
-      state = {
-        ...state,
-        edited: false,
       };
 
       break;
@@ -142,10 +221,38 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.CHANGE_DEPARTMENT_DELETED: {
+    case types.admin.ADD_NEW_EMPLOYEE: {
       state = {
         ...state,
-        deleted: false,
+        employees: {
+          ...state.employees,
+          data: addNewEmployee(state, action),
+        },
+        created: true,
+      };
+
+      break;
+    }
+    case types.admin.EDIT_EMPLOYEE: {
+      state = {
+        ...state,
+        employees: {
+          ...state.employees,
+          data: updateEmployeeData(state, action),
+        },
+        edited: true,
+      };
+
+      break;
+    }
+    case types.admin.DELETE_EMPLOYEE: {
+      state = {
+        ...state,
+        employees: {
+          ...state.employees,
+          data: deleteEmployee(state, action),
+        },
+        deleted: true,
       };
 
       break;
