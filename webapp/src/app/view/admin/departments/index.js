@@ -6,9 +6,9 @@ import * as actions from '../../../core/actions/admin.action'
 const stateToProps = (state) => {
   return {
     items: state.admin.departments.data,
-    created: state.admin.departments.created,
-    edited: state.admin.departments.edited,
-    deleted: state.admin.departments.deleted,
+    created: state.admin.created,
+    edited: state.admin.edited,
+    deleted: state.admin.deleted,
   }
 };
 

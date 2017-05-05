@@ -6,8 +6,8 @@ import * as actions from "../../../../core/actions/admin.action"
 const stateToProps = (state) => {
   return {
     open: state.admin.dialog.create_departments,
-    type: state.admin.departments.operation_type,
-    toModify: state.admin.departments.to_modify,
+    type: state.admin.operation_type,
+    toModify: state.admin.to_modify,
   }
 };
 

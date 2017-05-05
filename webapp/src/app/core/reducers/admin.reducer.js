@@ -7,12 +7,12 @@ const initialState = {
       {id: 2, name: 'Biblioteca'},
       {id: 3, name: 'Enfermaria'},
     ],
-    operation_type: '',
-    to_modify: {},
-    created: false,
-    edited: false,
-    deleted: false,
   },
+  operation_type: '',
+  to_modify: {},
+  created: false,
+  edited: false,
+  deleted: false,
   dialog: {
     create_departments: false,
   }
@@ -39,7 +39,6 @@ const addNewDepartment = (state, {department}) => {
 
 const updateDepartmentData = (state, {id, department}) => {
   const items = state.departments.data;
-  var found = false;
 
   for(var i = 0; i < items.length; i++) {
     if(id === items[i].id) {
@@ -52,7 +51,6 @@ const updateDepartmentData = (state, {id, department}) => {
 
 const deleteDepartment = (state, {item}) => {
   const items = state.departments.data;
-  var found = false;
 
   for(var i = 0; i < items.length; i++) {
     if(item.id === items[i].id) {
@@ -79,10 +77,7 @@ export default function admin(state=initialState, action) {
     case types.admin.DEFINE_OPERATION_TYPE: {
       state = {
         ...state,
-        departments: {
-          ...state.departments,
-          operation_type: action.operation,
-        }
+        operation_type: action.operation,
       };
 
       break;
@@ -93,8 +88,8 @@ export default function admin(state=initialState, action) {
         departments: {
           ...state.departments,
           data: addNewDepartment(state, action),
-          created: true,
-        }
+        },
+        created: true,
       };
 
       break;
@@ -102,10 +97,7 @@ export default function admin(state=initialState, action) {
     case types.admin.CHANGE_DEPARTMENT_CREATED: {
       state = {
         ...state,
-        departments: {
-          ...state.departments,
-          created: false,
-        }
+        created: false,
       };
 
       break;
@@ -113,10 +105,7 @@ export default function admin(state=initialState, action) {
     case types.admin.SELECT_ITEM_TO_MODIFY: {
       state = {
         ...state,
-        departments: {
-          ...state.departments,
-          to_modify: action.item,
-        }
+        to_modify: action.item,
       };
 
       break;
@@ -127,8 +116,8 @@ export default function admin(state=initialState, action) {
         departments: {
           ...state.departments,
           data: updateDepartmentData(state, action),
-          edited: true,
-        }
+        },
+        edited: true,
       };
 
       break;
@@ -136,10 +125,7 @@ export default function admin(state=initialState, action) {
     case types.admin.CHANGE_DEPARTMENT_EDITED: {
       state = {
         ...state,
-        departments: {
-          ...state.departments,
-          edited: false,
-        }
+        edited: false,
       };
 
       break;
@@ -150,8 +136,8 @@ export default function admin(state=initialState, action) {
         departments: {
           ...state.departments,
           data: deleteDepartment(state, action),
-          deleted: true,
-        }
+        },
+        deleted: true,
       };
 
       break;
@@ -159,10 +145,7 @@ export default function admin(state=initialState, action) {
     case types.admin.CHANGE_DEPARTMENT_DELETED: {
       state = {
         ...state,
-        departments: {
-          ...state.departments,
-          deleted: false,
-        }
+        deleted: false,
       };
 
       break;
