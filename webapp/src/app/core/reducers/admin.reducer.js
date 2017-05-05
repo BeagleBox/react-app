@@ -3,16 +3,16 @@ import types from "../types"
 const initialState = {
   departments: {
     data: [
-      {id: 1, name: 'Secretaria'},
-      {id: 2, name: 'Biblioteca'},
-      {id: 3, name: 'Enfermaria'},
+      {id: 1, department_name: 'Secretaria'},
+      {id: 2, department_name: 'Biblioteca'},
+      {id: 3, department_name: 'Enfermaria'},
     ],
   },
   employees: {
     data: [
-      {id: 1, name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
-      {id: 2, name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
-      {id: 3, name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
+      {id: 1, employee_name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
+      {id: 2, employee_name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
+      {id: 3, employee_name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
     ],
   },
   operation_type: '',
@@ -39,7 +39,7 @@ const addNewDepartment = (state, {department}) => {
   }
 
   if(!found) {
-    items.push({id, name: department});
+    items.push({id, department_name: department});
   }
 
   return items;
@@ -50,7 +50,7 @@ const updateDepartmentData = (state, {id, department}) => {
 
   for(var i = 0; i < items.length; i++) {
     if(id === items[i].id) {
-      items[i].name = department;
+      items[i].department_name = department;
     }
   }
 
@@ -84,7 +84,7 @@ const addNewEmployee = (state, {employee}) => {
   if(!found) {
     items.push({
       id,
-      name: employee.name,
+      employee_name: employee.name,
       registration: employee.registration,
       email: employee.email,
       department: employee.department
@@ -99,7 +99,7 @@ const updateEmployeeData = (state, {id, employee}) => {
 
   for(var i = 0; i < items.length; i++) {
     if(id === items[i].id) {
-      items[i].name = employee.name,
+      items[i].employee_name = employee.name,
       items[i].registration = employee.registration,
       items[i].email = employee.email,
       items[i].department = employee.department

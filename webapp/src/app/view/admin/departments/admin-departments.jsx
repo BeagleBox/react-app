@@ -79,7 +79,7 @@ export default class AdminDepartments extends Component {
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
                         <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn>{item.department_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
                           <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>

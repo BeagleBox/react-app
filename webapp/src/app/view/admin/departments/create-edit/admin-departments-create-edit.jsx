@@ -17,6 +17,14 @@ export default class AdminDepartmentsCreateEdit extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.type === 'edit') {
+      this.setState({
+        department: nextProps.toModify.department_name
+      })
+    }
+  }
+
   handleInputChange = (event) => {
     this.setState({ department: event.target.value })
   }
@@ -60,7 +68,7 @@ export default class AdminDepartmentsCreateEdit extends Component {
 
             <TextField
               floatingLabelText="Nome do departamento"
-              defaultValue={this.props.toModify.name}
+              defaultValue={this.props.toModify.department_name}
               onChange={this.handleInputChange} />
 
         </Dialog>

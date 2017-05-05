@@ -18,7 +18,7 @@ export default class Location extends Component {
     var titles = []
 
     for(var i = 0; i < items.length; i++) {
-      titles.push(items[i].name)
+      titles.push(items[i].department_name)
     }
 
     return titles

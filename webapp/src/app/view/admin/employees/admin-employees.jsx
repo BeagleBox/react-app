@@ -82,7 +82,7 @@ export default class AdminEmployees extends Component {
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
                         <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-                        <TableRowColumn>{item.name}</TableRowColumn>
+                        <TableRowColumn>{item.employee_name}</TableRowColumn>
                         <TableRowColumn className="row-center">{item.registration}</TableRowColumn>
                         <TableRowColumn>{item.email}</TableRowColumn>
                         <TableRowColumn>{item.department}</TableRowColumn>

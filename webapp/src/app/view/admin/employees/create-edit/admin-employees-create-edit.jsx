@@ -23,6 +23,17 @@ export default class AdminEmployeesCreateEdit extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.type === 'edit') {
+      this.setState({
+        fullName: nextProps.toModify.employee_name,
+        registration: nextProps.toModify.registration,
+        email: nextProps.toModify.email,
+        department: nextProps.toModify.department
+      })
+    }
+  }
+
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -71,6 +82,7 @@ export default class AdminEmployeesCreateEdit extends Component {
 
     return (
       <div>
+        {this.UpdateState}
         <Dialog
           className="create-employees-dialog"
           title="Funcionários"
@@ -85,7 +97,7 @@ export default class AdminEmployeesCreateEdit extends Component {
               <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <TextField
                   name="fullName"
-                  defaultValue={this.props.toModify.name}
+                  defaultValue={this.props.toModify.employee_name}
                   floatingLabelText="Nome do funcionario"
                   floatingLabelStyle={{color: '#696969'}}
                   fullWidth={true}
@@ -127,7 +139,7 @@ export default class AdminEmployeesCreateEdit extends Component {
                   onChange={(event, key, value) => this.handleSelectionChange(value)} >
 
                   {this.props.items.map((item, k) =>
-                    <MenuItem key={k} value={item.name} primaryText={item.name} />
+                    <MenuItem key={k} value={item.department_name} primaryText={item.department_name} />
                   )}
 
                 </SelectField>
