@@ -16,12 +16,11 @@ export default class Homepage extends Component {
             <img className="img-homepage" src={assets.beaglebox} alt={"BeagleBox logo"} />
           </Col>
           <Col className="col-fluid col-homepage" md={6} sm={12} xs={12}>
-            <Card className="homepage-card-container">
+            <Card className="homepage-card-container" initiallyExpanded={true}>
               <CardHeader
                 className="homepage-card-title"
                 title="Seja bem-vindo"
-                showExpandableButton={false}
-                initiallyExpanded={true} />
+                showExpandableButton={false} />
               <CardText
                 className="homepage-card-text" >
                 <HomepageForm />

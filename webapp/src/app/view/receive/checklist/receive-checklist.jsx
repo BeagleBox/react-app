@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 
 import {List, ListItem} from 'material-ui/List'
-import CheckedItem from 'material-ui/svg-icons/action/check-circle'
-import CheckListIcon from 'material-ui/svg-icons/action/info'
 
 import './receive-checklist.css'
 
