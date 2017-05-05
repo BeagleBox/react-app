@@ -7,6 +7,7 @@ const stateToProps = (state) => {
   return {
     location: state.admin.departments.data,
     origin: state.request.location.origin,
+    destination: state.request.location.destination,
   }
 };
 

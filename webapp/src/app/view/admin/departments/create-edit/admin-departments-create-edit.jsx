@@ -22,7 +22,14 @@ export default class AdminDepartmentsCreateEdit extends Component {
   }
 
   handleSaveDepartment = () => {
-    this.props.doAddNewDepartment(this.state.department)
+    if(this.props.type === 'add') {
+      this.props.doAddNewDepartment(this.state.department)
+    }
+
+    if(this.props.type === 'edit') {
+      this.props.doEditDepartment(this.props.toModify.id, this.state.department)
+    }
+
     this.props.doShowCreateDepartmentsDialog(false)
   }
 
@@ -44,16 +51,23 @@ export default class AdminDepartmentsCreateEdit extends Component {
       <div>
         <Dialog
           className="create-departments-dialog"
-          title="Adicionar novo departamento"
+          title="Departamento"
           titleStyle={{color: "#0D7988"}}
           actions={actions}
           modal={false}
           open={this.props.open}
           onRequestClose={() => this.props.doShowCreateDepartmentsDialog(false)} >
-
+          { this.props.type === 'add' &&
             <TextField
               floatingLabelText="Nome do departamento"
               onChange={this.handleInputChange} />
+          }
+          { this.props.type === 'edit' &&
+            <TextField
+              floatingLabelText="Nome do departamento"
+              defaultValue={this.props.toModify.name}
+              onChange={this.handleInputChange} />
+          }
 
         </Dialog>
       </div>

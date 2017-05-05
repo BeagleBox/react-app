@@ -6,6 +6,8 @@ import * as actions from "../../../../core/actions/admin.action"
 const stateToProps = (state) => {
   return {
     open: state.admin.dialog.create_departments,
+    type: state.admin.departments.operation_type,
+    toModify: state.admin.departments.to_modify,
   }
 };
 
@@ -16,6 +18,9 @@ const dispatchToProps = (dispatch) => {
     },
     doAddNewDepartment: (department) => {
       dispatch(actions.addNewDepartment(department));
+    },
+    doEditDepartment: (id, department) => {
+      dispatch(actions.editDepartment(id, department));
     },
   }
 };

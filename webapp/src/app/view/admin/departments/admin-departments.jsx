@@ -18,6 +18,20 @@ export default class AdminDepartments extends Component {
     if(nextProps.created) {
       this.props.doChangeCreated()
     }
+    if(nextProps.edited) {
+      this.props.doChangeEdited()
+    }
+  }
+
+  handleEdit = (item) => {
+    this.props.doDefineOperationType('edit')
+    this.props.doSelectItemToModify(item)
+    this.props.doShowCreateDepartmentsDialog(true)
+  }
+
+  handleAdd = () => {
+    this.props.doDefineOperationType('add')
+    this.props.doShowCreateDepartmentsDialog(true)
   }
 
   render() {
@@ -59,7 +73,7 @@ export default class AdminDepartments extends Component {
                         <TableRowColumn className="row-center">{item.id}</TableRowColumn>
                         <TableRowColumn>{item.name}</TableRowColumn>
                         <TableRowColumn className="row-center">
-                          <IconButton><Edit /></IconButton>
+                          <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
                           <IconButton><Delete /></IconButton>
                         </TableRowColumn>
                       </TableRow>
@@ -76,7 +90,7 @@ export default class AdminDepartments extends Component {
                   <ListItem
                     className="department-title"
                     leftIcon={<Add />}
-                    onTouchTap={() => this.props.doShowCreateDepartmentsDialog(true)} >
+                    onTouchTap={this.handleAdd} >
                     Adicionar novo departamento
                   </ListItem>
                 </Col>
