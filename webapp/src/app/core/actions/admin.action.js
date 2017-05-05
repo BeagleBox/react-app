@@ -47,3 +47,16 @@ export function changeDepartmentEdited() {
     type: types.admin.CHANGE_DEPARTMENT_EDITED,
   }
 }
+
+export function deleteDepartment(item) {
+  return {
+    item,
+    type: types.admin.DELETE_DEPARTMENT,
+  }
+}
+
+export function changeDepartmentDeleted() {
+  return {
+    type: types.admin.CHANGE_DEPARTMENT_DELETED,
+  }
+}

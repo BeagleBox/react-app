@@ -8,6 +8,7 @@ const stateToProps = (state) => {
     items: state.admin.departments.data,
     created: state.admin.departments.created,
     edited: state.admin.departments.edited,
+    deleted: state.admin.departments.deleted,
   }
 };
 
@@ -28,6 +29,12 @@ const dispatchToProps = (dispatch) => {
     doChangeEdited: () => {
       dispatch(actions.changeDepartmentEdited());
     },
+    doDeleteDepartment: (item) => {
+      dispatch(actions.deleteDepartment(item));
+    },
+    doChangeDepartmentDeleted: () => {
+      dispatch(actions.changeDepartmentDeleted());
+    }
   }
 };
 

@@ -21,6 +21,10 @@ export default class AdminDepartments extends Component {
     if(nextProps.edited) {
       this.props.doChangeEdited()
     }
+    if(nextProps.deleted) {
+      this.props.doChangeDepartmentDeleted()
+    }
+    this.props.doDefineOperationType('')
   }
 
   handleEdit = (item) => {
@@ -32,6 +36,11 @@ export default class AdminDepartments extends Component {
   handleAdd = () => {
     this.props.doDefineOperationType('add')
     this.props.doShowCreateDepartmentsDialog(true)
+  }
+
+  handleDelete = (item) => {
+    console.log(item)
+    this.props.doDeleteDepartment(item)
   }
 
   render() {
@@ -74,7 +83,7 @@ export default class AdminDepartments extends Component {
                         <TableRowColumn>{item.name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
-                          <IconButton><Delete /></IconButton>
+                          <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
                         </TableRowColumn>
                       </TableRow>
                     )};

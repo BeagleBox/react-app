@@ -20,7 +20,7 @@ const initialState = {
 
 const addNewDepartment = (state, {department}) => {
   const items = state.departments.data;
-  var id = items.length;
+  var id = items[items.length-1].id + 1;
   var found = false;
 
   for(var i = 0; i < items.length; i++) {
@@ -31,7 +31,7 @@ const addNewDepartment = (state, {department}) => {
   }
 
   if(!found) {
-    items.push({id: id+1, name: department});
+    items.push({id, name: department});
   }
 
   return items;
@@ -44,6 +44,19 @@ const updateDepartmentData = (state, {id, department}) => {
   for(var i = 0; i < items.length; i++) {
     if(id === items[i].id) {
       items[i].name = department;
+    }
+  }
+
+  return items;
+}
+
+const deleteDepartment = (state, {item}) => {
+  const items = state.departments.data;
+  var found = false;
+
+  for(var i = 0; i < items.length; i++) {
+    if(item.id === items[i].id) {
+      items.splice(i, 1);
     }
   }
 
@@ -126,6 +139,29 @@ export default function admin(state=initialState, action) {
         departments: {
           ...state.departments,
           edited: false,
+        }
+      };
+
+      break;
+    }
+    case types.admin.DELETE_DEPARTMENT: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          data: deleteDepartment(state, action),
+          deleted: true,
+        }
+      };
+
+      break;
+    }
+    case types.admin.CHANGE_DEPARTMENT_DELETED: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          deleted: false,
         }
       };
 
