@@ -5,8 +5,6 @@ import * as actions from '../../../core/actions/history.action'
 
 const stateToProps = (state) => {
   return {
-    items: state.history.items.data,
-    tableItems: state.history.table.data,
     fromDate: state.history.fromDate,
     toDate: state.history.toDate,
   }
@@ -19,9 +17,6 @@ const dispatchToProps = (dispatch) => {
     },
     doUpdateToDate: (toDate) => {
       dispatch(actions.updateToDate(toDate));
-    },
-    doUpdateTable: () => {
-      dispatch(actions.updateTable());
     },
   }
 };

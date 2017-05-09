@@ -1,47 +1,18 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import Paper from 'material-ui/Paper'
-import RaisedButton from 'material-ui/RaisedButton'
 import DatePicker from 'material-ui/DatePicker'
+
+import TransformationTable from  '../../shared/transportation-table'
 
 import './history.css'
 
 export default class History extends Component {
-  componentDidMount() {
-    this.props.doUpdateTable()
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if(this.props.fromDate !== nextProps.fromDate ||
-       this.props.toDate !== nextProps.toDate) {
-      this.props.doUpdateTable()
-    }
-  }
-
-  tableContent = () => {
-    return <TableBody displayRowCheckbox={false} >
-      {this.props.tableItems.map((item, k) =>
-        <TableRow key={k} >
-          <TableRowColumn className="col-id row-center">{item.id}</TableRowColumn>
-          <TableRowColumn className="row-center">{new Date(item.date).toLocaleDateString('pt-BR')}</TableRowColumn>
-          <TableRowColumn className="col-origin">{item.origin}</TableRowColumn>
-          <TableRowColumn>{item.destiny}</TableRowColumn>
-          <TableRowColumn className="row-center">
-            <RaisedButton className="btn-load-history" label="Lista" backgroundColor="#7496C4" />
-          </TableRowColumn>
-        </TableRow>
-      )};
-    </TableBody>
-  }
-
   render() {
     const DateTimeFormat = global.Intl.DateTimeFormat;
-    const noContent = this.props.tableItems.length === 0;
 
     const styles = {
-      table: { fontWeight: 'bold', color: '#2F4F4F'},
       paper: { width: '90%', margin: 'auto', padding: '2em', maxHeight: '65vh', overflowY: 'auto'},
     };
 
@@ -81,24 +52,7 @@ export default class History extends Component {
             </Paper>
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
-            <Paper className="paper-table" style={styles.paper} zDepth={2} >
-              { noContent && <h4>Não há resultados</h4> }
-
-              { !noContent &&
-                <Table fixedHeader={true} selectable={false} >
-                  <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
-                    <TableRow >
-                      <TableHeaderColumn className="col-id row-center" style={styles.table}>ID</TableHeaderColumn>
-                      <TableHeaderColumn className="row-center" style={styles.table}>Data</TableHeaderColumn>
-                      <TableHeaderColumn className="col-origin" style={styles.table}>Origem</TableHeaderColumn>
-                      <TableHeaderColumn style={styles.table}>Destino</TableHeaderColumn>
-                      <TableHeaderColumn className="row-center" style={styles.table}>Carga</TableHeaderColumn>
-                    </TableRow>
-                  </TableHeader>
-                  { this.tableContent() }
-                </Table>
-              }
-            </Paper>
+            <TransformationTable />
           </Col>
         </Row>
       </Grid>

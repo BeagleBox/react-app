@@ -99,10 +99,10 @@ const updateEmployeeData = (state, {id, employee}) => {
 
   for(var i = 0; i < items.length; i++) {
     if(id === items[i].id) {
-      items[i].employee_name = employee.name,
-      items[i].registration = employee.registration,
-      items[i].email = employee.email,
-      items[i].department = employee.department
+      items[i].employee_name = employee.name;
+      items[i].registration = employee.registration;
+      items[i].email = employee.email;
+      items[i].department = employee.department;
     }
   }
 
