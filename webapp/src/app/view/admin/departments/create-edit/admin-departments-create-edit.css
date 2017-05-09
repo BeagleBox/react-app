@@ -1,0 +1,7 @@
+.create-departments-dialog {
+  text-align: center;
+}
+
+.btn-save-create-departments button span {
+  color: #FFF !important;
+}

@@ -4,7 +4,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import AppBar from './shared/app-bar'
-import ContentArea from './shared/content-area'
 
 import './app.css'
 
@@ -22,7 +21,9 @@ export default class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className='app-container'>
           <AppBar />
-          <ContentArea children={this.props.children} />
+          <div className='main-area-container'>
+            {this.props.children}
+          </div>
         </div>
       </MuiThemeProvider>
     );

@@ -6,16 +6,16 @@ export function requestCar() {
   }
 }
 
-export function selectOriginLocation(index) {
+export function selectOriginLocation(location) {
   return {
-    index,
+    location,
     type: types.request.SELECT_ORIGIN_LOCATION,
   }
 }
 
-export function selectDestinationLocation(index) {
+export function selectDestinationLocation(location) {
   return {
-    index,
+    location,
     type: types.request.SELECT_DESTINATION_LOCATION,
   }
 }

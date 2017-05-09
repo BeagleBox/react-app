@@ -3,20 +3,12 @@ import types from "../types"
 const initialState = {
   isSamePlace: false,
   location: {
-    data: ['Biblioteca', 'Enfermaria', 'Sala I2', 'Sala I6', 'Secretaria'],
     origin: '',
     destination: '',
   },
   loadItems: [],
   dialog: false,
   accessKey: '',
-};
-
-const getSelectedLocation = (state, {index}) => {
-  const location = state.location.data;
-  var selected = location[index];
-
-  return selected;
 };
 
 const addLoadItem = (state, {item}) => {
@@ -41,7 +33,7 @@ export default function request(state=initialState, action) {
         ...state,
         location: {
           ...state.location,
-          origin: getSelectedLocation(state, action),
+          origin: action.location,
         },
       };
 
@@ -52,7 +44,7 @@ export default function request(state=initialState, action) {
         ...state,
         location: {
           ...state.location,
-          destination: getSelectedLocation(state, action),
+          destination: action.location,
         },
       };
 

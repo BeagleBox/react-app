@@ -5,7 +5,7 @@ const initialState = {
     name: 'Elaine',
     email: 'elaine@email.com',
     password: '',
-    admin: false,
+    admin: true,
   }
 };
 

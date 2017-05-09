@@ -17,7 +17,7 @@ export default class AppBar extends Component {
   adminButton = () => {
     return <ToolbarGroup>
       {this.props.user.admin &&
-        <IconButton containerElement={<Link to="informacoes-gerais" />} >
+        <IconButton containerElement={<Link to="admin" />} >
           <Settings />
         </IconButton>
       }
@@ -46,6 +46,7 @@ export default class AppBar extends Component {
               <ToolbarSeparator className="separator" />
               <IconButton
                 tooltip="Solicitar"
+                touch={true}
                 tooltipPosition="bottom-center"
                 containerElement={<Link to="solicitar" />} >
 

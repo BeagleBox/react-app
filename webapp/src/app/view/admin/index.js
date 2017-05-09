@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import AppComponent from "./app"
+import AdminComponent from "./admin"
 
 const stateToProps = (state) => {
   return {
@@ -13,7 +13,6 @@ const dispatchToProps = (dispatch) => {
   }
 };
 
-const App = connect(stateToProps, dispatchToProps)(AppComponent);
+const Admin = connect(stateToProps, dispatchToProps)(AdminComponent);
 
-export default App;
-
+export default Admin;
