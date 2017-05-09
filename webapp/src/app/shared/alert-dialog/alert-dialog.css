@@ -1,4 +1,5 @@
-.btn-confirm-alert button span {
+.btn-confirm-alert button span,
+.btn-confirm-success button span {
   color: #FFF !important;
 }
 
@@ -6,8 +7,21 @@
   height: 150px;
 }
 
+.col-img-success {
+  height: 150px;
+}
+
 .dialog-alert-title {
   color: #AA302F;
+}
+
+.dialog-title {
+  color: #27AE60 !important;
+}
+
+.accessKey-number {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 500px) {
