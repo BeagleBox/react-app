@@ -1,0 +1,26 @@
+.btn-confirm-alert button span {
+  color: #FFF !important;
+}
+
+.col-img-alert {
+  height: 150px;
+}
+
+.dialog-alert-title {
+  color: #AA302F;
+}
+
+@media only screen and (max-width: 500px) {
+  .alert-dialog-content {
+    padding: 0 !important;
+  }
+
+  .receive-list-items {
+    max-height: 150px !important;
+    width: 100% !important;
+  }
+
+  .col-img-alert {
+    height: 80px;
+  }
+}
