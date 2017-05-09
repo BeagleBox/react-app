@@ -1,0 +1,24 @@
+import { connect } from 'react-redux'
+import TransportationTableComponent from './transportation-table'
+
+import * as actions from '../../core/actions/history.action'
+
+const stateToProps = (state) => {
+  return {
+    tableItems: state.history.table.data,
+    fromDate: state.history.fromDate,
+    toDate: state.history.toDate,
+  }
+};
+
+const dispatchToProps = (dispatch) => {
+  return {
+    doUpdateTable: () => {
+      dispatch(actions.updateTable());
+    },
+  }
+};
+
+const TransportationTable = connect(stateToProps, dispatchToProps)(TransportationTableComponent);
+
+export default TransportationTable;

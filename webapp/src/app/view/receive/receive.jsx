@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import RaisedButton from 'material-ui/RaisedButton'
 import OpenKey from './open-key'
 import CheckList from './checklist'
-import AlertDialog from './alert-dialog'
+import AlertDialog from '../../shared/alert-dialog'
 
 import './receive.css'
 
