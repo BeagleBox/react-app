@@ -33,6 +33,26 @@ const checkItem = (state, {index, check}) => {
   return result;
 };
 
+const checkAllItems = (state, {checked}) => {
+  const items = state.items.data;
+
+  var icon = <CheckListIcon />;
+
+  if(checked) {
+    icon = <CheckedItem className="check-icon" />;
+  }
+
+  for(var i = 0; i < items.length; i++) {
+    items[i].title = items[i].title;
+    items[i].check = checked;
+    items[i].icon = icon;
+  }
+
+  var result = items;
+
+  return result;
+};
+
 const isNotChecked = (state) => {
   const items = state.items.data;
   let notCheckedItems = [];
@@ -107,6 +127,18 @@ export default function receive(state=initialState, action) {
         items: {
           ...state.items,
           data: updateLoadList(state, action),
+        }
+      };
+
+      break;
+    }
+    case types.receive.SELECT_ALL_ITEMS: {
+      state = {
+        ...state,
+        items: {
+          ...state.items,
+          data: checkAllItems(state, action),
+          hasChecked: true,
         }
       };
 

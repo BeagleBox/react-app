@@ -2,6 +2,10 @@
   margin-bottom: 1em;
 }
 
+.btn-select-all label {
+  text-align: left;
+}
+
 .checklist-receive-title {
   color: #C5A265;
 }
