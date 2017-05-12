@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ReceiveComponent from './receive'
 
-import * as actions from '../../core/actions/receive.action'
+import * as actions from '../../../core/actions/receive.action'
 
 const stateToProps = (state) => {
   return {

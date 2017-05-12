@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import HistoryComponent from './history'
 
-import * as actions from '../../core/actions/history.action'
+import * as actions from '../../../core/actions/history.action'
 
 const stateToProps = (state) => {
   return {

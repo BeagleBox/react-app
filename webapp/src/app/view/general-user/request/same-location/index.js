@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import SameLocationComponent from './request-same-location'
 
-import * as receiveActions from '../../../core/actions/receive.action'
-import * as requestActions from '../../../core/actions/request.action'
+import * as receiveActions from '../../../../core/actions/receive.action'
+import * as requestActions from '../../../../core/actions/request.action'
 
 const stateToProps = (state) => {
   return {

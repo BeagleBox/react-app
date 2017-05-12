@@ -14,10 +14,10 @@ export default function auth(state=initialState, action) {
       state = {
         ...state,
         user: JSON.parse(localStorage.getItem('user')),
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem('jwt'),
       };
 
-      localStorage.setItem('token', state.token);
+      localStorage.setItem('jwt', state.token);
       localStorage.setItem('user', JSON.stringify(state.user));
 
       break;

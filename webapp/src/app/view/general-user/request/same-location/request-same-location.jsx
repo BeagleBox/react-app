@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Snackbar from 'material-ui/Snackbar'
 import Location from './location'
 import CheckList from './checklist'
-import DialogKey from  '../../../shared/alert-dialog'
+import DialogKey from  '../../../../shared/alert-dialog'
 
 import * as validation from '../validation'
 import './request-same-location.css'

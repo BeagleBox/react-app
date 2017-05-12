@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Paper from 'material-ui/Paper'
 import DatePicker from 'material-ui/DatePicker'
 
-import TransformationTable from  '../../shared/transportation-table'
+import TransformationTable from  '../../../shared/transportation-table'
 
 import './history.css'
 
