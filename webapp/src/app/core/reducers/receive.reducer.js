@@ -48,9 +48,7 @@ const checkAllItems = (state, {checked}) => {
     items[i].icon = icon;
   }
 
-  var result = items;
-
-  return result;
+  return items;
 };
 
 const isNotChecked = (state) => {
@@ -139,6 +137,7 @@ export default function receive(state=initialState, action) {
           ...state.items,
           data: checkAllItems(state, action),
           hasChecked: true,
+          notChecked: isNotChecked(state),
         }
       };
 
