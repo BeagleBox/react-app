@@ -27,6 +27,20 @@ export function addNewLoadItem(item) {
   }
 }
 
+export function deleteLoadItem(item) {
+  return {
+    item,
+    type: types.request.DELETE_LOAD_ITEM,
+  }
+}
+
+export function changeDeleted(deleted) {
+  return {
+    deleted,
+    type: types.request.CHANGE_DELETED_VALUE,
+  }
+}
+
 export function showDialogKey(open) {
   return {
     open,
