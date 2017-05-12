@@ -4,7 +4,7 @@ import getApiUrl from "."
 
 import { CALL_API } from "redux-api-middleware"
 
-export function acquireAuthToken(email, password) {
+export function logIn(email, password) {
   return {
     [CALL_API]: {
       endpoint: `${getApiUrl()}/login`,
@@ -12,9 +12,9 @@ export function acquireAuthToken(email, password) {
       // TODO: Remove credentials key. it include cookies
       credentials: "include",
       types: [
-        types.authToken.ACQUIRE_AUTH_TOKEN_REQUEST,
-        types.authToken.ACQUIRE_AUTH_TOKEN_SUCCESS,
-        types.authToken.ACQUIRE_AUTH_TOKEN_FAILURE
+        types.authToken.LOG_IN_REQUEST,
+        types.authToken.LOG_IN_SUCCESS,
+        types.authToken.LOG_IN_FAILURE
       ],
       headers: {
         "Accept": "application/json",
