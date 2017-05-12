@@ -2,6 +2,7 @@ import types from "../types"
 
 const initialState = {
   isSamePlace: false,
+  isDeleted: false,
   location: {
     origin: '',
     destination: '',
@@ -14,6 +15,17 @@ const initialState = {
 const addLoadItem = (state, {item}) => {
   const items = state.loadItems;
   items.push(item);
+
+  return items;
+};
+
+const deleteLoadItem = (state, {item}) => {
+  const items = state.loadItems;
+  const index = items.indexOf(item);
+
+  if (index > -1) {
+    items.splice(index, 1);
+  }
 
   return items;
 };
@@ -54,6 +66,22 @@ export default function request(state=initialState, action) {
       state = {
         ...state,
         loadItems: addLoadItem(state, action),
+      };
+
+      break;
+    }
+    case types.request.DELETE_LOAD_ITEM: {
+      state = {
+        ...state,
+        loadItems: deleteLoadItem(state, action),
+      };
+
+      break;
+    }
+    case types.request.CHANGE_DELETED_VALUE: {
+      state = {
+        ...state,
+        isDeleted: action.deleted,
       };
 
       break;

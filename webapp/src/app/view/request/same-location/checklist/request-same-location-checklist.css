@@ -2,10 +2,6 @@
   color: #000;
 }
 
-.request-list-items svg {
-  fill: #4CAF50 !important;
-}
-
 .request-add-item > div {
   background-color: #B0C4DE;
   border-radius: 5px;
@@ -14,6 +10,10 @@
 
 .request-add-item svg {
   fill: #004E8F !important;
+}
+
+.btn-request-delete {
+  fill: #C74343 !important;
 }
 
 .add-new-item {

@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List'
 import TextField from 'material-ui/TextField'
 import Check from 'material-ui/svg-icons/action/thumb-up'
 import Add from 'material-ui/svg-icons/content/add-circle'
+import DeleteIcon from 'material-ui/svg-icons/action/delete'
 
 import './request-same-location-checklist.css'
 
@@ -14,6 +15,12 @@ export default class RequestCheckList extends Component {
 
     this.state = {
       newItem: 'Adicionar novo item',
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.isDeleted) {
+      this.props.doChangeDeleted(false)
     }
   }
 
@@ -28,7 +35,7 @@ export default class RequestCheckList extends Component {
     })
   }
 
-  handleTextFieldKeyPress = event => {
+  handleTextFieldKeyPress = (event) => {
     const acceptedCodes = ["Enter", "Escape"];
 
     event.preventDefault();
@@ -37,6 +44,11 @@ export default class RequestCheckList extends Component {
       this.props.doAddNewItem(event.target.value)
       this.setState({newItem: "Adicionar novo item"})
     }
+  }
+
+  handleDeleteItem = (item) => {
+    this.props.doDeleteItem(item)
+    this.props.doChangeDeleted(true)
   }
 
   render() {
@@ -52,7 +64,12 @@ export default class RequestCheckList extends Component {
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <List style={styles.list} className="request-list-items">
             {this.props.items.map((item, k) =>
-              <ListItem key={k} primaryText={item} leftIcon={<Check />} />
+              <ListItem
+                key={k}
+                primaryText={item}
+                leftIcon={<Check className="btn-request-list" />}
+                rightIcon={<DeleteIcon className="btn-request-delete" />}
+                onTouchTap={() => this.handleDeleteItem(item)} />
             )}
           </List>
         </Col>
