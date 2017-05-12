@@ -1,6 +1,8 @@
 import { connect } from "react-redux"
 import AppComponent from "./app"
 
+import * as actions from './core/actions/acquire-auth-token.action'
+
 const stateToProps = (state) => {
   return {
 
@@ -9,7 +11,9 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-
+    onInitiallize: () => {
+      dispatch(actions.onInitiallize());
+    }
   }
 };
 

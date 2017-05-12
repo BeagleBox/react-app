@@ -4,6 +4,12 @@ import getApiUrl from "."
 
 import { CALL_API } from "redux-api-middleware"
 
+export function onInitiallize() {
+  return {
+    type: types.authToken.ACQUIRE_AUTH_TOKEN,
+  }
+}
+
 export function logIn(email, password) {
   return {
     [CALL_API]: {

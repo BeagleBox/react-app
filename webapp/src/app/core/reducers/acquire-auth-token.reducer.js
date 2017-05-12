@@ -9,6 +9,19 @@ const initialState = {
 
 export default function auth(state=initialState, action) {
   switch (action.type) {
+    case types.authToken.ACQUIRE_AUTH_TOKEN: {
+
+      state = {
+        ...state,
+        user: JSON.parse(localStorage.getItem('user')),
+        token: localStorage.getItem('token'),
+      };
+
+      localStorage.setItem('token', state.token);
+      localStorage.setItem('user', JSON.stringify(state.user));
+
+      break;
+    }
     case types.authToken.LOG_IN_SUCCESS: {
       let payload = action.payload;
 
@@ -19,7 +32,9 @@ export default function auth(state=initialState, action) {
         error: false,
       };
 
-      hashHistory.push('/informacoes-gerais')
+      localStorage.setItem('jwt', state.token);
+      localStorage.setItem('user', JSON.stringify(state.user));
+      hashHistory.push('/informacoes-gerais');
 
       break;
     }
@@ -32,6 +47,9 @@ export default function auth(state=initialState, action) {
       break;
     }
     case types.authToken.LOG_OUT: {
+      localStorage.setItem('token', '');
+      localStorage.setItem('user', '');
+
       state = {
         ...state,
         user: {},
