@@ -1,0 +1,9 @@
+const authToken = {
+    authToken: {
+        ACQUIRE_AUTH_TOKEN_REQUEST: "ACQUIRE_AUTH_TOKEN_REQUEST",
+        ACQUIRE_AUTH_TOKEN_SUCCESS: "ACQUIRE_AUTH_TOKEN_SUCCESS",
+        ACQUIRE_AUTH_TOKEN_FAILURE: "ACQUIRE_AUTH_TOKEN_FAILURE",
+    }
+};
+
+export default authToken;

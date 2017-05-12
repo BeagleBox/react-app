@@ -3,7 +3,7 @@ import AppBarComponent from "./app-bar"
 
 const stateToProps = (state) => {
   return {
-    user: state.login.user,
+    user: state.auth.user,
   }
 };
 
