@@ -8,6 +8,7 @@ const stateToProps = (state) => {
   return {
     openReceive: state.receive.dialog,
     openRequest: state.request.dialog,
+    items: state.request.loadItems,
     notCheckedItems: state.receive.items.notChecked,
     accessKey: state.request.accessKey,
   }

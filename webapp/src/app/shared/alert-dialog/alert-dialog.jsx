@@ -17,6 +17,7 @@ export default class AlertDialog extends Component {
   render() {
     const styles = {
       list: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 250, overflowY: 'auto' },
+      confirmationList: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 150, overflowY: 'auto' },
     };
 
     const actionsReceive = [
@@ -38,7 +39,7 @@ export default class AlertDialog extends Component {
         onTouchTap={() => this.props.doShowDialogKey(false)}
       />,
       <RaisedButton
-        label="Ok"
+        label="Confirmo!"
         className="btn-confirm-success"
         backgroundColor="#27AE60"
         onTouchTap={() => this.props.doShowDialogKey(false)}
@@ -88,10 +89,17 @@ export default class AlertDialog extends Component {
                 <img className="img-request" src={assets.success} alt={"Sucesso"} />
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12}>
-                <h3 className="dialog-title">BeagleBox enviado com sucesso!</h3>
+                <h3 className="dialog-title">BeagleBox será enviado... <br /> Confirma as informações?</h3>
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12}>
                 <h4>Chave gerada: <span className="accessKey-number">{this.props.accessKey}</span></h4>
+              </Col>
+              <Col className="col-fluid" md={12} sm={12} xs={12}>
+                <List style={styles.confirmationList} className="receive-list-items">
+                  {this.props.items.map((item, k) =>
+                    <ListItem key={k} primaryText={item} leftIcon={<CheckListIcon />} />
+                  )}
+                </List>
               </Col>
             </Row>
           </Grid>

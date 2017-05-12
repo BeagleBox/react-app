@@ -33,3 +33,10 @@ export function sendCar(list) {
     type: types.receive.SEND_CAR,
   }
 }
+
+export function selectAllItems(checked) {
+  return {
+    checked,
+    type: types.receive.SELECT_ALL_ITEMS,
+  }
+}

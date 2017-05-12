@@ -18,6 +18,9 @@ const dispatchToProps = (dispatch) => {
     doChangeChecked: () => {
       dispatch(actions.changeChecked());
     },
+    doSelectAllItems: (checked) => {
+      dispatch(actions.selectAllItems(checked));
+    },
   }
 };
 
