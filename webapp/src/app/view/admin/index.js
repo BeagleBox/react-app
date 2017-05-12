@@ -3,7 +3,7 @@ import AdminComponent from "./admin"
 
 const stateToProps = (state) => {
   return {
-
+    user: state.auth.user,
   }
 };
 

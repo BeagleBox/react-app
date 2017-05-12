@@ -1,11 +1,11 @@
 import { connect } from "react-redux"
-import AppBarComponent from "./app-bar"
+import NotFoundComponent from "./not-found"
 
 import * as actions from '../../core/actions/acquire-auth-token.action'
 
 const stateToProps = (state) => {
   return {
-    user: state.auth.user,
+
   }
 };
 
@@ -17,6 +17,6 @@ const dispatchToProps = (dispatch) => {
   }
 };
 
-const AppBar = connect(stateToProps, dispatchToProps)(AppBarComponent);
+const NotFound = connect(stateToProps, dispatchToProps)(NotFoundComponent);
 
-export default AppBar;
+export default NotFound;

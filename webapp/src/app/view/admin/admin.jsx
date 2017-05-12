@@ -11,12 +11,14 @@ import Work from 'material-ui/svg-icons/action/work'
 import Face from 'material-ui/svg-icons/action/supervisor-account'
 import Layers from 'material-ui/svg-icons/maps/layers'
 
+import NotFound from '../../shared/not-found'
 import './admin.css'
 
 export default class Administrator extends Component {
   render() {
     return (
       <Grid className="admin-container" fluid>
+        {this.props.user.is_admin &&
         <Row className="row-fluid admin-content">
           <Col className="col-fluid" md={2} sm={3} xs={3} >
             <Drawer className="drawer-admin-content" open={true} width={"18%"}>
@@ -51,7 +53,10 @@ export default class Administrator extends Component {
           <Col className="col-fluid" md={10} sm={9} xs={9} >
             {this.props.children}
           </Col>
-        </Row>
+        </Row> }
+        {!this.props.user.is_admin &&
+          <NotFound />
+        }
       </Grid>
     );
   }

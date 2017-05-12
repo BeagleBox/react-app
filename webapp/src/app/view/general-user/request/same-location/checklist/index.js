@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import SameLocationChecklistComponent from './request-same-location-checklist'
 
-import * as actions from '../../../../core/actions/request.action'
+import * as actions from '../../../../../core/actions/request.action'
 
 const stateToProps = (state) => {
   return {

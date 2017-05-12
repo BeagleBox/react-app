@@ -12,6 +12,12 @@ import './app.css'
 injectTapEventPlugin();
 
 export default class App extends Component {
+  componentWillMount() {
+    if(localStorage.user !== '') {
+      this.props.onInitiallize()
+    }
+  }
+
   render() {
     const muiTheme = getMuiTheme({
       fontFamily: 'Lora, serif'

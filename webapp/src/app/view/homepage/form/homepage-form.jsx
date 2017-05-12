@@ -70,6 +70,11 @@ export default class HomepageForm extends Component {
             errorText={this.state.passwordError}
             onChange={this.handleInputChange} />
         </Col>
+        {this.props.logInError &&
+          <Col className="col-fluid" md={12} sm={12} xs={12}>
+            <p className="logIn-error-message">E-mail ou senha incorretos</p>
+          </Col>
+        }
         <Col className="col-fluid form-content" xs={12}>
           <FlatButton
             className="btn-form-signin"
