@@ -29,6 +29,7 @@ export default class RequestCheckList extends Component {
       newItem: <TextField
         className="add-new-item"
         hintText="Digite o item"
+        ref={(input) => { input && input.focus() }}
         fullWidth={true}
         underlineShow={false}
         onKeyUp={event => this.handleTextFieldKeyPress(event)} />
