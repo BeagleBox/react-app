@@ -6,6 +6,7 @@ import i18nData from './app/config/i18n.config'
 import { Router, Route, hashHistory, Redirect, IndexRoute } from 'react-router'
 
 import App from './app'
+import NotFound from './app/shared/not-found'
 import Homepage from './app/view/homepage'
 
 import GeneralInformation from './app/view/general-user/info'
@@ -45,6 +46,7 @@ ReactDOM.render(
             <Route path='carrinho' component={BeagleBox} />
             <Route path='relatorios' component={Reports} />
           </Route>
+          <Route path='*' component={NotFound} />
         </Route>
       </Router>
     </IntlProvider>
