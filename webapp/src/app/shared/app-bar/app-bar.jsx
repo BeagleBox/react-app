@@ -74,7 +74,7 @@ export default class AppBar extends Component {
                 tooltip="Sair"
                 touch={true}
                 tooltipPosition="bottom-center"
-                containerElement={<Link to="inicio" />} >
+                onTouchTap={() => this.props.doLogout()} >
                 <Logout />
               </IconButton>
             </ToolbarGroup>

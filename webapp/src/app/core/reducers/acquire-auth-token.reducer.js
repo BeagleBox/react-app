@@ -24,12 +24,21 @@ export default function auth(state=initialState, action) {
       break;
     }
     case types.authToken.LOG_IN_FAILURE: {
-      let payload = action.payload;
-
       state = {
         ...state,
         error: true,
       };
+
+      break;
+    }
+    case types.authToken.LOG_OUT: {
+      state = {
+        ...state,
+        user: {},
+        token: "",
+      };
+
+      hashHistory.push('/inicio')
 
       break;
     }

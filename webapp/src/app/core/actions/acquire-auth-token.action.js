@@ -26,3 +26,9 @@ export function logIn(email, password) {
     }
   };
 }
+
+export function logOut() {
+  return {
+    type: types.authToken.LOG_OUT,
+  }
+}

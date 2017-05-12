@@ -1,6 +1,8 @@
 import { connect } from "react-redux"
 import AppBarComponent from "./app-bar"
 
+import * as actions from '../../core/actions/acquire-auth-token.action'
+
 const stateToProps = (state) => {
   return {
     user: state.auth.user,
@@ -9,7 +11,9 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-
+    doLogout: () => {
+      dispatch(actions.logOut())
+    }
   }
 };
 
