@@ -11,7 +11,7 @@ import Work from 'material-ui/svg-icons/action/work'
 import Face from 'material-ui/svg-icons/action/supervisor-account'
 import Layers from 'material-ui/svg-icons/maps/layers'
 
-import NotFound from '../../shared/not-found'
+import AccessDenied from '../../shared/access-denied'
 import './admin.css'
 
 export default class Administrator extends Component {
@@ -55,7 +55,7 @@ export default class Administrator extends Component {
           </Col>
         </Row> }
         {!this.props.user.is_admin &&
-          <NotFound />
+          <AccessDenied />
         }
       </Grid>
     );

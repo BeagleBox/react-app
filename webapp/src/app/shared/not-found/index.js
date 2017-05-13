@@ -1,8 +1,6 @@
 import { connect } from "react-redux"
 import NotFoundComponent from "./not-found"
 
-import * as actions from '../../core/actions/acquire-auth-token.action'
-
 const stateToProps = (state) => {
   return {
 
@@ -11,9 +9,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    doLogout: () => {
-      dispatch(actions.logOut())
-    }
+
   }
 };
 

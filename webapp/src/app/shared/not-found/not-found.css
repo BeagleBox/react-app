@@ -5,3 +5,10 @@
 .img-not-found {
   margin-top: 3em;
 }
+
+@media only screen and (max-width: 500px) {
+  .img-not-found {
+    height: auto;
+    width: 100%;
+  }
+}

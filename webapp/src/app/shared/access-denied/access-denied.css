@@ -1,0 +1,19 @@
+.access-denied-container {
+  text-align: center;
+}
+
+.img-access-denied {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.btn-back-home span {
+  color: #FFF !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .img-access-denied {
+    height: auto;
+    width: 100%;
+  }
+}
