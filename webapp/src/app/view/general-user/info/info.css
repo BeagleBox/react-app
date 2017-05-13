@@ -1,5 +1,9 @@
 .extra-padding {
-  padding: 3em;
+  padding: 1em;
+}
+
+.info-content {
+  padding-top: 2em;
 }
 
 .row-center {
