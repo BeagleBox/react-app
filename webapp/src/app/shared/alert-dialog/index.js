@@ -25,6 +25,9 @@ const dispatchToProps = (dispatch) => {
     doShowDialogKey: (open) => {
       dispatch(actionsRequest.showDialogKey(open));
     },
+    doDisableButton: (disabled) => {
+      dispatch(actionsRequest.disableRequestButton(disabled));
+    },
   }
 };
 

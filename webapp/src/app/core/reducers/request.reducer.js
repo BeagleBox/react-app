@@ -10,6 +10,7 @@ const initialState = {
   loadItems: [],
   dialog: false,
   accessKey: '',
+  button: false,
 };
 
 const addLoadItem = (state, {item}) => {
@@ -98,6 +99,14 @@ export default function request(state=initialState, action) {
       state = {
         ...state,
         accessKey: action.key,
+      };
+
+      break;
+    }
+    case types.request.DISABLE_REQUEST_BUTTON: {
+      state = {
+        ...state,
+        button: action.disable,
       };
 
       break;

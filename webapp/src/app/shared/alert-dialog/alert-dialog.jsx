@@ -14,6 +14,11 @@ export default class AlertDialog extends Component {
     this.props.doGetNotCheckedList()
   }
 
+  handleRequest = () => {
+    this.props.doShowDialogKey(false)
+    this.props.doDisableButton(true)
+  }
+
   render() {
     const styles = {
       list: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 250, overflowY: 'auto' },
@@ -42,7 +47,7 @@ export default class AlertDialog extends Component {
         label="Confirmo!"
         className="btn-confirm-success"
         backgroundColor="#27AE60"
-        onTouchTap={() => this.props.doShowDialogKey(false)}
+        onTouchTap={this.handleRequest}
       />,
     ];
 

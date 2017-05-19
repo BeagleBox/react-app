@@ -9,6 +9,8 @@ const stateToProps = (state) => {
     origin: state.request.location.origin,
     destination: state.request.location.destination,
     loadList: state.request.loadItems,
+    requestButton: state.request.button,
+    accessKey: state.request.accessKey,
   }
 };
 
@@ -22,6 +24,9 @@ const dispatchToProps = (dispatch) => {
     },
     doGenerateKey: (key) => {
       dispatch(requestActions.generateKey(key));
+    },
+    doDisableButton: (disabled) => {
+      dispatch(requestActions.disableRequestButton(disabled));
     },
   }
 };

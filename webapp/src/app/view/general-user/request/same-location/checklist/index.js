@@ -7,6 +7,7 @@ const stateToProps = (state) => {
   return {
     items: state.request.loadItems,
     isDeleted: state.request.isDeleted,
+    requestButton: state.request.button,
   }
 };
 

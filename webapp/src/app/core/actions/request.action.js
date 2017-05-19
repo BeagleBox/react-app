@@ -54,3 +54,10 @@ export function generateKey(key) {
     type: types.request.GENERATE_KEY,
   }
 }
+
+export function disableRequestButton(disable) {
+  return {
+    disable,
+    type: types.request.DISABLE_REQUEST_BUTTON,
+  }
+}

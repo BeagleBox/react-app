@@ -22,6 +22,10 @@ export default class RequestSameLocation extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.doDisableButton(false)
+  }
+
   handleSend = () => {
     const origin = this.props.origin;
     const destination = this.props.destination;
@@ -79,11 +83,16 @@ export default class RequestSameLocation extends Component {
           <CheckList />
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
+          {!this.props.requestButton &&
           <RaisedButton
             className="btn-request-car"
             label="Enviar"
             backgroundColor="#004E8F"
             onTouchTap={this.handleSend} />
+          }
+          {this.props.requestButton &&
+          <h3>Senha Gerada: {this.props.accessKey}</h3>
+          }
         </Col>
         <Snackbar
           open={this.state.openSnackbar}

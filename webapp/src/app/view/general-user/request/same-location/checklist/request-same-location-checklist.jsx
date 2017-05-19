@@ -63,26 +63,40 @@ export default class RequestCheckList extends Component {
           <h3 className="checklist-title checklist-request-title">O que será levado pelo BeagleBox?</h3>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <List style={styles.list} className="request-list-items">
-            {this.props.items.map((item, k) =>
+          {!this.props.requestButton &&
+            <List style={styles.list} className="request-list-items">
+              {this.props.items.map((item, k) =>
+                <ListItem
+                  key={k}
+                  primaryText={item}
+                  leftIcon={<Check className="btn-request-list" />}
+                  rightIcon={<DeleteIcon className="btn-request-delete" />}
+                  onTouchTap={() => this.handleDeleteItem(item)} />
+              )}
+            </List>
+          }
+          {this.props.requestButton &&
+            <List style={styles.list} className="request-list-items">
+              {this.props.items.map((item, k) =>
+                <ListItem
+                  key={k}
+                  primaryText={item}
+                  leftIcon={<Check className="btn-request-list" />} />
+              )}
+            </List>
+          }
+        </Col>
+        {!this.props.requestButton &&
+          <Col className="col-fluid" md={12} sm={12} xs={12}>
+            <List className="request-list-add-item" style={styles.list}>
               <ListItem
-                key={k}
-                primaryText={item}
-                leftIcon={<Check className="btn-request-list" />}
-                rightIcon={<DeleteIcon className="btn-request-delete" />}
-                onTouchTap={() => this.handleDeleteItem(item)} />
-            )}
-          </List>
-        </Col>
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <List className="request-list-add-item" style={styles.list}>
-            <ListItem
-              className="request-add-item"
-              primaryText={this.state.newItem}
-              leftIcon={<Add />}
-              onTouchTap={this.handleNameAnItem} />
-          </List>
-        </Col>
+                className="request-add-item"
+                primaryText={this.state.newItem}
+                leftIcon={<Add />}
+                onTouchTap={this.handleNameAnItem} />
+            </List>
+          </Col>
+        }
       </Row>
     );
   }
