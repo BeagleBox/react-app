@@ -5,23 +5,8 @@ import assets from '../../assets'
 import AutoComplete from 'material-ui/AutoComplete'
 
 export default class Location extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      location: this.handleLocationData(),
-    }
-  }
-
-  handleLocationData = () => {
-    const items = this.props.location
-    var titles = []
-
-    for(var i = 0; i < items.length; i++) {
-      titles.push(items[i].department_name)
-    }
-
-    return titles
+  componentWillMount() {
+    this.props.doGetAllDepartments()
   }
 
   render() {
@@ -40,10 +25,10 @@ export default class Location extends Component {
             floatingLabelText="Minha localização"
             floatingLabelStyle={{color: '#696969'}}
             value={this.props.origin}
-            dataSource={this.state.location}
+            dataSource={this.props.location}
             filter={AutoComplete.caseInsensitiveFilter}
             menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectOriginLocation(this.state.location[value])}
+            onNewRequest={(_, value) => this.props.doSelectOriginLocation(this.props.location[value])}
             errorText={this.props.originError} />
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
@@ -52,10 +37,10 @@ export default class Location extends Component {
             className="form-content-field"
             floatingLabelText="Destino final"
             floatingLabelStyle={{color: '#696969'}}
-            dataSource={this.state.location}
+            dataSource={this.props.location}
             filter={AutoComplete.caseInsensitiveFilter}
             menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectDestinationLocation(this.state.location[value])}
+            onNewRequest={(_, value) => this.props.doSelectDestinationLocation(this.props.location[value])}
             errorText={this.props.destinationError} />
         </Col>
       </Row>

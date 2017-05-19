@@ -90,7 +90,7 @@ export default class RequestSameLocation extends Component {
           message="A lista de items não pode estar vazia"
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
-        />
+          style={{top: 0, height: 50, transform: 'translate3d(-50%, 0, 0)'}} />
         <DialogKey />
       </Row>
     );

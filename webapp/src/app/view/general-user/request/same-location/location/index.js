@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import LocationComponent from './request-same-location-location'
 
-import * as actions from '../../../../../core/actions/request.action'
+import * as requestActions from '../../../../../core/actions/request.action'
+import * as adminActions from '../../../../../core/actions/admin.action'
 
 const stateToProps = (state) => {
   return {
-    location: state.admin.departments.data,
+    location: state.admin.departments.specific_location,
     origin: state.request.location.origin,
     destination: state.request.location.destination,
   }
@@ -13,8 +14,11 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
+    doGetAllDepartments: () => {
+      dispatch(adminActions.getAllDepartments());
+    },
     doSelectDestinationLocation: (index) => {
-      dispatch(actions.selectDestinationLocation(index));
+      dispatch(requestActions.selectDestinationLocation(index));
     },
   }
 };

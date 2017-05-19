@@ -1,5 +1,8 @@
 import types from '../types'
 
+import getApiUrl from "."
+import { CALL_API } from "redux-api-middleware"
+
 export function showCreateDepartmentsDialog(open) {
   return {
     open,
@@ -91,3 +94,21 @@ export function deleteEmployee(item) {
   }
 }
 
+export function getAllDepartments() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departament_name`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_ALL_DEPARTMENTS_REQUEST,
+        types.admin.GET_ALL_DEPARTMENTS_SUCCESS,
+        types.admin.GET_ALL_DEPARTMENTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}

@@ -13,8 +13,11 @@ export default class RequestDifferentLocation extends Component {
 
     this.state = {
       originError: '',
-      location: this.handleLocationData(),
     }
+  }
+
+  componentWillMount() {
+    this.props.doGetAllDepartments()
   }
 
   handleRequest = () => {
@@ -26,17 +29,6 @@ export default class RequestDifferentLocation extends Component {
       this.setState({originError: ""})
       this.props.doRequestCar()
     }
-  }
-
-  handleLocationData = () => {
-    const items = this.props.location
-    var titles = []
-
-    for(var i = 0; i < items.length; i++) {
-      titles.push(items[i].department_name)
-    }
-
-    return titles
   }
 
   render() {
@@ -53,10 +45,10 @@ export default class RequestDifferentLocation extends Component {
               className="form-content-field"
               floatingLabelText="Minha localização"
               floatingLabelStyle={{color: '#696969'}}
-              dataSource={this.state.location}
+              dataSource={this.props.location}
               filter={AutoComplete.caseInsensitiveFilter}
               menuStyle={{maxHeight: 120, overflowY: 'auto'}}
-              onNewRequest={(_, value) => this.props.doSelectOriginLocation(this.state.location[value])}
+              onNewRequest={(_, value) => this.props.doSelectOriginLocation(this.props.location[value])}
               errorText={this.state.originError} />
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>

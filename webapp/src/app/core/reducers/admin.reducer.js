@@ -7,6 +7,7 @@ const initialState = {
       {id: 2, department_name: 'Biblioteca'},
       {id: 3, department_name: 'Enfermaria'},
     ],
+    specific_location: [],
   },
   employees: {
     data: [
@@ -253,6 +254,17 @@ export default function admin(state=initialState, action) {
           data: deleteEmployee(state, action),
         },
         deleted: true,
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_DEPARTMENTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          specific_location: action.payload,
+        },
       };
 
       break;
