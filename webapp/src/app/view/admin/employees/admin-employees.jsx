@@ -14,6 +14,10 @@ import CreateEmployees from './create-edit'
 import './admin-employees.css'
 
 export default class AdminEmployees extends Component {
+  componentWillMount() {
+    this.props.doGetAllEmployees()
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.created) {
       this.props.doChangeCreated()
@@ -83,9 +87,9 @@ export default class AdminEmployees extends Component {
                       <TableRow key={k} >
                         <TableRowColumn className="row-center">{item.id}</TableRowColumn>
                         <TableRowColumn>{item.employee_name}</TableRowColumn>
-                        <TableRowColumn className="row-center">{item.registration}</TableRowColumn>
-                        <TableRowColumn>{item.email}</TableRowColumn>
-                        <TableRowColumn>{item.department}</TableRowColumn>
+                        <TableRowColumn className="row-center">{item.employee_registration}</TableRowColumn>
+                        <TableRowColumn>{item.employee_email}</TableRowColumn>
+                        <TableRowColumn>{item.departament.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
                           <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>

@@ -94,16 +94,54 @@ export function deleteEmployee(item) {
   }
 }
 
-export function getAllDepartments() {
+export function getAllHotspots() {
   return {
     [CALL_API]: {
       endpoint: `${getApiUrl()}/departament_name`,
       method: "GET",
       credentials: "include",
       types: [
+        types.admin.GET_ALL_HOTSPOTS_REQUEST,
+        types.admin.GET_ALL_HOTSPOTS_SUCCESS,
+        types.admin.GET_ALL_HOTSPOTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function getAllDepartments() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments`,
+      method: "GET",
+      credentials: "include",
+      types: [
         types.admin.GET_ALL_DEPARTMENTS_REQUEST,
         types.admin.GET_ALL_DEPARTMENTS_SUCCESS,
         types.admin.GET_ALL_DEPARTMENTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function getAllEmployees() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_ALL_EMPLOYEES_REQUEST,
+        types.admin.GET_ALL_EMPLOYEES_SUCCESS,
+        types.admin.GET_ALL_EMPLOYEES_FAILURE
       ],
       headers: {
         "Accept": "application/json",

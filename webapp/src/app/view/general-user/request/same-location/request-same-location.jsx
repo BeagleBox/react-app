@@ -59,6 +59,7 @@ export default class RequestSameLocation extends Component {
       !validation.isEmpty(items) && !validation.isEqual(origin, destination)) {
 
       this.props.doSendCar(items)
+      this.props.doCreateDelivery(origin, destination, items)
       this.props.doGenerateKey(Math.floor(1000 + Math.random() * 9000))
       this.props.doShowDialogKey(true)
     }

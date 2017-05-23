@@ -17,7 +17,7 @@ export default class RequestDifferentLocation extends Component {
   }
 
   componentWillMount() {
-    this.props.doGetAllDepartments()
+    this.props.doGetAllHotspots()
   }
 
   handleRequest = () => {

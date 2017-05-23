@@ -28,6 +28,9 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(requestActions.disableRequestButton(disabled));
     },
+    doCreateDelivery: (origin, destination, items) => {
+      dispatch(requestActions.createDelivery(origin, destination, items));
+    },
   }
 };
 

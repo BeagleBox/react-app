@@ -2,20 +2,10 @@ import types from "../types"
 
 const initialState = {
   departments: {
-    data: [
-      {id: 1, department_name: 'Secretaria'},
-      {id: 2, department_name: 'Biblioteca'},
-      {id: 3, department_name: 'Enfermaria'},
-    ],
+    data: [],
     specific_location: [],
   },
-  employees: {
-    data: [
-      {id: 1, employee_name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
-      {id: 2, employee_name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
-      {id: 3, employee_name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
-    ],
-  },
+  employees: { data: [] },
   operation_type: '',
   to_modify: {},
   created: false,
@@ -258,12 +248,34 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.GET_ALL_DEPARTMENTS_SUCCESS: {
+    case types.admin.GET_ALL_HOTSPOTS_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
           specific_location: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_DEPARTMENTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          data: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_EMPLOYEES_SUCCESS: {
+      state = {
+        ...state,
+        employees: {
+          ...state.employees,
+          data: action.payload,
         },
       };
 

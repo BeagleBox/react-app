@@ -13,8 +13,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    doGetAllDepartments: () => {
-      dispatch(adminActions.getAllDepartments())
+    doGetAllHotspots: () => {
+      dispatch(adminActions.getAllHotspots())
     },
     doRequestCar: () => {
       dispatch(requestActions.requestCar());

@@ -3,10 +3,13 @@ import types from "../types"
 const initialState = {
   isSamePlace: false,
   isDeleted: false,
+  isCreated: false,
   location: {
     origin: '',
     destination: '',
   },
+  delivery: {},
+  delivery_items: [],
   loadItems: [],
   dialog: false,
   accessKey: '',
@@ -71,6 +74,14 @@ export default function request(state=initialState, action) {
 
       break;
     }
+    case types.request.GET_ALL_ITEMS_SUCCESS: {
+      state = {
+        ...state,
+        delivery_items: action.payload,
+      };
+
+      break;
+    }
     case types.request.DELETE_LOAD_ITEM: {
       state = {
         ...state,
@@ -107,6 +118,14 @@ export default function request(state=initialState, action) {
       state = {
         ...state,
         button: action.disable,
+      };
+
+      break;
+    }
+    case types.request.CREATE_DELIVERY_SUCCESS: {
+      state = {
+        ...state,
+        delivery: action.payload,
       };
 
       break;

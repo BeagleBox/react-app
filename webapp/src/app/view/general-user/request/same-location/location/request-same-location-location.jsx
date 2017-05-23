@@ -6,7 +6,7 @@ import AutoComplete from 'material-ui/AutoComplete'
 
 export default class Location extends Component {
   componentWillMount() {
-    this.props.doGetAllDepartments()
+    this.props.doGetAllHotspots()
   }
 
   render() {

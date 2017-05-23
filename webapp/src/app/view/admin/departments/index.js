@@ -34,7 +34,10 @@ const dispatchToProps = (dispatch) => {
     },
     doChangeDeleted: () => {
       dispatch(actions.changeDeleted());
-    }
+    },
+    doGetAllDepartments: () => {
+      dispatch(actions.getAllDepartments());
+    },
   }
 };
 

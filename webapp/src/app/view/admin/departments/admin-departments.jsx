@@ -14,6 +14,10 @@ import Add from 'material-ui/svg-icons/content/add-circle'
 import './admin-departments.css'
 
 export default class AdminDepartments extends Component {
+  componentWillMount() {
+    this.props.doGetAllDepartments()
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.created) {
       this.props.doChangeCreated()
@@ -79,7 +83,7 @@ export default class AdminDepartments extends Component {
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
                         <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-                        <TableRowColumn>{item.department_name}</TableRowColumn>
+                        <TableRowColumn>{item.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
                           <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
