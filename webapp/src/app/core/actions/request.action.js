@@ -99,7 +99,7 @@ export function createDelivery(origin, destination, items) {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify ({ status: "Em trânsito", source_id: 1, destination_id: 2, items })
+      body: JSON.stringify ({ status: "Em trânsito", source_id: 1, destination_id: 2, items_names: items })
     }
   };
 }

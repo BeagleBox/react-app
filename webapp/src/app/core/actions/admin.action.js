@@ -52,23 +52,60 @@ export function selectItemToModify(item) {
 
 export function addNewDepartment(department) {
   return {
-    department,
-    type: types.admin.ADD_NEW_DEPARTMENT
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments`,
+      method: "POST",
+      credentials: "include",
+      types: [
+        types.admin.ADD_NEW_DEPARTMENT_REQUEST,
+        types.admin.ADD_NEW_DEPARTMENT_SUCCESS,
+        types.admin.ADD_NEW_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({ departament_name: department })
+    }
   }
 }
 
 export function editDepartment(id, department) {
   return {
-    id,
-    department,
-    type: types.admin.EDIT_DEPARTMENT,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments/${id}`,
+      method: "PUT",
+      credentials: "include",
+      types: [
+        types.admin.EDIT_DEPARTMENT_REQUEST,
+        types.admin.EDIT_DEPARTMENT_SUCCESS,
+        types.admin.EDIT_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({ departament_name: department })
+    }
   }
 }
 
-export function deleteDepartment(item) {
+export function deleteDepartment(id) {
   return {
-    item,
-    type: types.admin.DELETE_DEPARTMENT,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments/${id}`,
+      method: "DELETE",
+      credentials: "include",
+      types: [
+        types.admin.DELETE_DEPARTMENT_REQUEST,
+        types.admin.DELETE_DEPARTMENT_SUCCESS,
+        types.admin.DELETE_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    }
   }
 }
 

@@ -7,7 +7,7 @@ const initialState = {
   },
   employees: { data: [] },
   operation_type: '',
-  to_modify: {},
+  to_modify: '',
   created: false,
   edited: false,
   deleted: false,
@@ -16,49 +16,6 @@ const initialState = {
     create_employees: false,
   }
 };
-
-const addNewDepartment = (state, {department}) => {
-  const items = state.departments.data;
-  var id = items[items.length-1].id + 1;
-  var found = false;
-
-  for(var i = 0; i < items.length; i++) {
-    if(department === items[i].department) {
-      found = true;
-      break;
-    }
-  }
-
-  if(!found) {
-    items.push({id, department_name: department});
-  }
-
-  return items;
-}
-
-const updateDepartmentData = (state, {id, department}) => {
-  const items = state.departments.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(id === items[i].id) {
-      items[i].department_name = department;
-    }
-  }
-
-  return items;
-}
-
-const deleteDepartment = (state, {item}) => {
-  const items = state.departments.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(item.id === items[i].id) {
-      items.splice(i, 1);
-    }
-  }
-
-  return items;
-}
 
 const addNewEmployee = (state, {employee}) => {
   const items = state.employees.data;
@@ -176,36 +133,36 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.ADD_NEW_DEPARTMENT: {
+    case types.admin.ADD_NEW_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: addNewDepartment(state, action),
+          data: action.payload,
         },
         created: true,
       };
 
       break;
     }
-    case types.admin.EDIT_DEPARTMENT: {
+    case types.admin.EDIT_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: updateDepartmentData(state, action),
+          data: action.payload,
         },
         edited: true,
       };
 
       break;
     }
-    case types.admin.DELETE_DEPARTMENT: {
+    case types.admin.DELETE_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: deleteDepartment(state, action),
+          data: action.payload,
         },
         deleted: true,
       };
