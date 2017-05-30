@@ -21,12 +21,16 @@ export default class AdminEmployees extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.created) {
       this.props.doChangeCreated()
+      this.props.doGetAllEmployees()
     }
     if(nextProps.edited) {
       this.props.doChangeEdited()
+      this.props.doGetAllEmployees()
+      this.props.doSelectItemToModify('')
     }
     if(nextProps.deleted) {
       this.props.doChangeDeleted()
+      this.props.doGetAllEmployees()
     }
     this.props.doDefineOperationType('')
   }
@@ -42,8 +46,9 @@ export default class AdminEmployees extends Component {
     this.props.doShowCreateEmployeesDialog(true)
   }
 
-  handleDelete = (item) => {
-    this.props.doDeleteEmployee(item)
+  handleDelete = (item_id) => {
+    this.props.doDeleteEmployee(item_id)
+    this.props.doGetAllEmployees()
   }
 
   render() {
@@ -92,7 +97,7 @@ export default class AdminEmployees extends Component {
                         <TableRowColumn>{item.departament.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
-                          <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
+                          <IconButton><Delete onTouchTap={() => this.handleDelete(item.id)}/></IconButton>
                         </TableRowColumn>
                       </TableRow>
                     )};

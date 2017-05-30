@@ -14,22 +14,28 @@ export default class AdminEmployeesCreateEdit extends Component {
     super(props);
 
     this.state = {
-      fullName: '',
-      registration: '',
+      employee_name: '',
+      employee_registration: '',
       email: '',
+      departament_id: '',
       department: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillMount() {
+    this.props.doGetAllDepartments()
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(nextProps.type === 'edit') {
+    if(nextProps.type === 'edit' && nextProps.toModify !== "") {
       this.setState({
-        fullName: nextProps.toModify.employee_name,
-        registration: nextProps.toModify.registration,
-        email: nextProps.toModify.email,
-        department: nextProps.toModify.department
+        employee_name: nextProps.toModify.employee_name,
+        registration: nextProps.toModify.employee_registration,
+        email: nextProps.toModify.employee_email,
+        departament_id: nextProps.toModify.departament.id,
+        department: nextProps.toModify.departament.departament_name
       })
     }
   }
@@ -43,16 +49,18 @@ export default class AdminEmployeesCreateEdit extends Component {
     })
   }
 
-  handleSelectionChange = (value) => {
-    this.setState({ department: value })
+  handleSelectionChange = (event, key, value) => {
+    this.setState({ departament_id: value, department: event.target.innerText})
   }
 
   handleSaveEmployee = () => {
     var employee = {
-      name: this.state.fullName,
-      registration: this.state.registration,
-      email: this.state.email,
-      department: this.state.department
+      employee_name: this.state.employee_name,
+      employee_registration: this.state.registration,
+      employee_email: this.state.email,
+      departament_id: this.state.departament_id,
+      password: '12345678',
+      password_confirmation: '12345678'
     }
 
     if(this.props.type === 'add') {
@@ -66,11 +74,16 @@ export default class AdminEmployeesCreateEdit extends Component {
     this.props.doShowCreateEmployeesDialog(false)
   }
 
+  handleCancel = () => {
+    this.props.doSelectItemToModify('')
+    this.props.doShowCreateEmployeesDialog(false)
+  }
+
   render() {
     const actions = [
       <RaisedButton
         label="Cancelar"
-        onTouchTap={() => this.props.doShowCreateEmployeesDialog(false)}
+        onTouchTap={this.handleCancel}
       />,
       <RaisedButton
         label="Salvar"
@@ -82,7 +95,6 @@ export default class AdminEmployeesCreateEdit extends Component {
 
     return (
       <div>
-        {this.UpdateState}
         <Dialog
           className="create-employees-dialog"
           title="Funcionários"
@@ -96,7 +108,7 @@ export default class AdminEmployeesCreateEdit extends Component {
             <Row className="row-fluid employees-form-content">
               <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <TextField
-                  name="fullName"
+                  name="employee_name"
                   defaultValue={this.props.toModify.employee_name}
                   floatingLabelText="Nome do funcionario"
                   floatingLabelStyle={{color: '#696969'}}
@@ -108,7 +120,7 @@ export default class AdminEmployeesCreateEdit extends Component {
                   <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                     <TextField
                       name="registration"
-                      defaultValue={this.props.toModify.registration}
+                      defaultValue={this.props.toModify.employee_registration}
                       floatingLabelText="Matrícula do funcionario"
                       floatingLabelStyle={{color: '#696969'}}
                       fullWidth={true}
@@ -119,7 +131,7 @@ export default class AdminEmployeesCreateEdit extends Component {
                     <TextField
                       name="email"
                       type="email"
-                      defaultValue={this.props.toModify.email}
+                      defaultValue={this.props.toModify.employee_email}
                       floatingLabelText="Email do funcionario"
                       floatingLabelStyle={{color: '#696969'}}
                       fullWidth={true}
@@ -129,17 +141,20 @@ export default class AdminEmployeesCreateEdit extends Component {
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <SelectField
-                  name="department"
+                  name="departament_id"
                   floatingLabelText="Departamento do funcionario"
-                  defaultValue={this.props.toModify.department}
+                  defaultValue={this.props.toModify.departament}
                   floatingLabelStyle={{color: '#696969'}}
                   fullWidth={true}
                   style={{textAlign: 'left'}}
-                  value={this.state.department}
-                  onChange={(event, key, value) => this.handleSelectionChange(value)} >
+                  value={this.state.departament_id}
+                  onChange={(event, key, value) => this.handleSelectionChange(event, key, value)} >
 
                   {this.props.items.map((item, k) =>
-                    <MenuItem key={k} value={item.department_name} primaryText={item.department_name} />
+                    <MenuItem
+                      key={item.departament_name}
+                      value={item.id}
+                      primaryText={item.departament_name} />
                   )}
 
                 </SelectField>

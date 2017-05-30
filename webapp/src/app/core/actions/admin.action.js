@@ -111,23 +111,74 @@ export function deleteDepartment(id) {
 
 export function addNewEmployee(employee) {
   return {
-    employee,
-    type: types.admin.ADD_NEW_EMPLOYEE
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees`,
+      method: "POST",
+      credentials: "include",
+      types: [
+        types.admin.ADD_NEW_EMPLOYEE_REQUEST,
+        types.admin.ADD_NEW_EMPLOYEE_SUCCESS,
+        types.admin.ADD_NEW_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        employee_name: employee.employee_name,
+        employee_email: employee.employee_email,
+        employee_registration: employee.employee_registration,
+        password: employee.password,
+        password_confirmation: employee.password_confirmation,
+        departament_id: employee.departament_id
+      })
+    }
   }
 }
 
 export function editEmployee(id, employee) {
   return {
-    id,
-    employee,
-    type: types.admin.EDIT_EMPLOYEE,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/${id}`,
+      method: "PUT",
+      credentials: "include",
+      types: [
+        types.admin.EDIT_EMPLOYEE_REQUEST,
+        types.admin.EDIT_EMPLOYEE_SUCCESS,
+        types.admin.EDIT_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        employee_name: employee.employee_name,
+        employee_email: employee.employee_email,
+        employee_registration: employee.employee_registration,
+        password: employee.password,
+        password_confirmation: employee.password_confirmation,
+        departament_id: employee.departament_id
+      })
+    }
   }
 }
 
-export function deleteEmployee(item) {
+export function deleteEmployee(id) {
   return {
-    item,
-    type: types.admin.DELETE_EMPLOYEE,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/${id}`,
+      method: "DELETE",
+      credentials: "include",
+      types: [
+        types.admin.DELETE_EMPLOYEE_REQUEST,
+        types.admin.DELETE_EMPLOYEE_SUCCESS,
+        types.admin.DELETE_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    }
   }
 }
 

@@ -17,46 +17,6 @@ const initialState = {
   }
 };
 
-const addNewEmployee = (state, {employee}) => {
-  const items = state.employees.data;
-  var id = items[items.length-1].id + 1;
-  var found = false;
-
-  for(var i = 0; i < items.length; i++) {
-    if(employee === items[i].employee) {
-      found = true;
-      break;
-    }
-  }
-
-  if(!found) {
-    items.push({
-      id,
-      employee_name: employee.name,
-      registration: employee.registration,
-      email: employee.email,
-      department: employee.department
-    });
-  }
-
-  return items;
-}
-
-const updateEmployeeData = (state, {id, employee}) => {
-  const items = state.employees.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(id === items[i].id) {
-      items[i].employee_name = employee.name;
-      items[i].registration = employee.registration;
-      items[i].email = employee.email;
-      items[i].department = employee.department;
-    }
-  }
-
-  return items;
-}
-
 const deleteEmployee = (state, {item}) => {
   const items = state.employees.data;
 
@@ -169,36 +129,36 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.ADD_NEW_EMPLOYEE: {
+    case types.admin.ADD_NEW_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: addNewEmployee(state, action),
+          data: action.payload,
         },
         created: true,
       };
 
       break;
     }
-    case types.admin.EDIT_EMPLOYEE: {
+    case types.admin.EDIT_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: updateEmployeeData(state, action),
+          data: action.payload,
         },
         edited: true,
       };
 
       break;
     }
-    case types.admin.DELETE_EMPLOYEE: {
+    case types.admin.DELETE_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: deleteEmployee(state, action),
+          data: action.payload,
         },
         deleted: true,
       };

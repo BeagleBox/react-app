@@ -28,7 +28,7 @@ export default class AppBar extends Component {
   render() {
     return (
       <div>
-        {this.props.user.employee_email !== undefined &&
+        {this.props.token !== "" &&
           <Toolbar className="toolbar-container" >
             <ToolbarGroup firstChild={true} >
               {this.adminButton()}
