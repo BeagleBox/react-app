@@ -17,18 +17,6 @@ const initialState = {
   }
 };
 
-const deleteEmployee = (state, {item}) => {
-  const items = state.employees.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(item.id === items[i].id) {
-      items.splice(i, 1);
-    }
-  }
-
-  return items;
-}
-
 export default function admin(state=initialState, action) {
   switch (action.type) {
     case types.admin.SHOW_CREATE_DEPARTMENTS_DIALOG: {

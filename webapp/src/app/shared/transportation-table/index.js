@@ -13,8 +13,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-    doUpdateTable: () => {
-      dispatch(actions.updateTable());
+    doUpdateTable: (origin) => {
+      dispatch(actions.updateTable(origin));
     },
   }
 };

@@ -1,3 +1,7 @@
 .request-title {
   color: #4CAF50;
 }
+
+.form-content-select {
+  width: 50% !important;
+}

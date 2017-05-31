@@ -52,7 +52,7 @@ export default class History extends Component {
             </Paper>
           </Col>
           <Col className="col-fluid" md={12} sm={12} xs={12}>
-            <TransformationTable />
+            <TransformationTable origin={this.props.user.departament_id} />
           </Col>
         </Row>
       </Grid>

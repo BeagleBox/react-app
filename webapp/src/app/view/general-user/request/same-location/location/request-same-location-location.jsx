@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 
 import assets from '../../assets'
-import AutoComplete from 'material-ui/AutoComplete'
+import SelectField from  'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 
 export default class Location extends Component {
   componentWillMount() {
@@ -19,29 +20,28 @@ export default class Location extends Component {
           <h3 className="request-title">O carrinho já está neste ambiente</h3>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <AutoComplete
-            name="location"
-            className="form-content-field"
+          <SelectField
             floatingLabelText="Minha localização"
-            floatingLabelStyle={{color: '#696969'}}
+            className="form-content-select"
             value={this.props.origin}
-            dataSource={this.props.location}
-            filter={AutoComplete.caseInsensitiveFilter}
-            menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectOriginLocation(this.props.location[value])}
-            errorText={this.props.originError} />
+            onChange={(event, index, value) => this.props.doSelectOriginLocation(value)}
+            errorText={this.props.originError} >
+            { this.props.location.map(item => (
+                <MenuItem key={item.id} value={item.id} primaryText={item.departament_name} />
+              )) }
+          </SelectField>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <AutoComplete
-            name="location"
-            className="form-content-field"
+          <SelectField
             floatingLabelText="Destino final"
-            floatingLabelStyle={{color: '#696969'}}
-            dataSource={this.props.location}
-            filter={AutoComplete.caseInsensitiveFilter}
-            menuStyle={{maxHeight: 160, overflowY: 'auto'}}
-            onNewRequest={(_, value) => this.props.doSelectDestinationLocation(this.props.location[value])}
-            errorText={this.props.destinationError} />
+            className="form-content-select"
+            value={this.props.destination}
+            onChange={(event, index, value) => this.props.doSelectDestinationLocation(value)}
+            errorText={this.props.destinationError} >
+            { this.props.location.map(item => (
+                <MenuItem key={item.id} value={item.id} primaryText={item.departament_name} />
+              )) }
+          </SelectField>
         </Col>
       </Row>
     );

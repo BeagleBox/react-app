@@ -11,6 +11,7 @@ const stateToProps = (state) => {
     loadList: state.request.loadItems,
     requestButton: state.request.button,
     accessKey: state.request.accessKey,
+    user: state.auth.user,
   }
 };
 
@@ -28,8 +29,8 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(requestActions.disableRequestButton(disabled));
     },
-    doCreateDelivery: (origin, destination, items) => {
-      dispatch(requestActions.createDelivery(origin, destination, items));
+    doCreateDelivery: (user, origin, destination, items) => {
+      dispatch(requestActions.createDelivery(user, origin, destination, items));
     },
   }
 };

@@ -29,6 +29,7 @@ export default class RequestSameLocation extends Component {
   handleSend = () => {
     const origin = this.props.origin;
     const destination = this.props.destination;
+    const userID = this.props.user.id;
     const items = this.props.loadList;
 
     if(validation.isEmpty(origin)) {
@@ -59,7 +60,7 @@ export default class RequestSameLocation extends Component {
       !validation.isEmpty(items) && !validation.isEqual(origin, destination)) {
 
       this.props.doSendCar(items)
-      this.props.doCreateDelivery(origin, destination, items)
+      this.props.doCreateDelivery(userID, origin, destination, items)
       this.props.doGenerateKey(Math.floor(1000 + Math.random() * 9000))
       this.props.doShowDialogKey(true)
     }

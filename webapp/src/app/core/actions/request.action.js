@@ -84,7 +84,7 @@ export function disableRequestButton(disable) {
   }
 }
 
-export function createDelivery(origin, destination, items) {
+export function createDelivery(user, origin, destination, items) {
   return {
     [CALL_API]: {
       endpoint: `${getApiUrl()}/deliveries`,
@@ -99,7 +99,13 @@ export function createDelivery(origin, destination, items) {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify ({ status: "Em trânsito", source_id: 1, destination_id: 2, items_names: items })
+      body: JSON.stringify ({
+        status: "Em trânsito",
+        source_id: origin,
+        sender_id: user,
+        destination_id: destination,
+        items_names: items,
+      })
     }
   };
 }

@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 export default class TransformationTable extends Component {
   componentDidMount() {
-    this.props.doUpdateTable()
+    this.props.doUpdateTable(this.props.origin)
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -41,10 +41,10 @@ export default class TransformationTable extends Component {
             </TableHeader>
             <TableBody displayRowCheckbox={false} > {this.props.tableItems.map((item, k) =>
               <TableRow key={k} >
-                <TableRowColumn className="col-id row-center">{item.id}</TableRowColumn>
-                <TableRowColumn className="row-center">{new Date(item.date).toLocaleDateString('pt-BR')}</TableRowColumn>
-                <TableRowColumn className="col-origin">{item.origin}</TableRowColumn>
-                <TableRowColumn>{item.destiny}</TableRowColumn>
+                <TableRowColumn className="col-id row-center">{item.tracker}</TableRowColumn>
+                <TableRowColumn className="row-center">{new Date(item.updated_at).toLocaleDateString('pt-BR')}</TableRowColumn>
+                <TableRowColumn className="col-origin">{item.source.departament_name}</TableRowColumn>
+                <TableRowColumn>{item.destination.departament_name}</TableRowColumn>
                 <TableRowColumn className="row-center">
                   <RaisedButton className="btn-load-history" label="Lista" backgroundColor="#008372" />
                 </TableRowColumn>
@@ -57,4 +57,6 @@ export default class TransformationTable extends Component {
   }
 }
 
-
+TransformationTable.PropTypes = {
+  origin: React.PropTypes.string,
+}

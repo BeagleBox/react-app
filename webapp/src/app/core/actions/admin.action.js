@@ -185,7 +185,7 @@ export function deleteEmployee(id) {
 export function getAllHotspots() {
   return {
     [CALL_API]: {
-      endpoint: `${getApiUrl()}/departament_name`,
+      endpoint: `${getApiUrl()}/departaments`,
       method: "GET",
       credentials: "include",
       types: [
