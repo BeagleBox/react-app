@@ -9,6 +9,8 @@ const stateToProps = (state) => {
     location: state.admin.departments.specific_location,
     origin: state.request.location.origin,
     destination: state.request.location.destination,
+    recipient: state.request.location.destination_recipient,
+    recipients: state.admin.departments.specific_recipients,
   }
 };
 
@@ -17,8 +19,14 @@ const dispatchToProps = (dispatch) => {
     doGetAllHotspots: () => {
       dispatch(adminActions.getAllHotspots());
     },
+    doGetSpecificRecipients: (id) => {
+      dispatch(adminActions.getSpecificRecipients(id));
+    },
     doSelectDestinationLocation: (index) => {
       dispatch(requestActions.selectDestinationLocation(index));
+    },
+    doSelectRecipient: (index) => {
+      dispatch(requestActions.selectRecipient(index));
     },
   }
 };

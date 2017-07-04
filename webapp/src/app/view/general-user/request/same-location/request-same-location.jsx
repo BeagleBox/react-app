@@ -19,6 +19,7 @@ export default class RequestSameLocation extends Component {
       openDialog: false,
       originError: '',
       destinationError: '',
+      recipientError: '',
     }
   }
 
@@ -30,6 +31,7 @@ export default class RequestSameLocation extends Component {
     const origin = this.props.origin;
     const destination = this.props.destination;
     const userID = this.props.user.id;
+    const recipientID = this.props.recipient;
     const items = this.props.loadList;
 
     if(validation.isEmpty(origin)) {
@@ -44,6 +46,12 @@ export default class RequestSameLocation extends Component {
       this.setState({destinationError: ""})
     }
 
+    if(validation.isEmpty(recipientID)) {
+      this.setState({recipientError: "Este campo não pode estar em branco"})
+    } else {
+      this.setState({recipientError: ""})
+    }
+
     if(!validation.isEmpty(origin) && !validation.isEmpty(destination)) {
       if(validation.isEqual(origin, destination)) {
         this.setState({destinationError: "O destino não pode ser o mesmo que a origem"})
@@ -56,11 +64,11 @@ export default class RequestSameLocation extends Component {
       this.setState({openSnackbar: true})
     }
 
-    if(!validation.isEmpty(origin) && !validation.isEmpty(destination) &&
+    if(!validation.isEmpty(origin) && !validation.isEmpty(destination) && !validation.isEmpty(recipientID) &&
       !validation.isEmpty(items) && !validation.isEqual(origin, destination)) {
 
       this.props.doSendCar(items)
-      this.props.doCreateDelivery(userID, origin, destination, items)
+      this.props.doCreateDelivery(userID, origin, destination, recipientID, items)
       this.props.doGenerateKey(Math.floor(1000 + Math.random() * 9000))
       this.props.doShowDialogKey(true)
       this.props.doChangeNewDelivery(true)
@@ -77,7 +85,10 @@ export default class RequestSameLocation extends Component {
     return (
       <Row className="row-fluid">
         <Col className="col-fluid" md={5.5} sm={12} xs={12}>
-          <Location originError={this.state.originError} destinationError={this.state.destinationError} />
+          <Location
+            originError={this.state.originError}
+            destinationError={this.state.destinationError}
+            recipientError={this.state.recipientError} />
         </Col>
         <Col className="col-fluid" md={1} >
           <hr className="vertical-divider" />

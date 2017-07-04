@@ -7,6 +7,7 @@ const initialState = {
   location: {
     origin: '',
     destination: '',
+    destination_recipient: '',
   },
   delivery: {},
   delivery_items: [],
@@ -61,6 +62,17 @@ export default function request(state=initialState, action) {
         location: {
           ...state.location,
           destination: action.location,
+        },
+      };
+
+      break;
+    }
+    case types.request.SELECT_RECIPIENT: {
+      state = {
+        ...state,
+        location: {
+          ...state.location,
+          destination_recipient: action.recipient,
         },
       };
 

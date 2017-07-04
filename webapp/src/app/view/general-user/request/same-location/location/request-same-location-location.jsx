@@ -10,6 +10,12 @@ export default class Location extends Component {
     this.props.doGetAllHotspots()
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.destination !== this.props.destination) {
+      this.props.doGetSpecificRecipients(nextProps.destination)
+    }
+  }
+
   render() {
     return (
       <Row className="row-fluid">
@@ -40,6 +46,18 @@ export default class Location extends Component {
               )) }
           </SelectField>
         </Col>
+        <Col className="col-fluid" md={12} sm={12} xs={12}>
+          <SelectField
+            floatingLabelText="Destinatário final"
+            className="form-content-select"
+            value={this.props.recipient}
+            onChange={(event, index, value) => this.props.doSelectRecipient(value)}
+            errorText={this.props.recipientError} >
+            { this.props.recipients.map(item => (
+                <MenuItem key={item.id} value={item.id} primaryText={item.employee_name} />
+              )) }
+          </SelectField>
+        </Col>
       </Row>
     );
   }
@@ -48,4 +66,5 @@ export default class Location extends Component {
 Location.PropTypes = {
   originError: React.PropTypes.string,
   destinationError: React.PropTypes.string,
+  recipientError: React.PropTypes.string,
 }

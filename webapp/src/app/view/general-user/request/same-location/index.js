@@ -13,6 +13,7 @@ const stateToProps = (state) => {
     requestButton: state.request.button,
     accessKey: state.request.accessKey,
     user: state.auth.user,
+    recipient: state.request.location.destination_recipient,
   }
 };
 
@@ -30,8 +31,8 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(requestActions.disableRequestButton(disabled));
     },
-    doCreateDelivery: (userID, origin, destination, items) => {
-      dispatch(requestActions.createDelivery(userID, origin, destination, items));
+    doCreateDelivery: (userID, origin, destination, recipientID, items) => {
+      dispatch(requestActions.createDelivery(userID, origin, destination, recipientID, items));
     },
     doChangeNewDelivery: (newDelivery) => {
       dispatch(historyActions.changeNewDelivery(newDelivery));

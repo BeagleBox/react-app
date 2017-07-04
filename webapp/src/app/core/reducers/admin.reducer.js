@@ -4,6 +4,7 @@ const initialState = {
   departments: {
     data: [],
     specific_location: [],
+    specific_recipients: [],
   },
   employees: { data: [] },
   operation_type: '',
@@ -181,6 +182,17 @@ export default function admin(state=initialState, action) {
         employees: {
           ...state.employees,
           data: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_SPECIFIC_RECIPIENTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          specific_recipients: action.payload,
         },
       };
 

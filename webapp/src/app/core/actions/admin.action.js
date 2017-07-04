@@ -238,3 +238,22 @@ export function getAllEmployees() {
     }
   }
 }
+
+export function getSpecificRecipients(id) {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/search_departament/${id}`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_SPECIFIC_RECIPIENTS_REQUEST,
+        types.admin.GET_SPECIFIC_RECIPIENTS_SUCCESS,
+        types.admin.GET_SPECIFIC_RECIPIENTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}

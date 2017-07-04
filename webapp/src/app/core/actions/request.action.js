@@ -23,6 +23,13 @@ export function selectDestinationLocation(location) {
   }
 }
 
+export function selectRecipient(recipient) {
+  return {
+    recipient,
+    type: types.request.SELECT_RECIPIENT,
+  }
+}
+
 export function addNewLoadItem(item) {
   return {
     item,
@@ -84,7 +91,7 @@ export function disableRequestButton(disable) {
   }
 }
 
-export function createDelivery(user, origin, destination, items) {
+export function createDelivery(user, origin, destination, recipient, items) {
   return {
     [CALL_API]: {
       endpoint: `${getApiUrl()}/deliveries`,
@@ -104,6 +111,7 @@ export function createDelivery(user, origin, destination, items) {
         source_id: origin,
         sender_id: user,
         destination_id: destination,
+        recipient_id: recipient,
         itens_names: items,
         message_type: "delivery",
       })
