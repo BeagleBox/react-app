@@ -5,14 +5,18 @@ import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 
 export default class TransformationTable extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.doUpdateTable(this.props.origin)
   }
 
   componentWillUpdate(nextProps, nextState) {
     if(this.props.fromDate !== nextProps.fromDate ||
        this.props.toDate !== nextProps.toDate) {
-      this.props.doUpdateTable()
+      this.props.doUpdateTable(this.props.origin)
+    }
+    if(nextProps.newDelivery) {
+      this.props.doChangeNewDelivery(false)
+      this.props.doUpdateTable(this.props.origin)
     }
   }
 

@@ -3,6 +3,7 @@ import SameLocationComponent from './request-same-location'
 
 import * as receiveActions from '../../../../core/actions/receive.action'
 import * as requestActions from '../../../../core/actions/request.action'
+import * as historyActions from '../../../../core/actions/history.action'
 
 const stateToProps = (state) => {
   return {
@@ -29,8 +30,11 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(requestActions.disableRequestButton(disabled));
     },
-    doCreateDelivery: (user, origin, destination, items) => {
-      dispatch(requestActions.createDelivery(user, origin, destination, items));
+    doCreateDelivery: (userID, origin, destination, items) => {
+      dispatch(requestActions.createDelivery(userID, origin, destination, items));
+    },
+    doChangeNewDelivery: (newDelivery) => {
+      dispatch(historyActions.changeNewDelivery(newDelivery));
     },
   }
 };

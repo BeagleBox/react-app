@@ -41,3 +41,10 @@ export function updateTable(origin) {
     }
   };
 }
+
+export function changeNewDelivery(newDelivery) {
+  return {
+    newDelivery,
+    type: types.history.CHANGE_NEW_DELIVERY,
+  }
+}

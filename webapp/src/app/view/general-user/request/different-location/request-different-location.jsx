@@ -36,7 +36,6 @@ export default class RequestDifferentLocation extends Component {
     return (
       <Row className="row-fluid">
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <h3 className="title-different-location">O carrinho não está neste ambiente!</h3>
           <h3>Solicitar BeagleBox</h3>
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>

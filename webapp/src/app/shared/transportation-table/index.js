@@ -8,6 +8,7 @@ const stateToProps = (state) => {
     tableItems: state.history.table.data,
     fromDate: state.history.fromDate,
     toDate: state.history.toDate,
+    newDelivery: state.history.delivery,
   }
 };
 
@@ -16,6 +17,9 @@ const dispatchToProps = (dispatch) => {
     doUpdateTable: (origin) => {
       dispatch(actions.updateTable(origin));
     },
+    doChangeNewDelivery: (newDelivery) => {
+      dispatch(actions.changeNewDelivery(newDelivery));
+    }
   }
 };
 

@@ -5,6 +5,7 @@ const initialState = {
   table: { data: [] },
   fromDate: new Date(+new Date() - 10 * 24 * 60 * 60 * 1000),
   toDate: new Date(),
+  delivery: false,
 };
 
 const updateTableData = (state, action) => {
@@ -14,7 +15,6 @@ const updateTableData = (state, action) => {
 
   for(var i = 0; i < items.length; i++) {
     date = new Date(items[i].updated_at);
-    console.log(date)
     if(date >= state.fromDate && date <= state.toDate) {
       result.push(items[i])
     }
@@ -58,6 +58,14 @@ export default function history(state=initialState, action) {
           ...state.table,
           data: updateTableData(state, action),
         },
+      };
+
+      break;
+    }
+    case types.history.CHANGE_NEW_DELIVERY: {
+      state = {
+        ...state,
+        delivery: action.newDelivery,
       };
 
       break;

@@ -17,9 +17,6 @@ export default class Location extends Component {
           <img className="img-request" src={assets.sameLocation} alt={"Localização Igual"} />
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
-          <h3 className="request-title">O carrinho já está neste ambiente</h3>
-        </Col>
-        <Col className="col-fluid" md={12} sm={12} xs={12}>
           <SelectField
             floatingLabelText="Minha localização"
             className="form-content-select"

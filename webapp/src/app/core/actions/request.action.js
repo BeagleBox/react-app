@@ -104,7 +104,8 @@ export function createDelivery(user, origin, destination, items) {
         source_id: origin,
         sender_id: user,
         destination_id: destination,
-        items_names: items,
+        itens_names: items,
+        message_type: "delivery",
       })
     }
   };
