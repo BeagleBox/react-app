@@ -4,7 +4,19 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 
+import ListDialog from '../list-dialog'
+
 export default class TransformationTable extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listIndex: null,
+      origin: '',
+      destination: '',
+    }
+  }
+
   componentWillMount() {
     this.props.doUpdateTable(this.props.origin)
   }
@@ -18,6 +30,11 @@ export default class TransformationTable extends Component {
       this.props.doChangeNewDelivery(false)
       this.props.doUpdateTable(this.props.origin)
     }
+  }
+
+  handleList = (index, origin, destination) => {
+    this.setState({ listIndex: index, origin, destination })
+    this.props.doShowListDialog(true)
   }
 
   render() {
@@ -50,12 +67,20 @@ export default class TransformationTable extends Component {
                 <TableRowColumn className="col-origin">{item.source.departament_name}</TableRowColumn>
                 <TableRowColumn>{item.destination.departament_name}</TableRowColumn>
                 <TableRowColumn className="row-center">
-                  <RaisedButton className="btn-load-history" label="Lista" backgroundColor="#008372" />
+                  <RaisedButton
+                    className="btn-load-history"
+                    label="Lista"
+                    backgroundColor="#008372"
+                    onTouchTap={() => this.handleList(k, item.source.departament_name, item.destination.departament_name)} />
                 </TableRowColumn>
               </TableRow>
             )}; </TableBody>
           </Table>
         }
+      <ListDialog
+        index={this.state.listIndex}
+        origin={this.state.origin}
+        destination={this.state.destination} />
       </Paper>
     );
   }

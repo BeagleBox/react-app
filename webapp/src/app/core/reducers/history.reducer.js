@@ -6,6 +6,7 @@ const initialState = {
   fromDate: new Date(+new Date() - 10 * 24 * 60 * 60 * 1000),
   toDate: new Date(),
   delivery: false,
+  openListDialog: false,
 };
 
 const updateTableData = (state, action) => {
@@ -66,6 +67,14 @@ export default function history(state=initialState, action) {
       state = {
         ...state,
         delivery: action.newDelivery,
+      };
+
+      break;
+    }
+    case types.history.SHOW_LIST_DIALOG: {
+      state = {
+        ...state,
+        openListDialog: action.open,
       };
 
       break;

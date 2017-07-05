@@ -48,3 +48,10 @@ export function changeNewDelivery(newDelivery) {
     type: types.history.CHANGE_NEW_DELIVERY,
   }
 }
+
+export function showListDialog(open) {
+  return {
+    open,
+    type: types.history.SHOW_LIST_DIALOG,
+  }
+}

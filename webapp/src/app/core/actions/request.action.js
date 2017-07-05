@@ -98,7 +98,7 @@ export function changePlace(change) {
   }
 }
 
-export function createDelivery(user, origin, destination, recipient, items) {
+export function createDelivery(user, origin, destination, recipient, items, key_access) {
   return {
     [CALL_API]: {
       endpoint: `${getApiUrl()}/deliveries`,
@@ -121,6 +121,7 @@ export function createDelivery(user, origin, destination, recipient, items) {
         recipient_id: recipient,
         itens_names: items,
         message_type: "delivery",
+        key_access: key_access,
       })
     }
   };

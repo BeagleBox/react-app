@@ -19,7 +19,10 @@ const dispatchToProps = (dispatch) => {
     },
     doChangeNewDelivery: (newDelivery) => {
       dispatch(actions.changeNewDelivery(newDelivery));
-    }
+    },
+    doShowListDialog: (open) => {
+      dispatch(actions.showListDialog(open));
+    },
   }
 };
 
