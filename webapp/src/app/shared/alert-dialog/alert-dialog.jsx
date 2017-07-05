@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { hashHistory } from 'react-router'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import RaisedButton from 'material-ui/RaisedButton'
@@ -19,6 +20,11 @@ export default class AlertDialog extends Component {
     this.props.doDisableButton(true)
   }
 
+  handleConfirmList = () => {
+    this.props.doAllowReceive(true);
+    hashHistory.push('/informacoes-gerais');
+  }
+
   render() {
     const styles = {
       list: { width: '70%', margin: 'auto', textAlign: 'left', maxHeight: 250, overflowY: 'auto' },
@@ -34,7 +40,7 @@ export default class AlertDialog extends Component {
         label="Confirmo!"
         className="btn-confirm-alert"
         backgroundColor="#AA302F"
-        onTouchTap={() => this.props.doShowAlertDialog(false)}
+        onTouchTap={this.handleConfirmList}
       />,
     ];
 

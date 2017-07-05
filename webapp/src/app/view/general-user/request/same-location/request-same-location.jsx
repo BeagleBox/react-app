@@ -72,6 +72,7 @@ export default class RequestSameLocation extends Component {
       this.props.doCreateDelivery(userID, origin, destination, recipientID, items, key)
       this.props.doGenerateKey(key)
       this.props.doShowDialogKey(true)
+      this.props.doAllowReceive(false)
       this.props.doChangeNewDelivery(true)
     }
   }

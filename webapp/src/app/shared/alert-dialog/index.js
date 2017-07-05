@@ -28,6 +28,9 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(actionsRequest.disableRequestButton(disabled));
     },
+    doAllowReceive: (allow) => {
+      dispatch(actionsReceive.allowReceive(allow));
+    }
   }
 };
 

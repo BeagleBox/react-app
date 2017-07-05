@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { hashHistory } from 'react-router'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 
 import RaisedButton from 'material-ui/RaisedButton'
@@ -8,6 +9,8 @@ import TextField from 'material-ui/TextField'
 import OpenKey from './open-key'
 import CheckList from './checklist'
 import AlertDialog from '../../../shared/alert-dialog'
+
+import AccessDenied from '../../../shared/access-denied'
 
 import assets from './assets'
 
@@ -21,13 +24,30 @@ export default class Receive extends Component {
       openAccess: true,
       open_key: '',
       isOpenKey: false,
+
       keyError: '',
+
+      lastDelivery: '',
+      lastKey: '',
+    }
+  }
+
+  componentDidMount() {
+    this.props.doGetDeliveries()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.deliveries.length > 0) {
+      this.setState({ lastDelivery: nextProps.deliveries.length-1 })
     }
   }
 
   handleReceiveItems = () => {
     if(this.props.notCheckedItems.length > 0) {
       this.props.doShowAlertDialog(true)
+    } else {
+      this.props.doAllowReceive(true)
+      hashHistory.push('/informacoes-gerais');
     }
   }
 
@@ -40,7 +60,7 @@ export default class Receive extends Component {
   }
 
   confirmOpenKey = () => {
-    if(parseInt(this.state.open_key, 10) === this.props.accessKey) {
+    if(this.state.open_key === this.props.key_access) {
       this.setState({ keyError: "", openAccess: false, isOpenKey: true })
       this.props.doChangePlace(false)
     } else {
@@ -60,6 +80,10 @@ export default class Receive extends Component {
 
     return (
       <Grid className="receive-container" fluid>
+      {this.props.receiveAllowed &&
+        <AccessDenied />
+      }
+      {!this.props.receiveAllowed &&
         <Dialog
           className="alert-dialog-container"
           actions={action}
@@ -87,6 +111,7 @@ export default class Receive extends Component {
             </Row>
           </Grid>
         </Dialog>
+        }
 
         {this.state.isOpenKey &&
           <Row className="row-fluid">

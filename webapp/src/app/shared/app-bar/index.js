@@ -7,6 +7,7 @@ const stateToProps = (state) => {
   return {
     user: state.auth.user,
     token: state.auth.token,
+    receiveAllowed: state.receive.allowed,
   }
 };
 

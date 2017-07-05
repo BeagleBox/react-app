@@ -31,12 +31,15 @@ const dispatchToProps = (dispatch) => {
     doDisableButton: (disabled) => {
       dispatch(requestActions.disableRequestButton(disabled));
     },
-    doCreateDelivery: (userID, origin, destination, recipientID, items) => {
-      dispatch(requestActions.createDelivery(userID, origin, destination, recipientID, items));
+    doCreateDelivery: (userID, origin, destination, recipientID, items, key) => {
+      dispatch(requestActions.createDelivery(userID, origin, destination, recipientID, items, key));
     },
     doChangeNewDelivery: (newDelivery) => {
       dispatch(historyActions.changeNewDelivery(newDelivery));
     },
+    doAllowReceive: (allow) => {
+      dispatch(receiveActions.allowReceive(allow));
+    }
   }
 };
 

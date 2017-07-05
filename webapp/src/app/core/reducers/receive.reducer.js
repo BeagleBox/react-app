@@ -10,7 +10,11 @@ const initialState = {
     notChecked: [],
     hasChecked: false,
   },
+  delivery: {
+    data: [],
+  },
   dialog: false,
+  allowed: true,
 };
 
 const checkItem = (state, {index, check}) => {
@@ -139,6 +143,25 @@ export default function receive(state=initialState, action) {
           hasChecked: true,
           notChecked: isNotChecked(state),
         }
+      };
+
+      break;
+    }
+    case types.receive.GET_DELIVERIES_SUCCESS: {
+      state = {
+        ...state,
+        delivery: {
+          ...state.delivery,
+          data: action.payload,
+        }
+      };
+
+      break;
+    }
+    case types.receive.ALLOW_RECEIVE: {
+      state = {
+        ...state,
+        allowed: action.allow,
       };
 
       break;
