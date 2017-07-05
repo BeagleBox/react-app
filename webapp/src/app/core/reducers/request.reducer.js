@@ -78,6 +78,14 @@ export default function request(state=initialState, action) {
 
       break;
     }
+    case types.request.CHANGE_PLACE: {
+      state = {
+        ...state,
+        isSamePlace: action.change,
+      };
+
+      break;
+    }
     case types.request.ADD_LOAD_ITEM: {
       state = {
         ...state,

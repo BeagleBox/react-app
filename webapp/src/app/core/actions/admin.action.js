@@ -130,7 +130,8 @@ export function addNewEmployee(employee) {
         employee_registration: employee.employee_registration,
         password: employee.password,
         password_confirmation: employee.password_confirmation,
-        departament_id: employee.departament_id
+        departament_id: employee.departament_id,
+        contact: {description: employee.contact_description},
       })
     }
   }
@@ -157,7 +158,8 @@ export function editEmployee(id, employee) {
         employee_registration: employee.employee_registration,
         password: employee.password,
         password_confirmation: employee.password_confirmation,
-        departament_id: employee.departament_id
+        departament_id: employee.departament_id,
+        contact_description: employee.contact_description,
       })
     }
   }

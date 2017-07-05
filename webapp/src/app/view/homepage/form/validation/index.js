@@ -14,13 +14,3 @@ export function validateEmail(email) {
 
   return valid
 }
-
-export function validatePassword(password) {
-  let valid = true;
-
-  if(password.length !== 8) {
-    valid = false;
-  }
-
-  return valid;
-}

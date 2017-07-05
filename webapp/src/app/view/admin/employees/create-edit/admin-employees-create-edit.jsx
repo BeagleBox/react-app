@@ -19,6 +19,9 @@ export default class AdminEmployeesCreateEdit extends Component {
       email: '',
       departament_id: '',
       department: '',
+      contact_description: '',
+      password: '',
+      password_confirmation: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,7 +38,8 @@ export default class AdminEmployeesCreateEdit extends Component {
         registration: nextProps.toModify.employee_registration,
         email: nextProps.toModify.employee_email,
         departament_id: nextProps.toModify.departament.id,
-        department: nextProps.toModify.departament.departament_name
+        department: nextProps.toModify.departament.departament_name,
+        contact_description: nextProps.toModify.contacts[0].description,
       })
     }
   }
@@ -59,8 +63,9 @@ export default class AdminEmployeesCreateEdit extends Component {
       employee_registration: this.state.registration,
       employee_email: this.state.email,
       departament_id: this.state.departament_id,
-      password: '12345678',
-      password_confirmation: '12345678'
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation,
+      contact_description: this.state.contact_description,
     }
 
     if(this.props.type === 'add') {
@@ -92,7 +97,6 @@ export default class AdminEmployeesCreateEdit extends Component {
         onTouchTap={this.handleSaveEmployee}
       />,
     ];
-
     return (
       <div>
         <Dialog
@@ -107,16 +111,17 @@ export default class AdminEmployeesCreateEdit extends Component {
           <Grid className="employees-container" fluid>
             <Row className="row-fluid employees-form-content">
               <Col className="col-fluid" md={12} sm={12} xs={12} >
-                <TextField
-                  name="employee_name"
-                  defaultValue={this.props.toModify.employee_name}
-                  floatingLabelText="Nome do funcionario"
-                  floatingLabelStyle={{color: '#696969'}}
-                  fullWidth={true}
-                  onChange={this.handleInputChange} />
-              </Col>
-              <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <Row className="row-fluid">
+                  <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                    <TextField
+                      name="employee_name"
+                      defaultValue={this.props.toModify.employee_name}
+                      floatingLabelText="Nome do funcionario"
+                      floatingLabelStyle={{color: '#696969'}}
+                      fullWidth={true}
+                      onChange={this.handleInputChange} />
+                  </Col>
+                  <Col className="col-fluid" md={1} ></Col>
                   <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                     <TextField
                       name="registration"
@@ -126,7 +131,10 @@ export default class AdminEmployeesCreateEdit extends Component {
                       fullWidth={true}
                       onChange={this.handleInputChange} />
                   </Col>
-                  <Col className="col-fluid" md={1} ></Col>
+                </Row>
+              </Col>
+              <Col className="col-fluid" md={12} sm={12} xs={12} >
+                <Row className="row-fluid">
                   <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                     <TextField
                       name="email"
@@ -137,6 +145,28 @@ export default class AdminEmployeesCreateEdit extends Component {
                       fullWidth={true}
                       onChange={this.handleInputChange} />
                   </Col>
+                  <Col className="col-fluid" md={1} ></Col>
+                  {this.props.toModify.contacts !== undefined &&
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="contact_description"
+                        defaultValue={this.props.toModify.contacts[0].description}
+                        floatingLabelText="Celular do funcionario"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        onChange={this.handleInputChange} />
+                    </Col>
+                  }
+                  {this.props.type !== 'edit' &&
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="contact_description"
+                        floatingLabelText="Celular do funcionario"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        onChange={this.handleInputChange} />
+                    </Col>
+                  }
                 </Row>
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12} >
@@ -159,6 +189,31 @@ export default class AdminEmployeesCreateEdit extends Component {
 
                 </SelectField>
               </Col>
+              {this.props.type === 'add' &&
+                <Col className="col-fluid" md={12} sm={12} xs={12} >
+                  <Row className="row-fluid">
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="password"
+                        type="password"
+                        floatingLabelText="Senha de acesso"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        onChange={this.handleInputChange} />
+                    </Col>
+                    <Col className="col-fluid" md={1} ></Col>
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="password_confirmation"
+                        type="password"
+                        floatingLabelText="Confirmação de senha"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        onChange={this.handleInputChange} />
+                    </Col>
+                  </Row>
+                </Col>
+              }
             </Row>
           </Grid>
 

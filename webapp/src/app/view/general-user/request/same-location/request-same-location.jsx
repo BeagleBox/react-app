@@ -69,7 +69,7 @@ export default class RequestSameLocation extends Component {
 
       this.props.doSendCar(items)
       this.props.doCreateDelivery(userID, origin, destination, recipientID, items)
-      this.props.doGenerateKey(Math.floor(1000 + Math.random() * 9000))
+      this.props.doGenerateKey(Math.floor(100000 + Math.random() * 900000))
       this.props.doShowDialogKey(true)
       this.props.doChangeNewDelivery(true)
     }

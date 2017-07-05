@@ -46,7 +46,7 @@ export default class TransformationTable extends Component {
             <TableBody displayRowCheckbox={false} > {this.props.tableItems.map((item, k) =>
               <TableRow key={k} >
                 <TableRowColumn className="col-id row-center">{item.tracker}</TableRowColumn>
-                <TableRowColumn className="row-center">{new Date(item.updated_at).toLocaleDateString('pt-BR')}</TableRowColumn>
+                <TableRowColumn className="row-center">{new Date(item.created_at).toLocaleDateString('pt-BR')}</TableRowColumn>
                 <TableRowColumn className="col-origin">{item.source.departament_name}</TableRowColumn>
                 <TableRowColumn>{item.destination.departament_name}</TableRowColumn>
                 <TableRowColumn className="row-center">

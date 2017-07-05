@@ -19,7 +19,6 @@ import Admin from './app/view/admin'
 import Welcome from './app/view/admin/welcome'
 import Department from './app/view/admin/departments'
 import Employees from './app/view/admin/employees'
-import BeagleBox from './app/view/admin/beagle-box'
 import Reports from './app/view/admin/reports'
 
 import store from  "./app/core/store"
@@ -43,7 +42,6 @@ ReactDOM.render(
             <IndexRoute component={Welcome} />
             <Route path='departamentos' component={Department} />
             <Route path='funcionarios' component={Employees} />
-            <Route path='carrinho' component={BeagleBox} />
             <Route path='relatorios' component={Reports} />
           </Route>
           <Route path='*' component={NotFound} />

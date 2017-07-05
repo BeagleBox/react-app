@@ -79,7 +79,6 @@ export default class AdminEmployees extends Component {
                 <Table fixedHeader={true} selectable={false} >
                   <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
                     <TableRow >
-                      <TableHeaderColumn className="row-center" style={styles.table}>ID</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>Nome</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Matrícula</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>E-mail</TableHeaderColumn>
@@ -90,7 +89,6 @@ export default class AdminEmployees extends Component {
                   <TableBody displayRowCheckbox={false} >
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
-                        <TableRowColumn className="row-center">{item.id}</TableRowColumn>
                         <TableRowColumn>{item.employee_name}</TableRowColumn>
                         <TableRowColumn className="row-center">{item.employee_registration}</TableRowColumn>
                         <TableRowColumn>{item.employee_email}</TableRowColumn>

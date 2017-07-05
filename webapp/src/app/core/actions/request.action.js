@@ -91,6 +91,13 @@ export function disableRequestButton(disable) {
   }
 }
 
+export function changePlace(change) {
+  return {
+    change,
+    type: types.request.CHANGE_PLACE,
+  }
+}
+
 export function createDelivery(user, origin, destination, recipient, items) {
   return {
     [CALL_API]: {
