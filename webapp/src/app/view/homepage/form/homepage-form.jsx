@@ -52,7 +52,13 @@ export default class HomepageForm extends Component {
             floatingLabelStyle={{color: '#696969'}}
             type="email"
             errorText={this.state.emailError}
-            onChange={this.handleInputChange} />
+            onChange={this.handleInputChange}
+            onKeyPress={(ev) => {
+              if (ev.key === 'Enter') {
+                this.handleSubmit();
+                ev.preventDefault();
+              }
+            }} />
         </Col>
         <Col className="col-fluid form-content" xs={12}>
           <TextField
@@ -62,7 +68,13 @@ export default class HomepageForm extends Component {
             floatingLabelStyle={{color: '#696969'}}
             type="password"
             errorText={this.state.passwordError}
-            onChange={this.handleInputChange} />
+            onChange={this.handleInputChange}
+            onKeyPress={(ev) => {
+              if (ev.key === 'Enter') {
+                this.handleSubmit();
+                ev.preventDefault();
+              }
+            }} />
         </Col>
         {this.props.logInError &&
           <Col className="col-fluid" md={12} sm={12} xs={12}>
