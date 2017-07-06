@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import InputMask from 'react-input-mask'
 
 import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -45,8 +46,13 @@ export default class AdminEmployeesCreateEdit extends Component {
   }
 
   handleInputChange = (event) => {
-    const value = event.target.value;
+    let value = event.target.value;
     const name = event.target.name;
+
+    if(name === 'contact_description') {
+      value = value.replace(/[^\w\s]/gi, '')
+      value = value.replace(/\s/g, '')
+    }
 
     this.setState({
       [name]: value
@@ -149,22 +155,30 @@ export default class AdminEmployeesCreateEdit extends Component {
                   {this.props.toModify.contacts !== undefined &&
                     <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                       <TextField
-                        name="contact_description"
-                        defaultValue={this.props.toModify.contacts[0].description}
                         floatingLabelText="Celular do funcionario"
                         floatingLabelStyle={{color: '#696969'}}
-                        fullWidth={true}
-                        onChange={this.handleInputChange} />
+                        fullWidth={true} >
+                        <InputMask
+                          name="contact_description"
+                          defaultValue={this.props.toModify.contacts[0].description}
+                          onChange={this.handleInputChange}
+                          mask="+55 (99) \9 9999-9999" maskChar=" " />
+                      </TextField>
                     </Col>
                   }
                   {this.props.type !== 'edit' &&
                     <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                       <TextField
-                        name="contact_description"
                         floatingLabelText="Celular do funcionario"
                         floatingLabelStyle={{color: '#696969'}}
                         fullWidth={true}
-                        onChange={this.handleInputChange} />
+                        vallue={this.state.contact_description} >
+                        <InputMask
+                          name="contact_description"
+
+                          onChange={this.handleInputChange}
+                          mask="+55 (99) \9 9999-9999" maskChar=" " />
+                      </TextField>
                     </Col>
                   }
                 </Row>

@@ -131,7 +131,7 @@ export function addNewEmployee(employee) {
         password: employee.password,
         password_confirmation: employee.password_confirmation,
         departament_id: employee.departament_id,
-        contact: {description: employee.contact_description},
+        contact_description: employee.contact_description,
       })
     }
   }
