@@ -20,7 +20,7 @@ export default class AdminDepartmentsCreateEdit extends Component {
   componentWillReceiveProps(nextProps) {
     if(nextProps.type === 'edit') {
       this.setState({
-        department: nextProps.toModify.department_name
+        department: nextProps.toModify.departament_name
       })
     }
   }
@@ -41,11 +41,16 @@ export default class AdminDepartmentsCreateEdit extends Component {
     this.props.doShowCreateDepartmentsDialog(false)
   }
 
+  handleCancel = () => {
+    this.props.doShowCreateDepartmentsDialog(false)
+    this.props.doSelectItemToModify('')
+  }
+
   render() {
     const actions = [
       <RaisedButton
         label="Cancelar"
-        onTouchTap={() => this.props.doShowCreateDepartmentsDialog(false)}
+        onTouchTap={this.handleCancel}
       />,
       <RaisedButton
         label="Salvar"
@@ -68,7 +73,7 @@ export default class AdminDepartmentsCreateEdit extends Component {
 
             <TextField
               floatingLabelText="Nome do departamento"
-              defaultValue={this.props.toModify.department_name}
+              defaultValue={this.props.toModify.departament_name}
               onChange={this.handleInputChange} />
 
         </Dialog>

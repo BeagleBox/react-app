@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import InputMask from 'react-input-mask'
 
 import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -14,45 +15,65 @@ export default class AdminEmployeesCreateEdit extends Component {
     super(props);
 
     this.state = {
-      fullName: '',
-      registration: '',
+      employee_name: '',
+      employee_registration: '',
       email: '',
+      departament_id: '',
       department: '',
+      contact_description: '',
+      password: '',
+      password_confirmation: '',
+
+      confirmError: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentWillMount() {
+    this.props.doGetAllDepartments()
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(nextProps.type === 'edit') {
+    if(nextProps.type === 'edit' && nextProps.toModify !== "") {
       this.setState({
-        fullName: nextProps.toModify.employee_name,
-        registration: nextProps.toModify.registration,
-        email: nextProps.toModify.email,
-        department: nextProps.toModify.department
+        employee_name: nextProps.toModify.employee_name,
+        registration: nextProps.toModify.employee_registration,
+        email: nextProps.toModify.employee_email,
+        departament_id: nextProps.toModify.departament.id,
+        department: nextProps.toModify.departament.departament_name,
+        contact_description: nextProps.toModify.contacts[0].description,
       })
     }
   }
 
   handleInputChange = (event) => {
-    const value = event.target.value;
+    let value = event.target.value;
     const name = event.target.name;
+
+    if(name === 'contact_description') {
+      value = value.replace(/[^\w\s]/gi, '')
+      value = value.replace(/\s/g, '')
+    }
 
     this.setState({
       [name]: value
     })
   }
 
-  handleSelectionChange = (value) => {
-    this.setState({ department: value })
+  handleSelectionChange = (event, key, value) => {
+    this.setState({ departament_id: value, department: event.target.innerText})
   }
 
   handleSaveEmployee = () => {
     var employee = {
-      name: this.state.fullName,
-      registration: this.state.registration,
-      email: this.state.email,
-      department: this.state.department
+      employee_name: this.state.employee_name,
+      employee_registration: this.state.registration,
+      employee_email: this.state.email,
+      departament_id: this.state.departament_id,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation,
+      contact_description: this.state.contact_description,
     }
 
     if(this.props.type === 'add') {
@@ -66,11 +87,26 @@ export default class AdminEmployeesCreateEdit extends Component {
     this.props.doShowCreateEmployeesDialog(false)
   }
 
+  handlePasswordChange = (value) => {
+    const password = this.state.password
+
+    if(value !== password) {
+      this.setState({ confirmError: "As senhas devem ser iguais." })
+    } else {
+      this.setState({ confirmError: "" })
+    }
+  }
+
+  handleCancel = () => {
+    this.props.doSelectItemToModify('')
+    this.props.doShowCreateEmployeesDialog(false)
+  }
+
   render() {
     const actions = [
       <RaisedButton
         label="Cancelar"
-        onTouchTap={() => this.props.doShowCreateEmployeesDialog(false)}
+        onTouchTap={this.handleCancel}
       />,
       <RaisedButton
         label="Salvar"
@@ -79,10 +115,8 @@ export default class AdminEmployeesCreateEdit extends Component {
         onTouchTap={this.handleSaveEmployee}
       />,
     ];
-
     return (
       <div>
-        {this.UpdateState}
         <Dialog
           className="create-employees-dialog"
           title="Funcionários"
@@ -95,21 +129,12 @@ export default class AdminEmployeesCreateEdit extends Component {
           <Grid className="employees-container" fluid>
             <Row className="row-fluid employees-form-content">
               <Col className="col-fluid" md={12} sm={12} xs={12} >
-                <TextField
-                  name="fullName"
-                  defaultValue={this.props.toModify.employee_name}
-                  floatingLabelText="Nome do funcionario"
-                  floatingLabelStyle={{color: '#696969'}}
-                  fullWidth={true}
-                  onChange={this.handleInputChange} />
-              </Col>
-              <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <Row className="row-fluid">
                   <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                     <TextField
-                      name="registration"
-                      defaultValue={this.props.toModify.registration}
-                      floatingLabelText="Matrícula do funcionario"
+                      name="employee_name"
+                      defaultValue={this.props.toModify.employee_name}
+                      floatingLabelText="Nome do funcionario"
                       floatingLabelStyle={{color: '#696969'}}
                       fullWidth={true}
                       onChange={this.handleInputChange} />
@@ -117,10 +142,9 @@ export default class AdminEmployeesCreateEdit extends Component {
                   <Col className="col-fluid" md={1} ></Col>
                   <Col className="col-fluid" md={5.5} sm={12} xs={12} >
                     <TextField
-                      name="email"
-                      type="email"
-                      defaultValue={this.props.toModify.email}
-                      floatingLabelText="Email do funcionario"
+                      name="registration"
+                      defaultValue={this.props.toModify.employee_registration}
+                      floatingLabelText="Matrícula do funcionario"
                       floatingLabelStyle={{color: '#696969'}}
                       fullWidth={true}
                       onChange={this.handleInputChange} />
@@ -128,22 +152,95 @@ export default class AdminEmployeesCreateEdit extends Component {
                 </Row>
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12} >
+                <Row className="row-fluid">
+                  <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                    <TextField
+                      name="email"
+                      type="email"
+                      defaultValue={this.props.toModify.employee_email}
+                      floatingLabelText="Email do funcionario"
+                      floatingLabelStyle={{color: '#696969'}}
+                      fullWidth={true}
+                      onChange={this.handleInputChange} />
+                  </Col>
+                  <Col className="col-fluid" md={1} ></Col>
+                  {this.props.toModify.contacts !== undefined &&
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        floatingLabelText="Celular do funcionario"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true} >
+                        <InputMask
+                          name="contact_description"
+                          defaultValue={this.props.toModify.contacts[0].description}
+                          onChange={this.handleInputChange}
+                          mask="+55 (99) \9 9999-9999" maskChar=" " />
+                      </TextField>
+                    </Col>
+                  }
+                  {this.props.type !== 'edit' &&
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        floatingLabelText="Celular do funcionario"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        vallue={this.state.contact_description} >
+                        <InputMask
+                          name="contact_description"
+
+                          onChange={this.handleInputChange}
+                          mask="+55 (99) \9 9999-9999" maskChar=" " />
+                      </TextField>
+                    </Col>
+                  }
+                </Row>
+              </Col>
+              <Col className="col-fluid" md={12} sm={12} xs={12} >
                 <SelectField
-                  name="department"
+                  name="departament_id"
                   floatingLabelText="Departamento do funcionario"
-                  defaultValue={this.props.toModify.department}
+                  defaultValue={this.props.toModify.departament}
                   floatingLabelStyle={{color: '#696969'}}
                   fullWidth={true}
                   style={{textAlign: 'left'}}
-                  value={this.state.department}
-                  onChange={(event, key, value) => this.handleSelectionChange(value)} >
+                  value={this.state.departament_id}
+                  onChange={(event, key, value) => this.handleSelectionChange(event, key, value)} >
 
                   {this.props.items.map((item, k) =>
-                    <MenuItem key={k} value={item.department_name} primaryText={item.department_name} />
+                    <MenuItem
+                      key={item.departament_name}
+                      value={item.id}
+                      primaryText={item.departament_name} />
                   )}
 
                 </SelectField>
               </Col>
+              {this.props.type === 'add' &&
+                <Col className="col-fluid" md={12} sm={12} xs={12} >
+                  <Row className="row-fluid">
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="password"
+                        type="password"
+                        floatingLabelText="Senha de acesso"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        onChange={this.handleInputChange} />
+                    </Col>
+                    <Col className="col-fluid" md={1} ></Col>
+                    <Col className="col-fluid" md={5.5} sm={12} xs={12} >
+                      <TextField
+                        name="password_confirmation"
+                        type="password"
+                        floatingLabelText="Confirmação de senha"
+                        floatingLabelStyle={{color: '#696969'}}
+                        fullWidth={true}
+                        errorText={this.state.confirmError}
+                        onChange={(event, value) => this.handlePasswordChange(value)} />
+                    </Col>
+                  </Row>
+                </Col>
+              }
             </Row>
           </Grid>
 

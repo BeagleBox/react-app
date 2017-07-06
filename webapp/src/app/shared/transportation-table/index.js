@@ -8,13 +8,20 @@ const stateToProps = (state) => {
     tableItems: state.history.table.data,
     fromDate: state.history.fromDate,
     toDate: state.history.toDate,
+    newDelivery: state.history.delivery,
   }
 };
 
 const dispatchToProps = (dispatch) => {
   return {
-    doUpdateTable: () => {
-      dispatch(actions.updateTable());
+    doUpdateTable: (origin) => {
+      dispatch(actions.updateTable(origin));
+    },
+    doChangeNewDelivery: (newDelivery) => {
+      dispatch(actions.changeNewDelivery(newDelivery));
+    },
+    doShowListDialog: (open) => {
+      dispatch(actions.showListDialog(open));
     },
   }
 };

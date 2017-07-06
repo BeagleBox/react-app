@@ -17,7 +17,7 @@ export default class OpenKey extends Component {
           <TextField
             name="location"
             className="key-field"
-            value={this.props.accessKey}
+            value={this.props.key_access}
             disabled={true}
             underlineShow={false} />
         </Col>
@@ -27,4 +27,8 @@ export default class OpenKey extends Component {
       </Row>
     );
   }
+}
+
+OpenKey.propTypes = {
+  key_access: React.PropTypes.string
 }

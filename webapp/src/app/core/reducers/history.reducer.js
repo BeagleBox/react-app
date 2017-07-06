@@ -1,32 +1,21 @@
 import types from "../types"
 
 const initialState = {
-  items: {
-    data: [
-      {id: 1, date: new Date(), origin: 'Secretaria', destiny: 'Sala I1', Checklist: []},
-      {id: 2, date: new Date(), origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
-      {id: 3, date: new Date(), origin: 'Secretaria', destiny: 'Biblioteca', Checklist: []},
-      {id: 4, date: new Date(), origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []},
-      {id: 5, date: new Date(), origin: 'Secretaria', destiny: 'Sala I8', Checklist: []},
-      {id: 6, date: new Date(), origin: 'Secretaria', destiny: 'Sala I6', Checklist: []},
-      {id: 7, date: new Date(), origin: 'Secretaria', destiny: 'Sala I2', Checklist: []},
-      {id: 8, date: new Date(), origin: 'Secretaria', destiny: 'Enfermaria', Checklist: []}
-    ]
-  },
-  table: {
-    data: [],
-  },
+  items: { data: [] },
+  table: { data: [] },
   fromDate: new Date(+new Date() - 10 * 24 * 60 * 60 * 1000),
   toDate: new Date(),
+  delivery: false,
+  openListDialog: false,
 };
 
-const updateTableData = (state) => {
-  const items = state.items.data;
+const updateTableData = (state, action) => {
+  const items = action.payload;
   var date = undefined;
   var result = [];
 
   for(var i = 0; i < items.length; i++) {
-    date = items[i].date
+    date = new Date(items[i].updated_at);
     if(date >= state.fromDate && date <= state.toDate) {
       result.push(items[i])
     }
@@ -63,13 +52,29 @@ export default function history(state=initialState, action) {
 
       break;
     }
-    case types.history.UPDATE_TABLE: {
+    case types.history.UPDATE_TABLE_SUCCESS: {
       state = {
         ...state,
         table: {
           ...state.table,
-          data: updateTableData(state),
+          data: updateTableData(state, action),
         },
+      };
+
+      break;
+    }
+    case types.history.CHANGE_NEW_DELIVERY: {
+      state = {
+        ...state,
+        delivery: action.newDelivery,
+      };
+
+      break;
+    }
+    case types.history.SHOW_LIST_DIALOG: {
+      state = {
+        ...state,
+        openListDialog: action.open,
       };
 
       break;

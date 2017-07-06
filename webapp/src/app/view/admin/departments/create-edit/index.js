@@ -22,6 +22,9 @@ const dispatchToProps = (dispatch) => {
     doEditDepartment: (id, department) => {
       dispatch(actions.editDepartment(id, department));
     },
+    doSelectItemToModify: (item) => {
+      dispatch(actions.selectItemToModify(item));
+    },
   }
 };
 

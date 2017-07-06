@@ -2,21 +2,13 @@ import types from "../types"
 
 const initialState = {
   departments: {
-    data: [
-      {id: 1, department_name: 'Secretaria'},
-      {id: 2, department_name: 'Biblioteca'},
-      {id: 3, department_name: 'Enfermaria'},
-    ],
+    data: [],
+    specific_location: [],
+    specific_recipients: [],
   },
-  employees: {
-    data: [
-      {id: 1, employee_name: 'Elaine Meirelles', registration: '120010000', email: 'elaine@email.com', department: 'Secretaria'},
-      {id: 2, employee_name: 'João Henrique', registration: '120010001', email: 'joao@email.com', department: 'Biblioteca'},
-      {id: 3, employee_name: 'Yeltsin Soares', registration: '120010002', email: 'yeltsin@email.com', department: 'Sale I8'},
-    ],
-  },
+  employees: { data: [] },
   operation_type: '',
-  to_modify: {},
+  to_modify: '',
   created: false,
   edited: false,
   deleted: false,
@@ -25,101 +17,6 @@ const initialState = {
     create_employees: false,
   }
 };
-
-const addNewDepartment = (state, {department}) => {
-  const items = state.departments.data;
-  var id = items[items.length-1].id + 1;
-  var found = false;
-
-  for(var i = 0; i < items.length; i++) {
-    if(department === items[i].department) {
-      found = true;
-      break;
-    }
-  }
-
-  if(!found) {
-    items.push({id, department_name: department});
-  }
-
-  return items;
-}
-
-const updateDepartmentData = (state, {id, department}) => {
-  const items = state.departments.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(id === items[i].id) {
-      items[i].department_name = department;
-    }
-  }
-
-  return items;
-}
-
-const deleteDepartment = (state, {item}) => {
-  const items = state.departments.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(item.id === items[i].id) {
-      items.splice(i, 1);
-    }
-  }
-
-  return items;
-}
-
-const addNewEmployee = (state, {employee}) => {
-  const items = state.employees.data;
-  var id = items[items.length-1].id + 1;
-  var found = false;
-
-  for(var i = 0; i < items.length; i++) {
-    if(employee === items[i].employee) {
-      found = true;
-      break;
-    }
-  }
-
-  if(!found) {
-    items.push({
-      id,
-      employee_name: employee.name,
-      registration: employee.registration,
-      email: employee.email,
-      department: employee.department
-    });
-  }
-
-  return items;
-}
-
-const updateEmployeeData = (state, {id, employee}) => {
-  const items = state.employees.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(id === items[i].id) {
-      items[i].employee_name = employee.name;
-      items[i].registration = employee.registration;
-      items[i].email = employee.email;
-      items[i].department = employee.department;
-    }
-  }
-
-  return items;
-}
-
-const deleteEmployee = (state, {item}) => {
-  const items = state.employees.data;
-
-  for(var i = 0; i < items.length; i++) {
-    if(item.id === items[i].id) {
-      items.splice(i, 1);
-    }
-  }
-
-  return items;
-}
 
 export default function admin(state=initialState, action) {
   switch (action.type) {
@@ -185,74 +82,118 @@ export default function admin(state=initialState, action) {
 
       break;
     }
-    case types.admin.ADD_NEW_DEPARTMENT: {
+    case types.admin.ADD_NEW_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: addNewDepartment(state, action),
+          data: action.payload,
         },
         created: true,
       };
 
       break;
     }
-    case types.admin.EDIT_DEPARTMENT: {
+    case types.admin.EDIT_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: updateDepartmentData(state, action),
+          data: action.payload,
         },
         edited: true,
       };
 
       break;
     }
-    case types.admin.DELETE_DEPARTMENT: {
+    case types.admin.DELETE_DEPARTMENT_SUCCESS: {
       state = {
         ...state,
         departments: {
           ...state.departments,
-          data: deleteDepartment(state, action),
+          data: action.payload,
         },
         deleted: true,
       };
 
       break;
     }
-    case types.admin.ADD_NEW_EMPLOYEE: {
+    case types.admin.ADD_NEW_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: addNewEmployee(state, action),
+          data: action.payload,
         },
         created: true,
       };
 
       break;
     }
-    case types.admin.EDIT_EMPLOYEE: {
+    case types.admin.EDIT_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: updateEmployeeData(state, action),
+          data: action.payload,
         },
         edited: true,
       };
 
       break;
     }
-    case types.admin.DELETE_EMPLOYEE: {
+    case types.admin.DELETE_EMPLOYEE_SUCCESS: {
       state = {
         ...state,
         employees: {
           ...state.employees,
-          data: deleteEmployee(state, action),
+          data: action.payload,
         },
         deleted: true,
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_HOTSPOTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          specific_location: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_DEPARTMENTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          data: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_ALL_EMPLOYEES_SUCCESS: {
+      state = {
+        ...state,
+        employees: {
+          ...state.employees,
+          data: action.payload,
+        },
+      };
+
+      break;
+    }
+    case types.admin.GET_SPECIFIC_RECIPIENTS_SUCCESS: {
+      state = {
+        ...state,
+        departments: {
+          ...state.departments,
+          specific_recipients: action.payload,
+        },
       };
 
       break;

@@ -14,15 +14,23 @@ import Add from 'material-ui/svg-icons/content/add-circle'
 import './admin-departments.css'
 
 export default class AdminDepartments extends Component {
+  componentWillMount() {
+    this.props.doGetAllDepartments()
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.created) {
       this.props.doChangeCreated()
+      this.props.doGetAllDepartments()
     }
     if(nextProps.edited) {
       this.props.doChangeEdited()
+      this.props.doGetAllDepartments()
+      this.props.doSelectItemToModify('')
     }
     if(nextProps.deleted) {
       this.props.doChangeDeleted()
+      this.props.doGetAllDepartments()
     }
     this.props.doDefineOperationType('')
   }
@@ -38,8 +46,8 @@ export default class AdminDepartments extends Component {
     this.props.doShowCreateDepartmentsDialog(true)
   }
 
-  handleDelete = (item) => {
-    this.props.doDeleteDepartment(item)
+  handleDelete = (item_id) => {
+    this.props.doDeleteDepartment(item_id)
   }
 
   render() {
@@ -70,7 +78,6 @@ export default class AdminDepartments extends Component {
                 <Table fixedHeader={true} selectable={false} >
                   <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
                     <TableRow >
-                      <TableHeaderColumn className="row-center" style={styles.table}>ID</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>Nome</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Ações</TableHeaderColumn>
                     </TableRow>
@@ -78,11 +85,10 @@ export default class AdminDepartments extends Component {
                   <TableBody displayRowCheckbox={false} >
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
-                        <TableRowColumn className="row-center">{item.id}</TableRowColumn>
-                        <TableRowColumn>{item.department_name}</TableRowColumn>
+                        <TableRowColumn>{item.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
-                          <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
+                          <IconButton><Delete onTouchTap={() => this.handleDelete(item.id)}/></IconButton>
                         </TableRowColumn>
                       </TableRow>
                     )};

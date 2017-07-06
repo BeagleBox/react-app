@@ -6,7 +6,6 @@ import Drawer from 'material-ui/Drawer'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
 
-import GroupWork from 'material-ui/svg-icons/action/group-work'
 import Work from 'material-ui/svg-icons/action/work'
 import Face from 'material-ui/svg-icons/action/supervisor-account'
 import Layers from 'material-ui/svg-icons/maps/layers'
@@ -23,12 +22,6 @@ export default class Administrator extends Component {
           <Col className="col-fluid" md={2} sm={3} xs={3} >
             <Drawer className="drawer-admin-content" open={true} width={"18%"}>
               <Menu className="admin-menu">
-                <MenuItem
-                  className="admin-menu-item"
-                  leftIcon={<GroupWork />}
-                  containerElement={<Link to="admin/carrinho" />} >
-                    BeagleBox
-                </MenuItem>
                 <MenuItem
                   className="admin-menu-item"
                   leftIcon={<Work />}

@@ -14,15 +14,23 @@ import CreateEmployees from './create-edit'
 import './admin-employees.css'
 
 export default class AdminEmployees extends Component {
+  componentWillMount() {
+    this.props.doGetAllEmployees()
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.created) {
       this.props.doChangeCreated()
+      this.props.doGetAllEmployees()
     }
     if(nextProps.edited) {
       this.props.doChangeEdited()
+      this.props.doGetAllEmployees()
+      this.props.doSelectItemToModify('')
     }
     if(nextProps.deleted) {
       this.props.doChangeDeleted()
+      this.props.doGetAllEmployees()
     }
     this.props.doDefineOperationType('')
   }
@@ -38,8 +46,9 @@ export default class AdminEmployees extends Component {
     this.props.doShowCreateEmployeesDialog(true)
   }
 
-  handleDelete = (item) => {
-    this.props.doDeleteEmployee(item)
+  handleDelete = (item_id) => {
+    this.props.doDeleteEmployee(item_id)
+    this.props.doGetAllEmployees()
   }
 
   render() {
@@ -70,7 +79,6 @@ export default class AdminEmployees extends Component {
                 <Table fixedHeader={true} selectable={false} >
                   <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
                     <TableRow >
-                      <TableHeaderColumn className="row-center" style={styles.table}>ID</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>Nome</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Matrícula</TableHeaderColumn>
                       <TableHeaderColumn style={styles.table}>E-mail</TableHeaderColumn>
@@ -81,14 +89,13 @@ export default class AdminEmployees extends Component {
                   <TableBody displayRowCheckbox={false} >
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
-                        <TableRowColumn className="row-center">{item.id}</TableRowColumn>
                         <TableRowColumn>{item.employee_name}</TableRowColumn>
-                        <TableRowColumn className="row-center">{item.registration}</TableRowColumn>
-                        <TableRowColumn>{item.email}</TableRowColumn>
-                        <TableRowColumn>{item.department}</TableRowColumn>
+                        <TableRowColumn className="row-center">{item.employee_registration}</TableRowColumn>
+                        <TableRowColumn>{item.employee_email}</TableRowColumn>
+                        <TableRowColumn>{item.departament.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
-                          <IconButton><Delete onTouchTap={() => this.handleDelete(item)}/></IconButton>
+                          <IconButton><Delete onTouchTap={() => this.handleDelete(item.id)}/></IconButton>
                         </TableRowColumn>
                       </TableRow>
                     )};

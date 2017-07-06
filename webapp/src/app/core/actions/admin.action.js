@@ -1,5 +1,8 @@
 import types from '../types'
 
+import getApiUrl from "."
+import { CALL_API } from "redux-api-middleware"
+
 export function showCreateDepartmentsDialog(open) {
   return {
     open,
@@ -49,45 +52,210 @@ export function selectItemToModify(item) {
 
 export function addNewDepartment(department) {
   return {
-    department,
-    type: types.admin.ADD_NEW_DEPARTMENT
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments`,
+      method: "POST",
+      credentials: "include",
+      types: [
+        types.admin.ADD_NEW_DEPARTMENT_REQUEST,
+        types.admin.ADD_NEW_DEPARTMENT_SUCCESS,
+        types.admin.ADD_NEW_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({ departament_name: department })
+    }
   }
 }
 
 export function editDepartment(id, department) {
   return {
-    id,
-    department,
-    type: types.admin.EDIT_DEPARTMENT,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments/${id}`,
+      method: "PUT",
+      credentials: "include",
+      types: [
+        types.admin.EDIT_DEPARTMENT_REQUEST,
+        types.admin.EDIT_DEPARTMENT_SUCCESS,
+        types.admin.EDIT_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({ departament_name: department })
+    }
   }
 }
 
-export function deleteDepartment(item) {
+export function deleteDepartment(id) {
   return {
-    item,
-    type: types.admin.DELETE_DEPARTMENT,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments/${id}`,
+      method: "DELETE",
+      credentials: "include",
+      types: [
+        types.admin.DELETE_DEPARTMENT_REQUEST,
+        types.admin.DELETE_DEPARTMENT_SUCCESS,
+        types.admin.DELETE_DEPARTMENT_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    }
   }
 }
 
 export function addNewEmployee(employee) {
   return {
-    employee,
-    type: types.admin.ADD_NEW_EMPLOYEE
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees`,
+      method: "POST",
+      credentials: "include",
+      types: [
+        types.admin.ADD_NEW_EMPLOYEE_REQUEST,
+        types.admin.ADD_NEW_EMPLOYEE_SUCCESS,
+        types.admin.ADD_NEW_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        employee_name: employee.employee_name,
+        employee_email: employee.employee_email,
+        employee_registration: employee.employee_registration,
+        password: employee.password,
+        password_confirmation: employee.password_confirmation,
+        departament_id: employee.departament_id,
+        contact_description: employee.contact_description,
+      })
+    }
   }
 }
 
 export function editEmployee(id, employee) {
   return {
-    id,
-    employee,
-    type: types.admin.EDIT_EMPLOYEE,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/${id}`,
+      method: "PUT",
+      credentials: "include",
+      types: [
+        types.admin.EDIT_EMPLOYEE_REQUEST,
+        types.admin.EDIT_EMPLOYEE_SUCCESS,
+        types.admin.EDIT_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        employee_name: employee.employee_name,
+        employee_email: employee.employee_email,
+        employee_registration: employee.employee_registration,
+        password: employee.password,
+        password_confirmation: employee.password_confirmation,
+        departament_id: employee.departament_id,
+        contact_description: employee.contact_description,
+      })
+    }
   }
 }
 
-export function deleteEmployee(item) {
+export function deleteEmployee(id) {
   return {
-    item,
-    type: types.admin.DELETE_EMPLOYEE,
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/${id}`,
+      method: "DELETE",
+      credentials: "include",
+      types: [
+        types.admin.DELETE_EMPLOYEE_REQUEST,
+        types.admin.DELETE_EMPLOYEE_SUCCESS,
+        types.admin.DELETE_EMPLOYEE_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    }
   }
 }
 
+export function getAllHotspots() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_ALL_HOTSPOTS_REQUEST,
+        types.admin.GET_ALL_HOTSPOTS_SUCCESS,
+        types.admin.GET_ALL_HOTSPOTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function getAllDepartments() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/departaments`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_ALL_DEPARTMENTS_REQUEST,
+        types.admin.GET_ALL_DEPARTMENTS_SUCCESS,
+        types.admin.GET_ALL_DEPARTMENTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function getAllEmployees() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_ALL_EMPLOYEES_REQUEST,
+        types.admin.GET_ALL_EMPLOYEES_SUCCESS,
+        types.admin.GET_ALL_EMPLOYEES_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function getSpecificRecipients(id) {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/employees/search_departament/${id}`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.admin.GET_SPECIFIC_RECIPIENTS_REQUEST,
+        types.admin.GET_SPECIFIC_RECIPIENTS_SUCCESS,
+        types.admin.GET_SPECIFIC_RECIPIENTS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}

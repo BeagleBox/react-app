@@ -16,7 +16,7 @@ import './app-bar.css'
 export default class AppBar extends Component {
   adminButton = () => {
     return <ToolbarGroup>
-      {this.props.user.admin &&
+      {this.props.user.is_admin &&
         <IconButton containerElement={<Link to="admin" />} >
           <Settings />
         </IconButton>
@@ -28,11 +28,11 @@ export default class AppBar extends Component {
   render() {
     return (
       <div>
-        {this.props.user.email !== undefined &&
+        {(this.props.token !== "") &&
           <Toolbar className="toolbar-container" >
             <ToolbarGroup firstChild={true} >
               {this.adminButton()}
-              <ToolbarTitle className="toolbar-title" text={"Olá, " + this.props.user.name} />
+              <ToolbarTitle className="toolbar-title" text={"Olá, " + this.props.user.employee_name} />
             </ToolbarGroup>
             <ToolbarGroup>
               <IconButton
@@ -53,14 +53,29 @@ export default class AppBar extends Component {
                 <Request />
               </IconButton>
               <ToolbarSeparator className="separator" />
-              <IconButton
-                tooltip="Receber"
-                touch={true}
-                tooltipPosition="bottom-center"
-                containerElement={<Link to="receber" />} >
+              {this.props.receiveAllowed &&
+                <IconButton
+                  tooltip="Receber"
+                  touch={true}
+                  disabled={this.props.receiveAllowed}
+                  tooltipPosition="bottom-center" >
 
-                <Receive />
-              </IconButton>
+                  <Receive />
+                </IconButton>
+              }
+
+              {!this.props.receiveAllowed &&
+                <IconButton
+                  tooltip="Receber"
+                  touch={true}
+                  disabled={this.props.receiveAllowed}
+                  tooltipPosition="bottom-center"
+                  containerElement={<Link to="receber" />} >
+
+                  <Receive />
+                </IconButton>
+              }
+
               <ToolbarSeparator className="separator" />
               <IconButton
                 tooltip="Histórico"

@@ -3,13 +3,18 @@ import types from "../types"
 const initialState = {
   isSamePlace: false,
   isDeleted: false,
+  isCreated: false,
   location: {
     origin: '',
     destination: '',
+    destination_recipient: '',
   },
+  delivery: {},
+  delivery_items: [],
   loadItems: [],
   dialog: false,
   accessKey: '',
+  button: false,
 };
 
 const addLoadItem = (state, {item}) => {
@@ -62,10 +67,37 @@ export default function request(state=initialState, action) {
 
       break;
     }
+    case types.request.SELECT_RECIPIENT: {
+      state = {
+        ...state,
+        location: {
+          ...state.location,
+          destination_recipient: action.recipient,
+        },
+      };
+
+      break;
+    }
+    case types.request.CHANGE_PLACE: {
+      state = {
+        ...state,
+        isSamePlace: action.change,
+      };
+
+      break;
+    }
     case types.request.ADD_LOAD_ITEM: {
       state = {
         ...state,
         loadItems: addLoadItem(state, action),
+      };
+
+      break;
+    }
+    case types.request.GET_ALL_ITEMS_SUCCESS: {
+      state = {
+        ...state,
+        delivery_items: action.payload,
       };
 
       break;
@@ -98,6 +130,22 @@ export default function request(state=initialState, action) {
       state = {
         ...state,
         accessKey: action.key,
+      };
+
+      break;
+    }
+    case types.request.DISABLE_REQUEST_BUTTON: {
+      state = {
+        ...state,
+        button: action.disable,
+      };
+
+      break;
+    }
+    case types.request.CREATE_DELIVERY_SUCCESS: {
+      state = {
+        ...state,
+        delivery: action.payload,
       };
 
       break;

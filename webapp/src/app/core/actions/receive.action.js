@@ -1,5 +1,8 @@
 import types from '../types'
 
+import getApiUrl from "."
+import { CALL_API } from "redux-api-middleware"
+
 export function showAlertDialog(open) {
   return {
     open,
@@ -38,5 +41,31 @@ export function selectAllItems(checked) {
   return {
     checked,
     type: types.receive.SELECT_ALL_ITEMS,
+  }
+}
+
+export function getDeliveries() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/deliveries`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.receive.GET_DELIVERIES_REQUEST,
+        types.receive.GET_DELIVERIES_SUCCESS,
+        types.receive.GET_DELIVERIES_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
+export function allowReceive(allow) {
+  return {
+    allow,
+    type: types.receive.ALLOW_RECEIVE,
   }
 }

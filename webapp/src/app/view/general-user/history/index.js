@@ -5,6 +5,7 @@ import * as actions from '../../../core/actions/history.action'
 
 const stateToProps = (state) => {
   return {
+    user: state.auth.user,
     fromDate: state.history.fromDate,
     toDate: state.history.toDate,
   }

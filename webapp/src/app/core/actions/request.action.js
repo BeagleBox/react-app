@@ -1,5 +1,8 @@
 import types from '../types'
 
+import getApiUrl from "."
+import { CALL_API } from "redux-api-middleware"
+
 export function requestCar() {
   return {
     type: types.request.REQUEST_CAR,
@@ -20,11 +23,37 @@ export function selectDestinationLocation(location) {
   }
 }
 
+export function selectRecipient(recipient) {
+  return {
+    recipient,
+    type: types.request.SELECT_RECIPIENT,
+  }
+}
+
 export function addNewLoadItem(item) {
   return {
     item,
     type: types.request.ADD_LOAD_ITEM,
   }
+}
+
+export function getItems() {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/items`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.request.GET_ALL_ITEMS_REQUEST,
+        types.request.GET_ALL_ITEMS_SUCCESS,
+        types.request.GET_ALL_ITEMS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    }
+  };
 }
 
 export function deleteLoadItem(item) {
@@ -53,4 +82,47 @@ export function generateKey(key) {
     key,
     type: types.request.GENERATE_KEY,
   }
+}
+
+export function disableRequestButton(disable) {
+  return {
+    disable,
+    type: types.request.DISABLE_REQUEST_BUTTON,
+  }
+}
+
+export function changePlace(change) {
+  return {
+    change,
+    type: types.request.CHANGE_PLACE,
+  }
+}
+
+export function createDelivery(user, origin, destination, recipient, items, key_access) {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/deliveries`,
+      method: "POST",
+      credentials: "include",
+      types: [
+        types.request.CREATE_DELIVERY_REQUEST,
+        types.request.CREATE_DELIVERY_SUCCESS,
+        types.request.CREATE_DELIVERY_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify ({
+        status: "Em trânsito",
+        source_id: origin,
+        sender_id: user,
+        destination_id: destination,
+        recipient_id: recipient,
+        itens_names: items,
+        message_type: "delivery",
+        key_access: key_access,
+      })
+    }
+  };
 }
