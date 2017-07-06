@@ -16,7 +16,7 @@ export default class GeneralInformation extends Component {
             <Card className="card-camera">
               <Iframe
                 className="iframe-camera"
-                url="http://www.youtube.com/embed/TOM6lDQ_2BE?autoplay=1"
+                url="https://www.youtube.com/embed/VTMl_oSW2jA?autoplay=1"
                 position="absolute"
                 width="545px"
                 height="410px"
