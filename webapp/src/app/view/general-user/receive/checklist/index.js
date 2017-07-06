@@ -5,7 +5,7 @@ import * as actions from '../../../../core/actions/receive.action'
 
 const stateToProps = (state) => {
   return {
-    items: state.receive.items.data,
+    list: state.receive.items.data,
     hasChecked: state.receive.items.hasChecked,
   }
 };
@@ -21,6 +21,9 @@ const dispatchToProps = (dispatch) => {
     doSelectAllItems: (checked) => {
       dispatch(actions.selectAllItems(checked));
     },
+    doSendCar: (list) => {
+      dispatch(actions.sendCar(list));
+    }
   }
 };
 

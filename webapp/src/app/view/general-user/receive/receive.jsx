@@ -27,19 +27,13 @@ export default class Receive extends Component {
 
       keyError: '',
 
-      lastDelivery: '',
-      lastKey: '',
+      currentDelivery: '',
+      currentKey: '',
     }
   }
 
   componentDidMount() {
     this.props.doGetDeliveries()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.deliveries.length > 0) {
-      this.setState({ lastDelivery: nextProps.deliveries.length-1 })
-    }
   }
 
   handleReceiveItems = () => {
@@ -56,12 +50,41 @@ export default class Receive extends Component {
   }
 
   handleInputChange = (event) => {
-    this.setState({ open_key: event.target.value })
+    const value = event.target.value;
+    const name = event.target.name;
+
+    this.setState({
+      [name]: value
+    })
   }
 
   confirmOpenKey = () => {
-    if(this.state.open_key === this.props.key_access) {
-      this.setState({ keyError: "", openAccess: false, isOpenKey: true })
+    const deliveries = this.props.deliveries
+    let currentKey = ''
+    let currentDelivery = ''
+    let entrou = false
+
+    for (var i = 0; i < deliveries.length; i++) {
+      if(this.state.tracker === deliveries[i].tracker) {
+        currentKey = deliveries[i].key_access
+        currentDelivery = deliveries[i]
+        entrou = true
+        this.setState({ identifierError: "" })
+      }
+    }
+
+    if(!entrou) {
+      this.setState({ identifierError: "Identificador incorreto." })
+    }
+
+    if(this.state.open_key === currentKey) {
+      this.setState({
+        keyError: "",
+        openAccess: false,
+        isOpenKey: true,
+        currentDelivery: currentDelivery,
+        currentKey: currentKey,
+      })
       this.props.doChangePlace(false)
     } else {
       this.setState({ keyError: "Senha de acesso incorreta." })
@@ -97,9 +120,19 @@ export default class Receive extends Component {
                 <img className="img-receive" src={assets.accessKey} alt={"Chave de acesso"} />
               </Col>
               <Col className="col-fluid" md={12} sm={12} xs={12}>
-                <h3 className="dialog-success-title">Qual a chave de acesso?</h3>
+                <h3 className="dialog-success-title">Qual o identificador e a chave de acesso?</h3>
               </Col>
-              <Col className="col-fluid" md={12} sm={12} xs={12}>
+              <Col className="col-fluid" md={5.5} sm={12} xs={12}>
+                <TextField
+                  name="tracker"
+                  floatingLabelText="Identificador"
+                  floatingLabelStyle={{color: '#696969'}}
+                  errorText={this.state.identifierError}
+                  fullWidth={true}
+                  onChange={this.handleInputChange} />
+              </Col>
+              <Col className="col-fluid" md={1} ></Col>
+              <Col className="col-fluid" md={5.5} sm={12} xs={12}>
                 <TextField
                   name="open_key"
                   floatingLabelText="Chave de acesso"
@@ -116,13 +149,13 @@ export default class Receive extends Component {
         {this.state.isOpenKey &&
           <Row className="row-fluid">
             <Col className="col-fluid" md={5.5} sm={12} xs={12}>
-              <OpenKey />
+              <OpenKey key_access={this.state.currentKey} />
             </Col>
             <Col className="col-fluid" md={1}>
               <hr className="vertical-divider" />
             </Col>
             <Col className="col-fluid" md={5.5} sm={12} xs={12}>
-              <CheckList />
+              <CheckList items={this.state.currentDelivery.items} />
             </Col>
             <Col className="col-fluid" md={12} sm={12} xs={12}>
               <RaisedButton

@@ -19,6 +19,9 @@ export default class ReceiveCheckList extends Component {
     if(nextProps.hasChecked) {
       this.props.doChangeChecked()
     }
+    if(nextProps.list.lenght > 0) {
+      this.props.doSendCar(nextProps.items)
+    }
   }
 
   handleSelectAll = () => {
@@ -51,7 +54,7 @@ export default class ReceiveCheckList extends Component {
         </Col>
         <Col className="col-fluid" md={12} sm={12} xs={12}>
           <List style={styles.list} className="receive-list-items">
-            {this.props.items.map((item, k) =>
+            {this.props.list.map((item, k) =>
               <ListItem
                 key={k}
                 primaryText={item.title}
@@ -63,4 +66,8 @@ export default class ReceiveCheckList extends Component {
       </Row>
     );
   }
+}
+
+ReceiveCheckList.propTypes = {
+  items: React.PropTypes.array
 }
