@@ -52,14 +52,6 @@ export default class RequestSameLocation extends Component {
       this.setState({recipientError: ""})
     }
 
-    if(!validation.isEmpty(origin) && !validation.isEmpty(destination)) {
-      if(validation.isEqual(origin, destination)) {
-        this.setState({destinationError: "O destino não pode ser o mesmo que a origem"})
-      } else {
-        this.setState({destinationError: ""})
-      }
-    }
-
     if(validation.isEmpty(items)) {
       this.setState({openSnackbar: true})
     }
@@ -77,6 +69,14 @@ export default class RequestSameLocation extends Component {
     }
   }
 
+  setDestinationError = (message) => {
+    this.setState({ destinationError: message })
+  }
+
+  setRecipientError = (message) => {
+    this.setState({ recipientError: message })
+  }
+
   handleRequestClose = () => {
     this.setState({
       openSnackbar: false,
@@ -90,7 +90,8 @@ export default class RequestSameLocation extends Component {
           <Location
             originError={this.state.originError}
             destinationError={this.state.destinationError}
-            recipientError={this.state.recipientError} />
+            recipientError={this.state.recipientError}
+            setDestinationError={this.setDestinationError} />
         </Col>
         <Col className="col-fluid" md={1} >
           <hr className="vertical-divider" />

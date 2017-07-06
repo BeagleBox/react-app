@@ -18,6 +18,10 @@
   margin: 0.5em;
 }
 
+.card-camera {
+  height: 400px;
+}
+
 .card-salmon div {
   background-color: #FFA07A !important;
 }
@@ -37,5 +41,9 @@
 @media only screen and (max-width: 500px) {
   .extra-padding {
     padding: 0;
+  }
+
+  .iframe-camera {
+    width: 100px !important;
   }
 }

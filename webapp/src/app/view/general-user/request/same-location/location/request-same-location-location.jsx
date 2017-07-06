@@ -5,6 +5,8 @@ import assets from '../../assets'
 import SelectField from  'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 
+import * as validation from '../../validation'
+
 export default class Location extends Component {
   componentWillMount() {
     this.props.doGetAllHotspots()
@@ -14,6 +16,19 @@ export default class Location extends Component {
     if(nextProps.destination !== this.props.destination) {
       this.props.doGetSpecificRecipients(nextProps.destination)
     }
+  }
+
+  handleInputChange = (value) => {
+    const origin = this.props.origin;
+
+    if(!validation.isEmpty(origin) && !validation.isEmpty(value)) {
+      if(validation.isEqual(origin, value)) {
+        this.props.setDestinationError("O destino não pode ser o mesmo que a origem")
+      } else {
+        this.props.setDestinationError("")
+      }
+    }
+    this.props.doSelectDestinationLocation(value)
   }
 
   render() {
@@ -39,7 +54,7 @@ export default class Location extends Component {
             floatingLabelText="Destino final"
             className="form-content-select"
             value={this.props.destination}
-            onChange={(event, index, value) => this.props.doSelectDestinationLocation(value)}
+            onChange={(event, index, value) => this.handleInputChange(value)}
             errorText={this.props.destinationError} >
             { this.props.location.map(item => (
                 <MenuItem key={item.id} value={item.id} primaryText={item.departament_name} />
@@ -67,4 +82,5 @@ Location.PropTypes = {
   originError: React.PropTypes.string,
   destinationError: React.PropTypes.string,
   recipientError: React.PropTypes.string,
+  setDestinationError: React.PropTypes.func,
 }

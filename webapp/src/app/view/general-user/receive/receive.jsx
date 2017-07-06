@@ -77,7 +77,7 @@ export default class Receive extends Component {
       this.setState({ identifierError: "Identificador incorreto." })
     }
 
-    if(this.state.open_key === currentKey) {
+    if(this.state.open_key === currentKey && this.state.open_key !== '') {
       this.setState({
         keyError: "",
         openAccess: false,
@@ -122,7 +122,7 @@ export default class Receive extends Component {
               <Col className="col-fluid" md={12} sm={12} xs={12}>
                 <h3 className="dialog-success-title">Qual o identificador e a chave de acesso?</h3>
               </Col>
-              <Col className="col-fluid" md={5.5} sm={12} xs={12}>
+              <Col className="col-fluid" md={5} sm={12} xs={12}>
                 <TextField
                   name="tracker"
                   floatingLabelText="Identificador"
@@ -132,7 +132,7 @@ export default class Receive extends Component {
                   onChange={this.handleInputChange} />
               </Col>
               <Col className="col-fluid" md={1} ></Col>
-              <Col className="col-fluid" md={5.5} sm={12} xs={12}>
+              <Col className="col-fluid" md={5} sm={12} xs={12}>
                 <TextField
                   name="open_key"
                   floatingLabelText="Chave de acesso"

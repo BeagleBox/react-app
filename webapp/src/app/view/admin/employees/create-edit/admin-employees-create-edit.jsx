@@ -23,6 +23,8 @@ export default class AdminEmployeesCreateEdit extends Component {
       contact_description: '',
       password: '',
       password_confirmation: '',
+
+      confirmError: '',
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -83,6 +85,16 @@ export default class AdminEmployeesCreateEdit extends Component {
     }
 
     this.props.doShowCreateEmployeesDialog(false)
+  }
+
+  handlePasswordChange = (value) => {
+    const password = this.state.password
+
+    if(value !== password) {
+      this.setState({ confirmError: "As senhas devem ser iguais." })
+    } else {
+      this.setState({ confirmError: "" })
+    }
   }
 
   handleCancel = () => {
@@ -223,7 +235,8 @@ export default class AdminEmployeesCreateEdit extends Component {
                         floatingLabelText="Confirmação de senha"
                         floatingLabelStyle={{color: '#696969'}}
                         fullWidth={true}
-                        onChange={this.handleInputChange} />
+                        errorText={this.state.confirmError}
+                        onChange={(event, value) => this.handlePasswordChange(value)} />
                     </Col>
                   </Row>
                 </Col>

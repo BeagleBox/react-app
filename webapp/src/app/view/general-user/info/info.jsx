@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import Iframe from 'react-iframe'
 
-import {Card, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import {Card, CardHeader, CardText} from 'material-ui/Card'
 
 import assets from './assets'
 import './info.css'
@@ -12,13 +13,14 @@ export default class GeneralInformation extends Component {
       <Grid className="info-container" fluid>
         <Row className="row-fluid info-content">
           <Col className="col-fluid col-info col-camera" md={6} sm={12} xs={12}>
-            <Card>
-              <CardMedia
-                className="card-camera"
-                overlay={<CardTitle title="Faculdade Gama - UnB" subtitle="ao vivo" />} >
-
-                <img src={assets.camera} alt="Imagens da câmera" />
-              </CardMedia>
+            <Card className="card-camera">
+              <Iframe
+                className="iframe-camera"
+                url="http://www.youtube.com/embed/TOM6lDQ_2BE?autoplay=1"
+                position="absolute"
+                width="545px"
+                height="410px"
+                allowFullScreen />
             </Card>
           </Col>
           <Col className="col-fluid col-info" md={6} sm={12} xs={12}>
