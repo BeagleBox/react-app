@@ -80,9 +80,10 @@ export default class AdminEmployees extends Component {
                   <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
                     <TableRow >
                       <TableHeaderColumn style={styles.table}>Nome</TableHeaderColumn>
-                      <TableHeaderColumn className="row-center" style={styles.table}>Matrícula</TableHeaderColumn>
-                      <TableHeaderColumn style={styles.table}>E-mail</TableHeaderColumn>
-                      <TableHeaderColumn style={styles.table}>Departamento</TableHeaderColumn>
+                      <TableHeaderColumn className="row-center col-none" style={styles.table}>Matrícula</TableHeaderColumn>
+                      <TableHeaderColumn className="row-center col-none" style={styles.table}>Telefone</TableHeaderColumn>
+                      <TableHeaderColumn className="col-none" style={styles.table}>E-mail</TableHeaderColumn>
+                      <TableHeaderColumn className="col-none" style={styles.table}>Departamento</TableHeaderColumn>
                       <TableHeaderColumn className="row-center" style={styles.table}>Ações</TableHeaderColumn>
                     </TableRow>
                   </TableHeader>
@@ -90,9 +91,10 @@ export default class AdminEmployees extends Component {
                     {this.props.items.map((item, k) =>
                       <TableRow key={k} >
                         <TableRowColumn>{item.employee_name}</TableRowColumn>
-                        <TableRowColumn className="row-center">{item.employee_registration}</TableRowColumn>
-                        <TableRowColumn>{item.employee_email}</TableRowColumn>
-                        <TableRowColumn>{item.departament.departament_name}</TableRowColumn>
+                        <TableRowColumn className="row-center col-none">{item.employee_registration}</TableRowColumn>
+                        <TableRowColumn className="col-none">{item.contacts[0].description}</TableRowColumn>
+                        <TableRowColumn className="col-none">{item.employee_email}</TableRowColumn>
+                        <TableRowColumn className="col-none">{item.departament.departament_name}</TableRowColumn>
                         <TableRowColumn className="row-center">
                           <IconButton><Edit onTouchTap={() => this.handleEdit(item)}/></IconButton>
                           <IconButton><Delete onTouchTap={() => this.handleDelete(item.id)}/></IconButton>

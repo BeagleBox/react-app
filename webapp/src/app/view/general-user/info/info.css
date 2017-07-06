@@ -43,7 +43,8 @@
     padding: 0;
   }
 
-  .iframe-camera {
-    width: 100px !important;
+  iframe {
+    width: 85vw !important;
+    height: 400px !important;
   }
 }

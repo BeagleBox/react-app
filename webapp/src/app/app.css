@@ -94,3 +94,14 @@ button, input {
     border-radius: 10px;
     background-color: #ffffff;
 }
+
+@media only screen and (max-width: 500px) {
+  .container-fluid {
+    padding-right: 1em !important;
+    padding-left: 1em !important;
+  }
+
+  .col-none {
+    display: none;
+  }
+}

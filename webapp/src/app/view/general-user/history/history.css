@@ -51,9 +51,4 @@
   .filter-date label {
     padding-left: 2.5em;
   }
-
-  .col-id,
-  .col-origin {
-    display: none;
-  }
 }

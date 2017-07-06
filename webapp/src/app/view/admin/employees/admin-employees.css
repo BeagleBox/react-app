@@ -32,3 +32,10 @@
 .btn-edit-employees {
   margin-right: 0.5em;
 }
+
+@media only screen and (max-width: 500px) {
+  .employees-container {
+    width: 85vw !important;
+    margin: 0 !important;
+  }
+}

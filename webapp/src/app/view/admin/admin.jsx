@@ -19,7 +19,7 @@ export default class Administrator extends Component {
       <Grid className="admin-container" fluid>
         {this.props.user.is_admin &&
         <Row className="row-fluid admin-content">
-          <Col className="col-fluid" md={2} sm={3} xs={3} >
+          <Col className="col-fluid" md={2} sm={3} xs={2} >
             <Drawer className="drawer-admin-content" open={true} width={"18%"}>
               <Menu className="admin-menu">
                 <MenuItem

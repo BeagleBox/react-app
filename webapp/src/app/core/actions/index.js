@@ -1,3 +1,3 @@
-const getApiUrl = () => "http://localhost:8080";
+const getApiUrl = () => "https://c7b9379f.ngrok.io";
 
 export default getApiUrl;

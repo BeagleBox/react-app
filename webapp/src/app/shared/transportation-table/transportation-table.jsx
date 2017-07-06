@@ -53,18 +53,18 @@ export default class TransformationTable extends Component {
           <Table fixedHeader={true} selectable={false} >
             <TableHeader adjustForCheckbox={false} displaySelectAll={false} fixedHeader={true} >
               <TableRow >
-                <TableHeaderColumn className="col-id row-center" style={styles.table}>ID</TableHeaderColumn>
+                <TableHeaderColumn className="col-none row-center" style={styles.table}>ID</TableHeaderColumn>
                 <TableHeaderColumn className="row-center" style={styles.table}>Data</TableHeaderColumn>
-                <TableHeaderColumn className="col-origin" style={styles.table}>Origem</TableHeaderColumn>
+                <TableHeaderColumn className="col-none" style={styles.table}>Origem</TableHeaderColumn>
                 <TableHeaderColumn style={styles.table}>Destino</TableHeaderColumn>
                 <TableHeaderColumn className="row-center" style={styles.table}>Carga</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={false} > {this.props.tableItems.map((item, k) =>
               <TableRow key={k} >
-                <TableRowColumn className="col-id row-center">{item.tracker}</TableRowColumn>
+                <TableRowColumn className="col-none row-center">{item.tracker}</TableRowColumn>
                 <TableRowColumn className="row-center">{new Date(item.created_at).toLocaleDateString('pt-BR')}</TableRowColumn>
-                <TableRowColumn className="col-origin">{item.source.departament_name}</TableRowColumn>
+                <TableRowColumn className="col-none">{item.source.departament_name}</TableRowColumn>
                 <TableRowColumn>{item.destination.departament_name}</TableRowColumn>
                 <TableRowColumn className="row-center">
                   <RaisedButton
