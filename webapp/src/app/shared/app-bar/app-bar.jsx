@@ -53,28 +53,14 @@ export default class AppBar extends Component {
                 <Request />
               </IconButton>
               <ToolbarSeparator className="separator" />
-              {this.props.receiveAllowed &&
-                <IconButton
-                  tooltip="Receber"
-                  touch={true}
-                  disabled={this.props.receiveAllowed}
-                  tooltipPosition="bottom-center" >
+              <IconButton
+                tooltip="Receber"
+                touch={true}
+                tooltipPosition="bottom-center"
+                containerElement={<Link to="receber" />} >
 
-                  <Receive />
-                </IconButton>
-              }
-
-              {!this.props.receiveAllowed &&
-                <IconButton
-                  tooltip="Receber"
-                  touch={true}
-                  disabled={this.props.receiveAllowed}
-                  tooltipPosition="bottom-center"
-                  containerElement={<Link to="receber" />} >
-
-                  <Receive />
-                </IconButton>
-              }
+                <Receive />
+              </IconButton>
 
               <ToolbarSeparator className="separator" />
               <IconButton

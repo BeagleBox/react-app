@@ -103,10 +103,6 @@ export default class Receive extends Component {
 
     return (
       <Grid className="receive-container" fluid>
-      {this.props.receiveAllowed &&
-        <AccessDenied />
-      }
-      {!this.props.receiveAllowed &&
         <Dialog
           className="alert-dialog-container"
           actions={action}
@@ -144,7 +140,6 @@ export default class Receive extends Component {
             </Row>
           </Grid>
         </Dialog>
-        }
 
         {this.state.isOpenKey &&
           <Row className="row-fluid">
