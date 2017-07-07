@@ -23,12 +23,14 @@ export default class GeneralInformation extends Component {
       forthNext: false,
       fifthNext: false,
       sixthNext: false,
-      status: 'Não há Entregas'
+      status: 'Não há Entregas',
+      origin: 'Algum lugar',
+      destination: 'Outro lugar'
     }
   }
   componentDidMount() {
-    this.interval = setInterval(() => this.props.doUpdateBatteryStatus(), 1000);
-    this.interval = setInterval(() => this.props.doGetCurrentDelivery(), 1000);
+    this.interval = setInterval(() => this.props.doUpdateBatteryStatus(), 5000);
+    this.interval = setInterval(() => this.props.doGetCurrentDelivery(), 5000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -40,6 +42,7 @@ export default class GeneralInformation extends Component {
     }
     else if(nextProps.actualStep !== this.props.actualStep) {
       let actualPercent = nextProps.actualStep/nextProps.totalStep
+      console.log('--> '+ actualPercent)
 
       if(actualPercent > 0 && actualPercent <= 0.1667) {
         this.setState({ firstNext: true })
@@ -51,13 +54,18 @@ export default class GeneralInformation extends Component {
         this.setState({ firstNext:true, secondNext: true, thirdNext: true, forthNext: true })
       } if(actualPercent > 0.6668 && actualPercent <= 0.8335) {
         this.setState({ firstNext:true, secondNext: true, thirdNext: true, forthNext: true, fifthNext: true })
-      } if(actualPercent > 0.8335 && actualPercent === 1) {
+      } if(actualPercent > 0.8335 && actualPercent >= 1) {
+        console.log('Entrou')
         this.setState({ firstNext:true, secondNext: true, thirdNext: true, forthNext: true, fifthNext: true, sixthNext: true })
       }
     }
 
     if(nextProps.statusDelivery !== this.props.statusDelivery) {
       this.setState({ status: nextProps.statusDelivery })
+    }
+
+    if(nextProps.origin !== this.props.origin || nextProps.destination !== this.props.destination) {
+      this.setState({ origin: nextProps.origin, destination: nextProps.destination })
     }
   }
 
@@ -136,7 +144,7 @@ export default class GeneralInformation extends Component {
                         <img src={assets.navigation} alt="Ícone da bateria" />
                       </Col>
                       <Col className="col-fluid" md={12} sm={12} xs={12}>
-                        <h2>{this.props.origin + ' -> ' + this.props.destination}</h2>
+                        <h2>{this.state.origin + ' -> ' + this.state.destination}</h2>
                       </Col>
                     </Row>
                   </CardText>

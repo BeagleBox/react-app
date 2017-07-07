@@ -1,3 +1,3 @@
-const getApiUrl = () => "https://9f891286.ngrok.io";
+const getApiUrl = () => "https://17dade94.ngrok.io";
 
 export default getApiUrl;

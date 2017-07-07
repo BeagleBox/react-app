@@ -1,7 +1,7 @@
 import types from "../types"
 
 const initialState = {
-  status: 'Médio',
+  status: 'Sem status',
   actualStep: '',
   totalStep: '',
   statusDelivery: '',
