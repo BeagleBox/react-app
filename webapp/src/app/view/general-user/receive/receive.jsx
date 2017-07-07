@@ -10,8 +10,6 @@ import OpenKey from './open-key'
 import CheckList from './checklist'
 import AlertDialog from '../../../shared/alert-dialog'
 
-import AccessDenied from '../../../shared/access-denied'
-
 import assets from './assets'
 
 import './receive.css'

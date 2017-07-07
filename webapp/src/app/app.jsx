@@ -13,7 +13,7 @@ injectTapEventPlugin();
 
 export default class App extends Component {
   componentWillMount() {
-    if(localStorage.user !== '') {
+    if(localStorage.user !== null) {
       this.props.onInitiallize()
     }
   }

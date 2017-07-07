@@ -38,6 +38,22 @@
   font-size: 2em;
 }
 
+.status-delivery {
+  display: inline-block;
+}
+
+.status-not-yet {
+  fill: #90EE90 !important;
+}
+
+.status-ready {
+  fill: #000000 !important;
+}
+
+.special-h1 {
+  margin-bottom: 1.2em;
+}
+
 @media only screen and (max-width: 500px) {
   .extra-padding {
     padding: 0;
