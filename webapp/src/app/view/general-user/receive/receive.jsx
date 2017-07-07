@@ -84,6 +84,7 @@ export default class Receive extends Component {
         currentKey: currentKey,
       })
       this.props.doChangePlace(false)
+      this.props.doSetKeyConfirmation('true')
     } else {
       this.setState({ keyError: "Senha de acesso incorreta." })
     }

@@ -63,6 +63,25 @@ export function getDeliveries() {
   }
 }
 
+export function setKeyConfirmation(access) {
+  return {
+    [CALL_API]: {
+      endpoint: `${getApiUrl()}/set_key_access_status/${access}`,
+      method: "GET",
+      credentials: "include",
+      types: [
+        types.receive.SET_KEY_STATUS_REQUEST,
+        types.receive.SET_KEY_STATUS_SUCCESS,
+        types.receive.SET_KEY_STATUS_FAILURE
+      ],
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}
+
 export function allowReceive(allow) {
   return {
     allow,

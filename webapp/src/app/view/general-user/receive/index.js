@@ -29,6 +29,9 @@ const dispatchToProps = (dispatch) => {
     doAllowReceive: (allow) => {
       dispatch(receiveActions.allowReceive(allow));
     },
+    doSetKeyConfirmation: (access) => {
+      dispatch(receiveActions.setKeyConfirmation(access));
+    }
   }
 };
 

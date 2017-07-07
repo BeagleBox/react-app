@@ -42,7 +42,6 @@ export default class GeneralInformation extends Component {
     }
     else if(nextProps.actualStep !== this.props.actualStep) {
       let actualPercent = nextProps.actualStep/nextProps.totalStep
-      console.log('--> '+ actualPercent)
 
       if(actualPercent > 0 && actualPercent <= 0.1667) {
         this.setState({ firstNext: true })
@@ -55,7 +54,6 @@ export default class GeneralInformation extends Component {
       } if(actualPercent > 0.6668 && actualPercent <= 0.8335) {
         this.setState({ firstNext:true, secondNext: true, thirdNext: true, forthNext: true, fifthNext: true })
       } if(actualPercent > 0.8335 && actualPercent >= 1) {
-        console.log('Entrou')
         this.setState({ firstNext:true, secondNext: true, thirdNext: true, forthNext: true, fifthNext: true, sixthNext: true })
       }
     }

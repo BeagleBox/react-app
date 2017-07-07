@@ -15,6 +15,7 @@ const initialState = {
   },
   dialog: false,
   allowed: true,
+  key_status: '',
 };
 
 const checkItem = (state, {index, check}) => {
@@ -162,6 +163,14 @@ export default function receive(state=initialState, action) {
       state = {
         ...state,
         allowed: action.allow,
+      };
+
+      break;
+    }
+    case types.receive.SET_KEY_STATUS_SUCCESS: {
+      state = {
+        ...state,
+        key_status: action.payload,
       };
 
       break;
